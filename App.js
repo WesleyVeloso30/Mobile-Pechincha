@@ -1,6 +1,7 @@
 import React from 'react';
 import {ImageBackground, StyleSheet,TextInput, Text, View, ScrollView, TouchableOpacity} from 'react-native';
 import Button2 from './components/Button';
+import Input2 from './components/Input';
 
 
 const App = () => {
@@ -11,6 +12,10 @@ const App = () => {
   <View style={styles.container}>
     <View style={styles.containerLogin}>
       <Text style={[styles.text]}>Pechincha</Text>
+      <Input2 label="Name" placeHolder="Ex: Wesley Carrasco"/>
+      <Input2 label="E-mail" placeHolder="Ex: Email@gmail.com"/>
+      <Input2 label="Senha" placeHolder="********"/>
+      <Input2 label="Confirme Senha" placeHolder="********"/>
       
       <Button2 name={isCadastred ? 'Cadastrado' : 'Cadastrar'}
       onClick={setIsCadastred}
