@@ -1,34 +1,26 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import Login from './src/screens/login';
+import Homepage from './src/screens/homepage';
+import Register from './src/screens/register';
 
-export default function Card({name, onClick}) {
-  const styles = StyleSheet.create({
-    Button: {
-      marginBottom: 10,
-      width: 300,
-      height: 40,
-      borderRadius: 20,
-      fontSize: 25,
-      backgroundColor: 'blue',
-      textAlign: 'center',
-      color: 'white',
-      
-    },
-    container2: {
-      // flex: 1,
-      inset: 0,
-      justifyContent: 'space-around',
-      
-    }
-  });
+const Stack = createStackNavigator();
 
-  
-
+function MyStack() {
   return (
-    <View style={styles.container2} onClick={() => onClick((state) => !state)}>
-      <Text style={styles.Button}>
-        {name}
-      </Text>
-    </View>
+    <Stack.Navigator>
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Homepage" component={Homepage} />
+      <Stack.Screen name="Register" component={Register} />
+    </Stack.Navigator>
   );
-};
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <MyStack />
+    </NavigationContainer>
+  );
+}
