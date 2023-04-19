@@ -13,16 +13,16 @@ const Login = ({navigation}) => {
   return (
   <View style={styles.container}>
     <View style={styles.containerLogin}>
-      <Image style={{height: 120, width: 250}} source={require('../../assets/Logo.jpg')} alt='Logo do aplicativo Pechincha'/>
+      <Image style={{height: 120, width: 250}} source={require('../../assets/Logo.png')} alt='Logo do aplicativo Pechincha'/>
       {/* <Text style={[styles.text]}>Pechincha</Text> */}
       <Input2 label="E-mail" placeHolder="Ex: Email@gmail.com"/>
       <Input2 label="Senha" placeHolder="********"/>
       
-      <Button2 
+      <Button2
         navigation={navigation}
       />
 
-      <Text>Não possui cadastro? Click Aqui</Text>
+      <Text onPress={() => navigation.navigate('Register')} navigation={navigation} style={{fontSize: 18, width: '100vw', textAlign: 'center'}}>Não possui cadastro? Click Aqui</Text>
 
     </View>
   </View>
@@ -33,16 +33,18 @@ const Login = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     padding: '5rem',
-    backgroundColor: '##fffffe',
+    backgroundColor: '#fffffe',
     flex: 1,
-    inset: 0,
+    // inset: 0,
+    // width: '100'
   },
   image: {
     flex: 1,
   },
   containerLogin: {
-    inset: 0,
-    // flex: 1,
+    // inset: 0,
+    flex: 1,
+    width: '100',
     alignItems: 'center',
     // gap: '2rem',
     justifyContent: 'space-between'
