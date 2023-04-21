@@ -12,6 +12,7 @@ export default function Input({label, placeHolder}) {
       fontSize: 25,
       backgroundColor: 'white',
       color: 'black',
+      border: '10rem'
     },
     containerInput: {
       justifyContent: 'space-around',

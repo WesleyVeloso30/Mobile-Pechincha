@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-export default function Button2({navigation}) {
+export default function Button2({navigation, directPage, name}) {
   const styles = StyleSheet.create({
     Button: {
       marginBottom: 10,
@@ -30,10 +30,10 @@ export default function Button2({navigation}) {
         onClick={() => {
             navigation.reset({
               index: 0,
-              routes: [{name: 'Homepage'}]
+              routes: [{name: directPage}]
             })
           }}>
-        Entrar
+        {name}
       </Text>
     </View>
   );

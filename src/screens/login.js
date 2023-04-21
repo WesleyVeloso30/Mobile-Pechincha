@@ -13,13 +13,15 @@ const Login = ({navigation}) => {
   return (
   <View style={styles.container}>
     <View style={styles.containerLogin}>
-      <Image style={{height: 120, width: 250}} source={require('../../assets/Logo.png')} alt='Logo do aplicativo Pechincha'/>
+    <Image style={{height: 120, width: 250}} source={require('../../assets/Logo.png')} alt='Logo do aplicativo Pechincha'/>
       {/* <Text style={[styles.text]}>Pechincha</Text> */}
       <Input2 label="E-mail" placeHolder="Ex: Email@gmail.com"/>
       <Input2 label="Senha" placeHolder="********"/>
       
       <Button2
         navigation={navigation}
+        directPage={'Homepage'}
+        name={'Entrar'}
       />
 
       <Text onPress={() => navigation.navigate('Register')} navigation={navigation} style={{fontSize: 18, width: '100vw', textAlign: 'center'}}>Não possui cadastro? Click Aqui</Text>
