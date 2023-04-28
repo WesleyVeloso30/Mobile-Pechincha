@@ -34,7 +34,7 @@ const Login = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: '5rem',
+    padding: 40,
     backgroundColor: '#fffffe',
     flex: 1,
     // inset: 0,
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100',
     alignItems: 'center',
-    // gap: '2rem',
+    // gap: 2,
     justifyContent: 'space-between'
   },
   input: {

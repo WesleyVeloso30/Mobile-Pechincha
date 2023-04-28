@@ -10,7 +10,7 @@ const Register = ({navigation}) => {
   return (
   <View style={styles.container}>
     <View style={styles.containerRegister}>
-      <Image style={{height: 120, width: 250, marginVertical: '2rem'}} source={require('../../assets/Logo.png')} alt='Logo do aplicativo Pechincha'/>
+      <Image style={{height: 120, width: 250}} source={require('../../assets/Logo.png')} alt='Logo do aplicativo Pechincha'/>
       <Input2 label="Name" placeHolder="Ex: Wesley Carrasco"/>
       <Input2 label="E-mail" placeHolder="Ex: Email@gmail.com"/>
       <Input2 label="Senha" placeHolder="********"/>
@@ -31,7 +31,7 @@ const Register = ({navigation}) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: '0.5rem',
+    padding: 40,
     backgroundColor: '#fffffe',
     flex: 1,
     inset: 0,
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     // inset: 0,
     flex: 1,
     alignItems: 'center',
-    // gap: '2rem',
+    // gap: 2,
     justifyContent: 'space-between',
   },
   input: {
@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 30,
     textAlign: 'center',
-    marginVertical: '10rem'
   },
   text: {
     color: 'white',
