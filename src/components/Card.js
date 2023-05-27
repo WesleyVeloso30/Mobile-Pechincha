@@ -14,21 +14,24 @@ export default function Card({name, onClick}) {
       color: 'white',
       
     },
+    container: {
+      width: '50%',
+      height: '45%',
+    },
     container2: {
       // flex: 1,
-      inset: 0,
+      // inset: 0,
       justifyContent: 'space-around',
-      
     }
   });
 
-  
-
   return (
-    <View style={styles.container2} onClick={() => onClick((state) => !state)}>
-      <Text style={styles.Button}>
-        {name}
-      </Text>
+    <View style={styles.container}>
+      <View style={styles.container2} onClick={() => onClick((state) => !state)}>
+        <Text style={styles.Button}>
+          {name}
+        </Text>
+      </View>
     </View>
   );
 };

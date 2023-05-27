@@ -27,8 +27,6 @@ const Register = ({navigation}) => {
   </View>
 )};
 
-
-
 const styles = StyleSheet.create({
   container: {
     padding: 40,
