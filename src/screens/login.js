@@ -10,23 +10,21 @@ import Input2 from '../components/Input';
 
 const Login = ({navigation}) => {
 
+  console.log(navigation);
   return (
   <View style={styles.container}>
-    <View style={styles.containerLogin}>
+  <View style={styles.containerLogin}>
     <Image style={{height: 120, width: 250}} source={require('../../assets/Logo.png')} alt='Logo do aplicativo Pechincha'/>
-      {/* <Text style={[styles.text]}>Pechincha</Text> */}
-      <Input2 label="E-mail" placeHolder="Ex: Email@gmail.com"/>
-      <Input2 label="Senha" placeHolder="********"/>
-      
-      <Button2
+    {/* <Text style={[styles.text]}>Pechincha</Text> */}
+    <Input2 label="E-mail" placeHolder="Ex: Email@gmail.com"/>
+    <Input2 label="Senha" placeHolder="********"/>
+    <Button2
         navigation={navigation}
         directPage={'Homepage'}
         name={'Entrar'}
       />
-
-      <Text onPress={() => navigation.navigate('Register')} navigation={navigation} style={{fontSize: 18, width: '100vw', textAlign: 'center'}}>Não possui cadastro? Click Aqui</Text>
-
-    </View>
+    <Text onPress={() => navigation.navigate('Register')} navigation={navigation} style={{fontSize: 18, width: 500, textAlign: 'center'}}>Não possui cadastro? Click Aqui</Text>
+  </View>
   </View>
 )};
 
@@ -46,7 +44,8 @@ const styles = StyleSheet.create({
   containerLogin: {
     // inset: 0,
     flex: 1,
-    width: '100',
+    // width: 100,
+    // backgroundColor: 'orange',
     alignItems: 'center',
     // gap: 2,
     justifyContent: 'space-between'

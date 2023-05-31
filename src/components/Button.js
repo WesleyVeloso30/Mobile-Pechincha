@@ -27,7 +27,7 @@ export default function Button2({navigation, directPage, name}) {
   return (
     <View style={styles.container2}>
       <Text style={styles.Button} 
-        onClick={() => {
+        onPress={() => {
             navigation.reset({
               index: 0,
               routes: [{name: directPage}]
