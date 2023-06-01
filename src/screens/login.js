@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
   },
   containerLogin: {
     // inset: 0,
+    paddingVertical: 50,
     flex: 1,
     // width: 100,
     // backgroundColor: 'orange',

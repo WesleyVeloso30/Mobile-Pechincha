@@ -12,7 +12,6 @@ export default function Button2({navigation, directPage, name}) {
       backgroundColor: '#ffd803',
       textAlign: 'center',
       color: '#272343',
-      
     },
     container2: {
       // flex: 1,

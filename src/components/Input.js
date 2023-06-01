@@ -7,14 +7,14 @@ export default function Input({label, placeHolder}) {
     Input: {
       marginBottom: 10,
       width: 300,
-      height: 36,
-      padding: 30,
+      height: 45,
+      padding: 3,
       borderRadius: 20,
-      fontSize: 25,
+      fontSize: 22,
       backgroundColor: 'white',
       color: 'black',
       borderWidth: 1,
-      borderColor: '#272343',
+      borderColor: '#ffd803',
     },
     containerInput: {
       justifyContent: 'space-around',
