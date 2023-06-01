@@ -1,5 +1,5 @@
 import React from 'react';
-import {Image, StyleSheet,TextInput, Text, View, ScrollView, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet,Text, View} from 'react-native';
 import Button2 from '../components/Button';
 import Input2 from '../components/Input';
 
@@ -35,8 +35,6 @@ const styles = StyleSheet.create({
     padding: 40,
     backgroundColor: '#fffffe',
     flex: 1,
-    // inset: 0,
-    // width: '100'
   },
   image: {
     flex: 1,
@@ -60,7 +58,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'white',
-    // marginTop: 100,
     width: 300,
     borderRadius: 10,
     fontSize: 42,
