@@ -1,37 +1,46 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import React from 'react'; 
+import { SafeAreaView, View, ScrollView, StyleSheet, FlatList } from 'react-native'; 
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
-export default function Card({name, onClick}) {
-  const styles = StyleSheet.create({
-    Button: {
-      marginBottom: 10,
-      width: 300,
-      height: 40,
-      borderRadius: 20,
-      fontSize: 25,
-      backgroundColor: 'blue',
-      textAlign: 'center',
-      color: 'white',
-      
-    },
-    container: {
-      width: '50%',
-      height: '45%',
-    },
-    container2: {
-      // flex: 1,
-      // inset: 0,
-      justifyContent: 'space-around',
-    }
-  });
+const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />
 
-  return (
-    <View style={styles.container}>
-      <View style={styles.container2} onClick={() => onClick((state) => !state)}>
-        <Text style={styles.Button}>
-          {name}
-        </Text>
-      </View>
-    </View>
-  );
+const ProductCard = ({ productsData }) => { 
+  return ( 
+    <SafeAreaView style={styles.container}> 
+      <ScrollView> 
+        <FlatList style={styles.container} 
+          data={ productsData }
+          renderItem={ ({item}) => 
+            <Card>
+              <Card.Title title={item.title} subtitle={item.subtitle ? item.subtitle : ""} left={LeftContent} />
+              <Card.Cover source={require('../../assets/Logo.png')} />
+              <Card.Content>
+                <Paragraph>Mercado: {item.company}</Paragraph>
+                <Paragraph>De {item.regularPrice} - Por {item.promotionalPrice}</Paragraph>
+                <Paragraph>Periodo da promoção: {item.initialDate} - {item.finalDate}</Paragraph>
+              </Card.Content>
+              <Card.Actions>
+                <Button icon="credit-card" onPress={() => alert('Comprado!')}>
+                  COMPRAR
+                </Button>
+                <Button icon="share-variant" onPress={() => alert('Compartilhado!')}>
+                  COMPARTILHAR
+                </Button>
+              </Card.Actions>
+            </Card>
+          }   
+        /> 
+      </ScrollView> 
+    </SafeAreaView> 
+  ); 
 };
+
+const styles = StyleSheet.create({ 
+  container: { 
+    flex: 1, 
+    paddingTop: 10, 
+    backgroundColor: '#ecf0f1', 
+  }, 
+});
+
+export default ProductCard;
