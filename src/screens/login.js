@@ -10,7 +10,6 @@ import Input2 from '../components/Input';
 
 const Login = ({navigation}) => {
 
-  console.log(navigation);
   return (
   <View style={styles.container}>
   <View style={styles.containerLogin}>

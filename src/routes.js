@@ -104,7 +104,7 @@ export default function Routes() {
         <Stack.Navigator initialRouteName="Login" screenOptions={{
         headerShown: false
         }}>
-            <Stack.Screen name="Login" component={Card} />
+            <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Homepage" component={BottomTabNavigator} />
             <Stack.Screen name="Register" component={Register} />
         </Stack.Navigator>

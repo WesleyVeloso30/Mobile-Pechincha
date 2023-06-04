@@ -13,7 +13,7 @@ const Homepage = () => {
         <View>
             <Text>Entrou </Text>
             <ProductCard 
-                productsData
+                productsData= {productsData}
                 />
         </View>
     )
