@@ -26,8 +26,9 @@ function BottomTabNavigator () {
                 borderTopLeftRadius: 15,
                 borderTopRightRadius: 15,
                 height: 70,
-            }
-        }}>
+            },
+        }}
+        initialRouteName="Home">
         <BottomTab.Screen 
             name="Profile" 
             component={Profile}
@@ -101,7 +102,7 @@ function BottomTabNavigator () {
   
 export default function Routes() {
     return (
-        <Stack.Navigator initialRouteName="Login" screenOptions={{
+        <Stack.Navigator initialRouteName="Homepage" screenOptions={{
         headerShown: false
         }}>
             <Stack.Screen name="Login" component={Login} />
