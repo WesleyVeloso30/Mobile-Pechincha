@@ -37,21 +37,21 @@ const ProductCard = ({ productsData }) => {
           data={ productsData }
           keyExtractor={(_, id) => id.toString()}
           renderItem={ ({item}) => 
-          <View style={{ flex: 1, backgroundColor: 'red', alignItems: 'center', marginBottom: 20}}>
-            <Card style={styles.card}>
-              <Card.Title title={item.title} subtitle={item.subtitle ? item.subtitle : ""} left={LeftContent} />
-              <Card.Cover source={require('../../assets/Logo.png')} />
-              <Card.Content>
+          <View style={{ flex: 1, alignItems: 'center', marginBottom: 20}}>
+            <Card style={[styles.card, {borderColor: borderColor(item.company), borderWidth: 5}]}>
+              <Card.Cover source={require('../../assets/foto.jpeg')} style={{marginBottom: 10}} />
+              <Card.Content style={[styles.CardContent, {marginBottom: 10}]}>
+                <Title style={{fontSize: 30}}>{item.title}</Title>
+                <Title style={{fontSize: 20}}>De R${item.regularPrice} - Por R${item.promotionalPrice}</Title>
                 <Paragraph>Mercado: {item.company}</Paragraph>
-                <Paragraph>De R${item.regularPrice} - Por R${item.promotionalPrice}</Paragraph>
                 <Paragraph>Periodo da promoção: {item.initialDate} - {item.finalDate}</Paragraph>
               </Card.Content>
               <Card.Actions>
-                <Button icon="credit-card" onPress={() => alert('Comprado!')}>
-                  COMPRAR
-                </Button>
                 <Button icon="share-variant" onPress={() => alert('Compartilhado!')}>
                   COMPARTILHAR
+                </Button>
+                <Button style={{backgroundColor: '#ffd803', color: '#272343'}} onPress={() => alert('Calma q ainda vou fazer a tela!')}>
+                  VER DETALHES
                 </Button>
               </Card.Actions>
            </Card>
@@ -62,18 +62,35 @@ const ProductCard = ({ productsData }) => {
   ); 
 };
 
+function borderColor (company) {
+  if (company==='R Carvalho') {
+      return 'green'
+  } else if (company==='Assaí') {
+      return 'blue'
+  } else if (company==='Atacadão') {
+      return 'yellow'
+  } else {
+    return 'white'
+  }
+}
+
 const styles = StyleSheet.create({ 
   container: { 
     flex: 1, 
     paddingTop: 10, 
-    backgroundColor: 'blue', 
+
+    // backgroundColor: 'blue', 
     // justifyContent: 'center',
     // alignItems: 'center'
   }, 
   card: {
     width: '90%',
-    height: 400
-  }
+    height: 375
+  },
+  CardContent: {
+    // flex: 1,
+    // justifyContent: 'space-around',
+  },
 });
 
 export default ProductCard;
