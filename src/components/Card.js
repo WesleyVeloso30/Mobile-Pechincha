@@ -5,7 +5,7 @@ import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />
 
 const ProductCard = ({ productsData }) => { 
-  console.log(productsData)
+
   return ( 
     // <SafeAreaView style={styles.container}> 
   //     <ScrollView style={styles.container}>

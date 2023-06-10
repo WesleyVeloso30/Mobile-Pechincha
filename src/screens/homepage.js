@@ -18,7 +18,11 @@ const Homepage = ({navigation}) => {
     return (
         <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>
-                <Text style={styles.namePechincha}>PECHINCHA</Text>
+                <Text style={styles.namePechincha}
+                onPress={() => navigation.navigate('Login')}
+                >
+                    PECHINCHA
+                </Text>
                 <Text style={styles.filter} onPress={() => navigation.navigate('Filters')} navigation={navigation}>FILTRAR</Text>
             </View>
             <ProductCard 
