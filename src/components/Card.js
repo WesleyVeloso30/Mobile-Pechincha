@@ -1,4 +1,5 @@
 import React from 'react'; 
+import { LinearGradient } from 'expo-linear-gradient';
 import { SafeAreaView, View, ScrollView, StyleSheet, FlatList } from 'react-native'; 
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 
@@ -39,6 +40,7 @@ const ProductCard = ({ productsData }) => {
           renderItem={ ({item}) => 
           <View style={{ flex: 1, alignItems: 'center', marginBottom: 20}}>
             <Card style={[styles.card, {borderColor: borderColor(item.company), borderWidth: 5}]}>
+            <LinearGradient colors={borderColor(item.company)}>
               <Card.Cover source={require('../../assets/foto.jpeg')} style={{marginBottom: 10}} />
               <Card.Content style={[styles.CardContent, {marginBottom: 10}]}>
                 <Title style={{fontSize: 30}}>{item.title}</Title>
@@ -54,6 +56,7 @@ const ProductCard = ({ productsData }) => {
                   VER DETALHES
                 </Button>
               </Card.Actions>
+           </LinearGradient>
            </Card>
         </View>
           }   
@@ -64,11 +67,11 @@ const ProductCard = ({ productsData }) => {
 
 function borderColor (company) {
   if (company==='R Carvalho') {
-      return 'green'
+      return ['green', 'red']
   } else if (company==='Assaí') {
-      return 'blue'
+      return ['green', 'yellow']
   } else if (company==='Atacadão') {
-      return 'yellow'
+      return ['green', 'yellow']
   } else {
     return 'white'
   }
