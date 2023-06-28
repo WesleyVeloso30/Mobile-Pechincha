@@ -67,11 +67,11 @@ const ProductCard = ({ productsData }) => {
 
 function borderColor (company) {
   if (company==='R Carvalho') {
-      return ['green', 'red']
+      return ['green', 'white']
   } else if (company==='Assaí') {
-      return ['green', 'yellow']
+      return ['blue', 'white']
   } else if (company==='Atacadão') {
-      return ['green', 'yellow']
+      return ['yellow', 'white']
   } else {
     return 'white'
   }

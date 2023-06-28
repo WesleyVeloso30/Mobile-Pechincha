@@ -2,7 +2,7 @@ import { View, Text, SafeAreaView, StyleSheet } from "react-native";
 import ProductCard from '../components/Card'
 
 const Homepage = ({navigation}) => {
-
+    // Aqui ficaria a integração para consumir os dados reais
     const productsData = [
         {
             id: 1, title: 'Kg de Linguiça', subtitle: '', company: 'Atacadão', regularPrice: 16.21, promotionalPrice: 12.02, initialDate: '20/02', finalDate: '24/02'
