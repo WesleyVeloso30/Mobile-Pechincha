@@ -1,8 +1,23 @@
 import { View, Text, SafeAreaView, StyleSheet } from "react-native";
 import ProductCard from '../components/Card'
 
-const Homepage = ({navigation}) => {
-    // Aqui ficaria a integração para consumir os dados reais
+async function getProducts() {
+    const resp = await fetch(`AQUI VIRIA A URL DA API DE PRODUTOS`);
+
+    const res = await resp.json();
+
+    if (res.status === 200) {
+        return resp;
+    } else {
+        console.log(res);
+        alert('Erro ao consultar Api');
+    }
+}
+
+const Homepage = async ({navigation}) => {
+    // Aqui ficaria a integração para consumir os dados reais da API
+    // const { productsData } = await getProducts();
+    
     const productsData = [
         {
             id: 1, title: 'Kg de Linguiça', subtitle: '', company: 'Atacadão', regularPrice: 16.21, promotionalPrice: 12.02, initialDate: '20/02', finalDate: '24/02'
