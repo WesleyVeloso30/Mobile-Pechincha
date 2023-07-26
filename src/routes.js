@@ -55,7 +55,7 @@ function BottomTabNavigator () {
                 }
             }}
         />
-        <BottomTab.Screen 
+        {/* <BottomTab.Screen 
             name="Home" 
             component={Homepage} 
             options={{
@@ -67,7 +67,7 @@ function BottomTabNavigator () {
                     return <Ionicons name='home-outline' size={size} color={color}/>
                 }
             }}
-        />
+        /> */}
         <BottomTab.Screen 
             name="Search" 
             component={Search}
@@ -102,7 +102,7 @@ function BottomTabNavigator () {
   
 export default function Routes() {
     return (
-        <Stack.Navigator initialRouteName="Homepage" screenOptions={{
+        <Stack.Navigator initialRouteName="Register" screenOptions={{
         headerShown: false
         }}>
             <Stack.Screen name="Login" component={Login} />

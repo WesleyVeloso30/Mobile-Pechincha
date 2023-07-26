@@ -1,9 +1,9 @@
 import { View, Text } from "react-native";
 
-const Homepage = () => {
+const Homepage = ({navigation}) => {
     return (
         <View>
-            <Text>Entrou </Text>
+            <Text onPress={() => navigation.navigate('Login')} >Entrou </Text>
         </View>
     )
 }
