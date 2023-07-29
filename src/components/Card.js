@@ -14,7 +14,7 @@ const ProductCard = ({ productsData }) => {
   //     productsData.map(( item )=> 
   //     <Card>
   //             <Card.Title title={item.title} subtitle={item.subtitle ? item.subtitle : ""} left={LeftContent} />
-  //             <Card.Cover source={require('../../assets/Logo.png')} />
+  //             <Card.Cover source={require('../assets/Logo.png')} />
   //             <Card.Content>
   //               <Paragraph>Mercado: {item.company}</Paragraph>
   //               <Paragraph>De {item.regularPrice} - Por {item.promotionalPrice}</Paragraph>
@@ -41,7 +41,7 @@ const ProductCard = ({ productsData }) => {
           <View style={{ flex: 1, alignItems: 'center', marginBottom: 20}}>
             <Card style={[styles.card, {borderColor: borderColor(item.company), borderWidth: 5}]}>
             <LinearGradient colors={borderColor(item.company)}>
-              <Card.Cover source={require('../../assets/foto.jpeg')} style={{marginBottom: 10}} />
+              <Card.Cover source={require('../assets/foto.jpeg')} style={{marginBottom: 10}} />
               <Card.Content style={[styles.CardContent, {marginBottom: 10}]}>
                 <Title style={{fontSize: 30}}>{item.title}</Title>
                 <Title style={{fontSize: 20}}>De R${item.regularPrice} - Por R${item.promotionalPrice}</Title>

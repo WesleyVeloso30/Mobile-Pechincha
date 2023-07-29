@@ -16,19 +16,19 @@ const Company = () => {
       {
         id: 1,
         name: "R Carvalho",
-        logo: require("../../assets/Logo.png"),
+        logo: require("../assets/Logo.png"),
         backgroundColor: "#50cf01",
       },
       {
         id: 2,
         name: "Atacadão",
-        logo: require("../../assets/Logo.png"),
+        logo: require("../assets/Logo.png"),
         backgroundColor: "#fdf063",
       },
       {
         id: 3,
         name: "Açaí",
-        logo: require("../../assets/Logo.png"),
+        logo: require("../assets/Logo.png"),
         backgroundColor: "#00bfff",
       },
     ];

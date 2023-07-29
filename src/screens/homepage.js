@@ -14,7 +14,7 @@ async function getProducts() {
     }
 }
 
-const Homepage = async ({navigation}) => {
+const Homepage = ({navigation}) => {
     // Aqui ficaria a integração para consumir os dados reais da API
     // const { productsData } = await getProducts();
     

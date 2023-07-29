@@ -10,7 +10,7 @@ const Register = ({navigation}) => {
   return (
   <View style={styles.container}>
     <View style={styles.containerRegister}>
-      <Image style={{height: 120, width: 250}} source={require('../../assets/Logo.png')} alt='Logo do aplicativo Pechincha'/>
+      <Image style={{height: 120, width: 250}} source={require('../assets/Logo.png')} alt='Logo do aplicativo Pechincha'/>
       <Input2 label="Name" placeHolder="Ex: Wesley Carrasco"/>
       <Input2 label="E-mail" placeHolder="Ex: Email@gmail.com"/>
       <Input2 label="Senha" placeHolder="********"/>
