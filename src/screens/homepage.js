@@ -1,36 +1,37 @@
 import { View, Text, SafeAreaView, StyleSheet } from "react-native";
-import ProductCard from '../components/Card'
+import { useEffect, useState } from "react";
+import ProductCard from '../components/Card';
+import isMocked from '../../shared';
+import products from '../services/product';
 
-async function getProducts() {
-    const resp = await fetch(`AQUI VIRIA A URL DA API DE PRODUTOS`);
-
-    const res = await resp.json();
-
-    if (res.status === 200) {
-        return resp;
-    } else {
-        console.log(res);
-        alert('Erro ao consultar Api');
-    }
-}
+const productService = new products();
 
 const Homepage = ({navigation}) => {
-    // Aqui ficaria a integração para consumir os dados reais da API
-    // const { productsData } = await getProducts();
-    
-    const productsData = [
-        {
-            id: 1, title: 'Kg de Linguiça', subtitle: '', company: 'Atacadão', regularPrice: 16.21, promotionalPrice: 12.02, initialDate: '20/02', finalDate: '24/02'
-        },
-        {
-            id: 2, title: 'Carne na Rola', subtitle: '', company: 'Assaí', regularPrice: 16.21, promotionalPrice: 12.02, initialDate: '20/02', finalDate: '24/02',
-        },
-        {
-            id: 3, title: 'Sabonete Ypê', subtitle: '', company: 'R Carvalho', regularPrice: 16.21, promotionalPrice: 12.02, initialDate: '20/02', finalDate: '24/02',
-        }
-    ]
 
-    return (
+    const [productsData, setProductsData] = useState([]);
+
+    useEffect(() => {
+        let data;
+        if (isMocked) {
+            data = [
+                {
+                    id: 1, title: 'Kg de Linguiça', subtitle: '', company: 'Atacadão', regularPrice: 16.21, promotionalPrice: 12.02, initialDate: '20/02', finalDate: '24/02'
+                },
+                {
+                    id: 2, title: 'Carne na Rola', subtitle: '', company: 'Assaí', regularPrice: 16.21, promotionalPrice: 12.02, initialDate: '20/02', finalDate: '24/02',
+                },
+                {
+                    id: 3, title: 'Sabonete Ypê', subtitle: '', company: 'R Carvalho', regularPrice: 16.21, promotionalPrice: 12.02, initialDate: '20/02', finalDate: '24/02',
+                }
+            ];
+        } else {
+            data = productService.getProducts();
+        }
+    
+        setProductsData(data);
+      }, []);
+
+      return (
         <SafeAreaView style={styles.container}>
             <View style={styles.headerContainer}>
                 <Text style={styles.namePechincha}
