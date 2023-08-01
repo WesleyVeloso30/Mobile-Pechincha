@@ -3,7 +3,6 @@
 export default class Product {
     async getProducts() {
         try {
-            alert('1')
             fetch('http://localhost:3000/product')
             .then(resp => {
                 console.log('1', resp)

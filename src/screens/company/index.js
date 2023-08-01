@@ -1,12 +1,6 @@
-import {
-  View,
-  Text,
-  FlatList,
-  Image,
-  StyleSheet,
-  ActivityIndicator,
-} from "react-native";
+import { View, Text, FlatList, Image, ActivityIndicator } from "react-native";
 import { useEffect, useState } from "react";
+import styles from "./styles";
 
 const Company = () => {
   const [companys, setCompanys] = useState(null);
@@ -16,37 +10,25 @@ const Company = () => {
       {
         id: 1,
         name: "R Carvalho",
-        logo: require("../assets/Logo.png"),
+        logo: require("../../assets/Logo.png"),
         backgroundColor: "#50cf01",
       },
       {
         id: 2,
         name: "Atacadão",
-        logo: require("../assets/Logo.png"),
+        logo: require("../../assets/Logo.png"),
         backgroundColor: "#fdf063",
       },
       {
         id: 3,
         name: "Açaí",
-        logo: require("../assets/Logo.png"),
+        logo: require("../../assets/Logo.png"),
         backgroundColor: "#00bfff",
       },
     ];
 
     setCompanys(data);
   }, []);
-
-  const styles = StyleSheet.create({
-    containerItem: {
-      flexDirection: "row",
-      padding: 10,
-      margin: 20,
-    },
-    logo: {
-      width: 50,
-      height: 50,
-    },
-  });
 
   return (
     <>

@@ -1,9 +1,10 @@
 import { View, Text } from "react-native";
+import styles from "./styles";
 
-const Homepage = ({navigation}) => {
+const Homepage = () => {
     return (
         <View>
-            <Text onPress={() => navigation.navigate('Login')} >Entrou </Text>
+            <Text>Entrou </Text>
         </View>
     )
 }
