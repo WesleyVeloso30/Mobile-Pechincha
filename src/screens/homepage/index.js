@@ -7,11 +7,8 @@ import styles from "./styles";
 
 const productService = new products();
 
-const Homepage = ({ navigation }) => {
-  const [productsData, setProductsData] = useState([]);
-
-  useEffect(() => {
-    let data;
+async function getData(setProductsData) {
+  let data;
     if (isMocked) {
       data = [
         {
@@ -46,10 +43,18 @@ const Homepage = ({ navigation }) => {
         },
       ];
     } else {
-      data = productService.getProducts();
+      data = await productService.getProducts();
     }
+  setProductsData(data);
+}
 
-    setProductsData(data);
+const Homepage = ({ navigation }) => {
+  const [productsData, setProductsData] = useState([]);
+
+  useEffect( () => {
+    
+    getData(setProductsData);
+
   }, []);
 
   return (

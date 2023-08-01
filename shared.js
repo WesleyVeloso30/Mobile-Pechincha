@@ -1,1 +1,3 @@
-export default isMocked = false;
+const isMocked = false;
+
+export default isMocked;

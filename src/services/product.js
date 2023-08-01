@@ -2,27 +2,19 @@
 
 export default class Product {
     async getProducts() {
-        try {
-            fetch('http://localhost:3000/product')
-            .then(resp => {
-                console.log('1', resp)
+        fetch('http://localhost:3000/product')
+        .then( async (resp) => {
+            console.log('ertyui' ,resp)
+            if (resp.status == 200) {
                 return resp.json();
-            })
-            .then(res=> {
-                console.log(res)
-                if (res.status === 200) {
-                    throw new Error('Erro na resposta da API');
-                }
-            })
-            .catch(res => {
-                console.log('2', res);
-                alert('Erro ao consultar Api');
-            })
-
-        } catch {
-            console.log(res);
-            alert('Erro ao consultar Api2');
-        }
+            } else {
+                throw new Error('Erro:', resp);
+            }
+        })
+        .catch(resp => {
+            console.log('2', resp);
+            alert('Erro ao consultar Api');
+        })
     }
 
 }
