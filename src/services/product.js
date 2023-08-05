@@ -1,20 +1,22 @@
-
+import { baseUrl } from '../../shared'
 
 export default class Product {
     async getProducts() {
-        fetch('http://localhost:3000/product')
-        .then( async (resp) => {
-            console.log('ertyui' ,resp)
-            if (resp.status == 200) {
-                return resp.json();
+        try {
+            console.log(baseUrl);
+            const resp = await fetch(`${baseUrl}/product`);
+            if(resp.status == 200) {
+                const resposta = await resp.json();
+                console.log(resposta);
+                return resposta;
             } else {
-                throw new Error('Erro:', resp);
+                console.log('Erro: ', resp);
+                alert('Erro ao consultar api');
             }
-        })
-        .catch(resp => {
-            console.log('2', resp);
-            alert('Erro ao consultar Api');
-        })
+        } catch (error) {
+            console.log('Erro: ', resp);
+            alert('Erro ao consultar api');
+        }
     }
 
 }

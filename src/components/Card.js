@@ -12,6 +12,7 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
 
 const ProductCard = ({ productsData }) => {
+  console.log(productsData)
   return (
     // <SafeAreaView style={styles.container}>
     //     <ScrollView style={styles.container}>
@@ -42,7 +43,8 @@ const ProductCard = ({ productsData }) => {
     <FlatList
       style={styles.container}
       data={productsData}
-      keyExtractor={(_, id) => id.toString()}
+      // Erro fenomenal akiiii
+      keyExtractor={(_, productsData) => productsData.id.toString()}
       renderItem={({ item }) => (
         <View style={{ flex: 1, alignItems: "center", marginBottom: 20 }}>
           <Card
