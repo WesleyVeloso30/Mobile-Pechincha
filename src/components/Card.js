@@ -12,7 +12,6 @@ import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
 
 const ProductCard = ({ productsData }) => {
-  console.log(productsData)
   return (
     // <SafeAreaView style={styles.container}>
     //     <ScrollView style={styles.container}>
@@ -43,17 +42,16 @@ const ProductCard = ({ productsData }) => {
     <FlatList
       style={styles.container}
       data={productsData}
-      // Erro fenomenal akiiii
-      keyExtractor={(_, productsData) => productsData.id.toString()}
+      keyExtractor={(_, id) => id.toString()}
       renderItem={({ item }) => (
         <View style={{ flex: 1, alignItems: "center", marginBottom: 20 }}>
           <Card
             style={[
               styles.card,
-              { borderColor: borderColor(item.company), borderWidth: 5 },
+              { borderColor: borderColor(item.companyId), borderWidth: 5 },
             ]}
           >
-            <LinearGradient colors={borderColor(item.company)}>
+            <LinearGradient colors={borderColor(item.companyId)}>
               <Card.Cover
                 source={require("../assets/foto.jpeg")}
                 style={{ marginBottom: 10 }}
@@ -63,9 +61,9 @@ const ProductCard = ({ productsData }) => {
                 <Title style={{ fontSize: 20 }}>
                   De R${item.regularPrice} - Por R${item.promotionalPrice}
                 </Title>
-                <Paragraph>Mercado: {item.company}</Paragraph>
+                <Paragraph>Mercado: {item.company.name}</Paragraph>
                 <Paragraph>
-                  Periodo da promoção: {item.initialDate} - {item.finalDate}
+                  Periodo da promoção: {item.startAt} - {item.endAt}
                 </Paragraph>
               </Card.Content>
               <Card.Actions>
@@ -91,15 +89,16 @@ const ProductCard = ({ productsData }) => {
   );
 };
 
-function borderColor(company) {
-  if (company === "R Carvalho") {
+function borderColor(companyId) {
+  // R Carvalho
+  if (companyId === 1) {
     return ["green", "white"];
-  } else if (company === "Assaí") {
+  } else if (companyId === "Assaí") {
     return ["blue", "white"];
-  } else if (company === "Atacadão") {
+  } else if (companyId === "Atacadão") {
     return ["yellow", "white"];
   } else {
-    return "white";
+    return ["white", "red"];
   }
 }
 

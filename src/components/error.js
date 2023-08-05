@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Image, View, TouchableOpacity } from "react-native";
-import Button2 from "../../components/Button";
-import Input2 from "../../components/Input";
+import Input2 from "./Input";
 
 export default function Error() {
   const [isCadastred, setIsCadastred] = React.useState(false);
@@ -11,21 +10,13 @@ export default function Error() {
       <View style={styles.containerRegister}>
         <Image
           style={{ height: 120, width: 250 }}
-          source={require("../../assets/Logo.png")}
+          source={require("../assets/Logo.png")}
           alt="Logo do aplicativo Pechincha"
         />
         <Input2 label="Name" placeHolder="Ex: Wesley Carrasco" />
         <Input2 label="E-mail" placeHolder="Ex: Email@gmail.com" />
         <Input2 label="Senha" placeHolder="********" />
         <Input2 label="Confirme Senha" placeHolder="********" />
-
-        <Button2
-          // name={isCadastred ? 'Cadastrado' : 'Cadastrar'}
-          // onClick={setIsCadastred}
-          navigation={navigation}
-          directPage={"Login"}
-          name={"Cadastrar"}
-        />
       </View>
     </View>
   );
