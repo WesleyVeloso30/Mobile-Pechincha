@@ -7,7 +7,7 @@ import Company from './screens/company';
 import Filters from './screens/filters';
 import Profile from './screens/profile';
 import Search from './screens/search';
-import Card from './components/Card';
+import ProductDetails from './components/productDetails';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Ionicons } from '@expo/vector-icons'
 
@@ -106,7 +106,7 @@ export default function Routes() {
         headerShown: false
         }}>
             <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Homepage" component={BottomTabNavigator} />
+            <Stack.Screen name="Homepage" component={ProductDetails} />
             <Stack.Screen name="Register" component={Register} />
         </Stack.Navigator>
     );
