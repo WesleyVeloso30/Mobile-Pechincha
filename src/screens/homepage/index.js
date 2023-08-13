@@ -60,23 +60,23 @@ const Homepage = ({ navigation }) => {
   };
   return (
     <View style={{ flex: 1 }}>
+        <SafeAreaView style={styles.headerContainer}>
+          <Text
+            style={styles.namePechincha}
+            onPress={() => navigation.navigate("Login")}
+          >
+            PECHINCHA
+          </Text>
+          <Text
+            style={styles.filter}
+            onPress={() => navigation.navigate("Filters")}
+            navigation={navigation}
+          >
+            FILTRAR
+          </Text>
+        </SafeAreaView>
       {productsData ? (
         <SafeAreaView style={styles.container}>
-          <View style={styles.headerContainer}>
-            <Text
-              style={styles.namePechincha}
-              onPress={() => navigation.navigate("Login")}
-            >
-              PECHINCHA
-            </Text>
-            <Text
-              style={styles.filter}
-              onPress={() => navigation.navigate("Filters")}
-              navigation={navigation}
-            >
-              FILTRAR
-            </Text>
-          </View>
           <ProductCard productsData={productsData} />
         </SafeAreaView>
       ) : (

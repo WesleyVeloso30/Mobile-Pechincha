@@ -5,7 +5,6 @@ export default class Product {
     try {
       const resp = await fetch(`${baseUrl}/product`);
       if (resp.status == 200) {
-        alert("1");
         const resposta = await resp.json();
         return resposta;
       } else {
