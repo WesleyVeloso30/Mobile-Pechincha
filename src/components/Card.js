@@ -92,7 +92,7 @@ const ProductCard = ({ productsData }) => {
 function borderColor(companyId) {
   // R Carvalho
   if (companyId === 1) {
-    return ["green", "white"];
+    return ["#90ee90", "white"];
   } else if (companyId === "Assaí") {
     return ["blue", "white"];
   } else if (companyId === "Atacadão") {

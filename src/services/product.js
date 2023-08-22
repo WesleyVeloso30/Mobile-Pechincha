@@ -1,4 +1,6 @@
-import { baseUrl } from "../../.env";
+import Constants from 'expo-constants';
+
+const { baseUrl } = Constants.manifest.extra;
 
 export default class Product {
   async getProducts() {

@@ -1,9 +1,11 @@
 import { View, Text, SafeAreaView, StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
 import ProductCard from "../../components/Card";
-import isMocked from "../../../.env";
 import products from "../../services/product";
 import styles from "./styles";
+import Constants from 'expo-constants';
+
+const isMocked = Constants.manifest.extra.isMocked === 'true';
 
 const productService = new products();
 
@@ -14,9 +16,10 @@ const Homepage = ({ navigation }) => {
     getData();
     // setProductsData(data);
   }, []);
-
+  
   const getData = async () => {
     let data;
+    setProductsData(null);
     if (isMocked) {
       data = [
         {
@@ -80,7 +83,9 @@ const Homepage = ({ navigation }) => {
           <ProductCard productsData={productsData} />
         </SafeAreaView>
       ) : (
-        <Text>Carregando dados da API...</Text>
+        <View style={styles.noApiData}>
+          <Text style={{fontSize: 20}}>Carregando dados da API...</Text>
+        </View>
       )}
     </View>
   );

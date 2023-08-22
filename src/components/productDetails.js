@@ -9,6 +9,9 @@ import {
 } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import { mockProductDetails } from "../shared/mock";
+import Constants from 'expo-constants';
+
+const isMocked = Constants.manifest.extra.isMocked === 'true';
 
 const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
 
@@ -22,14 +25,15 @@ const ProductDetails = ({ productId }) => {
       
       const getDetails = async () => {
         let data;
-          if (isMocked) {
-            data = mockProductDetails(productId);
-            setProductsData(data);
-          } else {
-            data = await productService.getProducts();
-    
-            setProductsData(data);
-          }
+        setProductsData(null);
+        if (isMocked) {
+          data = mockProductDetails(productId);
+          setProductsData(data);
+        } else {
+          data = await productService.getProducts();
+  
+          setProductsData(data);
+        }
         return data;
       }
 

@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffd803',
         paddingHorizontal: 20,
         paddingVertical: 15,
-        // marginRight: 15,
         borderRadius: 10,
         marginBottom: 5,
     },
@@ -17,13 +16,18 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignContent: 'center',
         justifyContent: 'space-around',
-        // width: 100,
         
     },
     namePechincha: {
         marginVertical: 5,
         color: '#ffd803',
-        fontSize: 30,
+        fontSize: 35,
+    },
+    noApiData: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
+
     }
 });
 
