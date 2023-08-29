@@ -1,17 +1,20 @@
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
+import { getData } from '../screens/homepage'
 import {
   SafeAreaView,
   View,
-  ScrollView,
+  RefreshControl,
+  useState,
   StyleSheet,
   FlatList,
 } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
+import { formatDateShort } from "../shared/util";
 
 const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
 
-const ProductCard = ({ productsData }) => {
+const ProductCard = ({ item }) => {
   return (
     // <SafeAreaView style={styles.container}>
     //     <ScrollView style={styles.container}>
@@ -39,59 +42,59 @@ const ProductCard = ({ productsData }) => {
     // </ScrollView>
     // <SafeAreaView style={{flex: 1}} >
     // <View style={{justifyContent: 'center', flex: 1}}>
-    <FlatList
-      style={styles.container}
-      data={productsData}
-      keyExtractor={(_, id) => id.toString()}
-      renderItem={({ item }) => (
-        <View style={{ flex: 1, alignItems: "center", marginBottom: 20 }}>
-          <Card
-            style={[
-              styles.card,
-              { borderColor: borderColor(item.companyId), borderWidth: 5 },
-            ]}
-          >
-            <LinearGradient colors={borderColor(item.companyId)}>
-              <Card.Cover
-                source={require("../assets/foto.jpeg")}
-                style={{ marginBottom: 10 }}
-              />
-              <Card.Content style={[styles.CardContent, { marginBottom: 10 }]}>
-                <Title style={{ fontSize: 30 }}>{item.title}</Title>
-                <Title style={{ fontSize: 20 }}>
-                  De R${item.regularPrice} - Por R${item.promotionalPrice}
-                </Title>
-                <Paragraph>Mercado: {item.company.name}</Paragraph>
-                <Paragraph>
-                  Periodo da promoção: {item.startAt} - {item.endAt}
-                </Paragraph>
-              </Card.Content>
-              <Card.Actions>
-                <Button
-                  icon="share-variant"
-                  onPress={() => alert("Compartilhado!")}
-                >
-                  COMPARTILHAR
-                </Button>
-                <Button
-                  style={{ backgroundColor: "#ffd803", color: "#272343" }}
-                  onPress={() => alert("Calma q ainda vou fazer a tela!")}
-                >
-                  VER DETALHES
-                </Button>
-              </Card.Actions>
-            </LinearGradient>
-          </Card>
-        </View>
-      )}
-    />
+    <View style={{ flex: 1, alignItems: "center", marginBottom: 20 }}>
+      <Card
+        style={[
+          styles.card,
+          { borderColor: borderColor(item.company.name), borderWidth: 5 },
+        ]}
+      >
+        <LinearGradient colors={borderColor(item.company.name)}>
+          <Card.Cover
+            source={require("../assets/foto.jpeg")}
+            style={{ marginBottom: 10 }}
+          />
+          <Card.Content style={[styles.CardContent, { marginBottom: 10 }]}>
+            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+              <Title style={{ fontSize: 30 }}>
+                {item.title}
+              </Title>
+              <Title style={{ fontSize: 30, marginRight: 0 }}>
+                R${item.promotionalPrice}
+              </Title>
+            </View>
+            <Paragraph>Mercado: {item.company.name}</Paragraph>
+            <Paragraph>
+              Periodo da promoção: {
+                formatDateShort(item.startAt)
+              } - {
+                formatDateShort(item.endAt)
+              }
+            </Paragraph>
+          </Card.Content>
+          <Card.Actions>
+            <Button
+              icon="share-variant"
+              onPress={() => alert("Compartilhado!")}
+            >
+              COMPARTILHAR
+            </Button>
+            <Button
+              style={{ backgroundColor: "#ffd803", color: "#272343" }}
+              onPress={() => alert("Calma q ainda vou fazer a tela!")}
+            >
+              VER DETALHES
+            </Button>
+          </Card.Actions>
+        </LinearGradient>
+      </Card>
+    </View>
     // </SafeAreaView>
   );
 };
 
 function borderColor(companyId) {
-  // R Carvalho
-  if (companyId === 1) {
+  if (companyId === "R Carvalho") {
     return ["#90ee90", "white"];
   } else if (companyId === "Assaí") {
     return ["blue", "white"];
@@ -113,7 +116,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "90%",
-    height: 375,
+    height: 350,
   },
   CardContent: {
     // flex: 1,

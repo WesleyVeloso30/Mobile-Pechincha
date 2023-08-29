@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   FlatList,
+  Image,
 } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import { mockProductDetails } from "../shared/mock";
@@ -46,9 +47,10 @@ const ProductDetails = ({ productId }) => {
         ]}
         >
         <LinearGradient colors={borderColor(productsData.companyId)}>
-            <Card.Cover
-            source={require("../assets/foto.jpeg")}
-            style={{ marginBottom: 10 }}
+            <Image
+              source={require("../assets/foto.jpeg")}
+              style={{}}
+              alt='Imagem do produto'
             />
             <Card.Content style={[styles.CardContent, { marginBottom: 10 }]}>
             <Title style={{ fontSize: 30 }}>{productsData.title}</Title>
