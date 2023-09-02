@@ -5,7 +5,7 @@ import products from "../../services/product";
 import styles from "./styles";
 import Constants from 'expo-constants';
 
-const isMocked = Constants.manifest.extra.isMocked === 'false';
+const isMocked = Constants.manifest.extra.isMocked === 'true';
 
 const productService = new products();
 

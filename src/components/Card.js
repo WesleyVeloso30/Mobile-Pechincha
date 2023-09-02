@@ -1,6 +1,5 @@
 import React from "react";
 import { LinearGradient } from "expo-linear-gradient";
-import { getData } from '../screens/homepage'
 import {
   SafeAreaView,
   View,

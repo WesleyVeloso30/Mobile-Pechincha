@@ -1,12 +1,14 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView, TextInput } from "react-native";
 import styles from "./styles";
+import { useState } from "react";
 
-const Homepage = () => {
+const Filters = () => {
+    const { companysName, setCompanysName } = useState(null);
     return (
-        <View>
-            <Text>Entrou </Text>
-        </View>
-    )
+        <ScrollView>
+            <TextInput></TextInput>
+        </ScrollView>
+    );
 }
 
-export default Homepage;
+export default Filters;
