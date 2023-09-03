@@ -2,6 +2,7 @@ import { View, Text, ScrollView, TextInput } from "react-native";
 import styles from "./styles";
 import company from "../../services/company";
 import products from "../../services/product";
+import SelectDropdown from 'react-native-select-dropdown'
 import { useEffect, useState } from "react";
 
 const productService = new products();
@@ -55,7 +56,22 @@ const Filters = () => {
 
     return (
         <ScrollView>
-            <TextInput></TextInput>
+            <SelectDropdown
+                data={companysName}
+                onSelect={(selectedItem, index) => {
+                    console.log(selectedItem, index)
+                }}
+                buttonTextAfterSelection={(selectedItem, index) => {
+                    // text represented after item is selected
+                    // if data array is an array of objects then return selectedItem.property to render after item is selected
+                    return selectedItem
+                }}
+                rowTextForSelection={(item, index) => {
+                    // text represented for each item in dropdown
+                    // if data array is an array of objects then return item.property to represent item in dropdown
+                    return item
+                }}
+            />
         </ScrollView>
     );
 }
