@@ -27,7 +27,9 @@ const Homepage = ({ navigation }) => {
           id: 1,
           title: "Kg de Linguiça",
           subtitle: "",
-          company: "Atacadão",
+          company: {
+            name: "Atacadão",
+          },
           regularPrice: 16.21,
           promotionalPrice: 12.02,
           startAt: '2023-11-22T11:07:00.100Z',
@@ -37,7 +39,9 @@ const Homepage = ({ navigation }) => {
           id: 2,
           title: "Carne na Rola",
           subtitle: "",
-          company: "Assaí",
+          company: {
+            name: "Assaí",
+          },
           regularPrice: 16.21,
           promotionalPrice: 12.02,
           startAt: '2024-01-19T22:27:20.100Z',
@@ -47,7 +51,9 @@ const Homepage = ({ navigation }) => {
           id: 3,
           title: "Sabonete Ypê",
           subtitle: "",
-          company: "R Carvalho",
+          company: {
+            name: "R Carvalho",
+          },
           regularPrice: 16.21,
           promotionalPrice: 12.02,
           startAt: '2024-01-03T00:07:20.100Z',

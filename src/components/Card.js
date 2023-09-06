@@ -92,15 +92,15 @@ const ProductCard = ({ item }) => {
   );
 };
 
-function borderColor(companyId) {
-  if (companyId === "R Carvalho") {
+function borderColor(company) {
+  if (company === "R Carvalho") {
     return ["#90ee90", "white"];
-  } else if (companyId === "Assaí") {
-    return ["blue", "white"];
-  } else if (companyId === "Atacadão") {
+  } else if (company === "Assaí") {
+    return ["#4dddf6", "white"];
+  } else if (company === "Atacadão") {
     return ["yellow", "white"];
   } else {
-    return ["white", "red"];
+    return ["white", "white"];
   }
 }
 
