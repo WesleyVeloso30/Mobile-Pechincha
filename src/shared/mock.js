@@ -14,6 +14,7 @@ export const mockProductDetails = (productId) => {
                 startAt: '2023-11-02T22:27:20.100Z',
                 endAt: '2023-12-01T22:17:20.100Z',
             };
+            break
         case 2: 
             data = {
                 id: 2,
@@ -27,6 +28,7 @@ export const mockProductDetails = (productId) => {
                 startAt: '2024-01-19T21:27:20.100Z',
                 endAt: '2024-02-19T22:12:20.100Z',
             };
+            break
         case 3:
             data = {
                 id: 3,
@@ -40,7 +42,11 @@ export const mockProductDetails = (productId) => {
                 startAt: '2023-12-03T01:17:29.120Z',
                 endAt: '2023-12-14T00:56:52.100Z',
             };
-    }
+            break
+        default:
+            data = null
+            break
+        }
 
     return data;
 }

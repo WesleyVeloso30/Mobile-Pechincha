@@ -1,14 +1,27 @@
-import { View, Text, ScrollView, TextInput } from "react-native";
+import { View, Text } from "react-native";
 import styles from "./styles";
+
+const Homepage = () => {
+    return (
+        <View>
+            <Text>Entrou </Text>
+        </View>
+    )
+}
+
+export default Homepage;
+
+// import { View, Text, ScrollView, TextInput } from "react-native";
+// import styles from "./styles";
 // import company from "../../services/company";
-import products from "../../services/product";
-import SelectDropdown from 'react-native-select-dropdown'
-import { useEffect, useState } from "react";
+// import products from "../../services/product";
+// import SelectDropdown from 'react-native-select-dropdown'
+// import { useEffect, useState } from "react";
 
 // const productService = new products();
 // const companyService = new companys();
 
-const Filters = () => {
+// const Filters = () => {
     // const { companysName, setCompanysName } = useState(null);
     // const { productTitles, setProductTitles } = useState(null);
     // useEffect(() => {
@@ -54,8 +67,8 @@ const Filters = () => {
     //     return;
     // }
 
-    return (
-        <ScrollView>
+    // return (
+        // <ScrollView>
             {/* <SelectDropdown
                 data={companysName}
                 onSelect={(selectedItem, index) => {
@@ -72,8 +85,8 @@ const Filters = () => {
                     return item
                 }}
             /> */}
-        </ScrollView>
-    );
-}
+        // </ScrollView>
+    // );
+// }
 
-export default Filters;
+// export default Filters;
