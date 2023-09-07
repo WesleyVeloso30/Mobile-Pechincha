@@ -18,7 +18,16 @@ import Constants from 'expo-constants';
 const isMocked = Constants.manifest.extra.isMocked === 'true';
 
 const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
-
+// id               Int                @id @default(autoincrement())
+//   startAt          DateTime?
+//   endAt            DateTime?
+//   regularPrice     Int?
+//   promotionalPrice Int?
+//   title            String?
+//   subTitle         String?
+//   description      String?
+//   imageUrl         String?
+//   companyId        Int
 const ProductDetails = ({ productId }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(true);
