@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from '@react-navigation/native';
+import ProductButton from './ProductButton';
 // import SkeletonContent from 'react-native-skeleton-content';
 import {
   Modal,
@@ -114,20 +115,10 @@ const ProductDetails = ({ productId }) => {
               Descrição do Produto:
               {productsData.description}
             </Text>
-            <Button
-              icon="share-variant"
-              onPress={() => alert("Compartilhado!")}
-              title="Learn More"
-            >
-              COMPARTILHAR
-            </Button>
-            <Button
-            title="Learn More"
-              style={{ backgroundColor: "#ffd803", color: "#272343" }}
-              onPress={() => alert("Calma q ainda vou fazer a tela!")}
-            >
-              FECHAR
-            </Button>
+            <View style={{width: '100%', flexDirection: "row", justifyContent: 'space-around'}}>
+              <ProductButton />
+              <ProductButton />
+            </View>
           </LinearGradient>
           </SafeAreaView>
         </ScrollView>
