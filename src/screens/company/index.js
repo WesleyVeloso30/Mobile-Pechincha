@@ -3,60 +3,60 @@ import { useEffect, useState } from "react";
 import styles from "./styles";
 
 const Company = () => {
-  const [companys, setCompanys] = useState(null);
+  // const [companys, setCompanys] = useState(null);
 
-  useEffect(() => {
-    const data = [
-      {
-        id: 1,
-        name: "R Carvalho",
-        logo: require("../../assets/Logo.png"),
-        backgroundColor: "#50cf01",
-      },
-      {
-        id: 2,
-        name: "Atacadão",
-        logo: require("../../assets/Logo.png"),
-        backgroundColor: "#fdf063",
-      },
-      {
-        id: 3,
-        name: "Açaí",
-        logo: require("../../assets/Logo.png"),
-        backgroundColor: "#00bfff",
-      },
-    ];
+  // useEffect(() => {
+  //   const data = [
+  //     {
+  //       id: 1,
+  //       name: "R Carvalho",
+  //       logo: require("../../assets/Logo.png"),
+  //       backgroundColor: "#50cf01",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Atacadão",
+  //       logo: require("../../assets/Logo.png"),
+  //       backgroundColor: "#fdf063",
+  //     },
+  //     {
+  //       id: 3,
+  //       name: "Açaí",
+  //       logo: require("../../assets/Logo.png"),
+  //       backgroundColor: "#00bfff",
+  //     },
+  //   ];
 
-    setCompanys(data);
-  }, []);
+  //   setCompanys(data);
+  // }, []);
 
   return (
-    <>
-      {!companys ? (
-        <View>
-          <ActivityIndicator size="large" />
-        </View>
-      ) : (
-        <View>
+  //   <>
+  //     {!companys ? (
+  //       <View>
+  //         <ActivityIndicator size="large" />
+  //       </View>
+  //     ) : (
+  //       <View>
           <Text>Mercados </Text>
-          <FlatList
-            data={companys}
-            keyExtractor={(_, id) => id.toString()}
-            renderItem={({ item }) => (
-              <View
-                style={[
-                  styles.containerItem,
-                  { backgroundColor: item.backgroundColor },
-                ]}
-              >
-                <Image style={styles.logo} source={item.logo} />
-                <Text>{item.name}</Text>
-              </View>
-            )}
-          />
-        </View>
-      )}
-    </>
+    //       <FlatList
+    //         data={companys}
+    //         keyExtractor={(_, id) => id.toString()}
+    //         renderItem={({ item }) => (
+    //           <View
+    //             style={[
+    //               styles.containerItem,
+    //               { backgroundColor: item.backgroundColor },
+    //             ]}
+    //           >
+    //             <Image style={styles.logo} source={item.logo} />
+    //             <Text>{item.name}</Text>
+    //           </View>
+    //         )}
+    //       />
+    //     </View>
+    //   )}
+    // </>
   );
 };
 

@@ -6,6 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/Logo.png",
     "userInterfaceStyle": "light",
+    "jsEngine": "jsc",
     "extra": {
       "isMocked": "false",
       "baseUrl1": "http://localhost:3000",
