@@ -1,19 +1,20 @@
-import React from "react";
+import React, {useState} from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import {
   SafeAreaView,
   View,
   RefreshControl,
-  useState,
   StyleSheet,
   FlatList,
 } from "react-native";
 import { Avatar, Button, Card, Title, Paragraph } from "react-native-paper";
 import { formatDateShort } from "../shared/util";
+import ProductDetails from "./productDetails";
 
 const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
 
-const ProductCard = ({ item }) => {
+const ProductCard = ({ item, navigation }) => {
+  const [modalVisible, setModalVisible] = useState(false);
   return (
     // <SafeAreaView style={styles.container}>
     //     <ScrollView style={styles.container}>
@@ -80,13 +81,15 @@ const ProductCard = ({ item }) => {
             </Button>
             <Button
               style={{ backgroundColor: "#ffd803", color: "#272343" }}
-              onPress={() => alert("Calma q ainda vou fazer a tela!")}
+              onPress={ () => setModalVisible(true)
+              }
             >
               VER DETALHES
             </Button>
           </Card.Actions>
         </LinearGradient>
       </Card>
+      <ProductDetails navigation={navigation} productId={item.id} setModalVisible={setModalVisible} modalVisible={modalVisible} />
     </View>
     // </SafeAreaView>
   );

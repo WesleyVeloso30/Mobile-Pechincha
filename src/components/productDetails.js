@@ -31,10 +31,9 @@ const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
 //   description      String?
 //   imageUrl         String?
 //   companyId        Int
-const ProductDetails = ({ productId }) => {
-  // const [modalVisible, setModalVisible] = useState(false);
+const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }) => {
   // const [loading, setLoading] = useState(true);
-  productId=1;
+  // productId=1;
   const [productsData, setProductsData] = useState(null);
     useEffect( () => {
     
@@ -44,7 +43,8 @@ const ProductDetails = ({ productId }) => {
       
     const getDetails = async () => {
       let data;
-      console.log('isMock', isMocked);
+      // setModalVisible(true);
+      console.log('isMock', productId);
       setProductsData(null);
       // setLoading(true)
       if (isMocked) {
@@ -65,22 +65,22 @@ const ProductDetails = ({ productId }) => {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center'}}> <Text style={{fontSize: 200}}>fytgbhjnffhfhfhcfhcfhcfhcfhctrygvhbjn m</Text> </Text>) : (
-    // <Modal
-    //   animationType="slide"
-    //   transparent={true}
-    //   visible={modalVisible}
-    //   onRequestClose={() => {
-    //     // Alert.alert('Modal has been closed.');
-    //     setModalVisible(!modalVisible);
-    //   }}>
-      // {/* <SkeletonContent
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={modalVisible}
+      onRequestClose={() => {
+        // Alert.alert('Modal has been closed.');
+        setModalVisible(false);
+      }}>
+      {/* <SkeletonContent
         // isLoading={loading}ScrollView
         // animationDirection="horizontalLeft"
       // > */}
         <ScrollView>
           <SafeAreaView>
-          <LinearGradient style={{marginTop: 50}} colors={borderColor(productsData.company.name)}>
-            <View style={{flex: 1, alignItems: "center"}}>
+          <LinearGradient style={{marginTop: 35}} colors={borderColor(productsData.company.name)}>
+            <View style={{flex: 1, alignItems: "center", marginTop: 15}}>
               <Image
                 source={require("../assets/foto.jpeg")}
                 style={{ width: '97%', height:200}}
@@ -122,8 +122,8 @@ const ProductDetails = ({ productId }) => {
           </LinearGradient>
           </SafeAreaView>
         </ScrollView>
-      // {/* </SkeletonContent> */}
-    // </Modal>
+      {/* </SkeletonContent> */}
+    </Modal>
     )
           }
           </View>

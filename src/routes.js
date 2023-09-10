@@ -106,8 +106,9 @@ export default function Routes() {
         headerShown: false
         }}>
             <Stack.Screen name="Login" component={Login} />
-            <Stack.Screen name="Homepage" component={ProductDetails} />
+            <Stack.Screen name="Homepage" component={BottomTabNavigator} />
             <Stack.Screen name="Register" component={Register} />
+            <Stack.Screen name="ProductDetails" component={ProductDetails} />
         </Stack.Navigator>
     );
 }

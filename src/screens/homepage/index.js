@@ -5,7 +5,7 @@ import products from "../../services/product";
 import styles from "./styles";
 import Constants from 'expo-constants';
 
-const isMocked = Constants.manifest.extra.isMocked === 'true';
+const isMocked = Constants.manifest.extra.isMocked == 'false';
 
 const productService = new products();
 
@@ -98,7 +98,7 @@ const Homepage = ({ navigation }) => {
             }
             data={productsData}
             keyExtractor={(_, id) => id.toString()}
-            renderItem={({item}) => ( <ProductCard item={item} /> ) }/>
+            renderItem={({item}) => ( <ProductCard item={item} navigation={navigation} /> ) }/>
         </SafeAreaView>
       ) : (
         <View style={styles.noApiData}>
