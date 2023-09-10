@@ -21,7 +21,7 @@ import Constants from 'expo-constants';
 
 const isMocked = Constants.manifest.extra.isMocked == 'false';
 
-const Close = () => <Avatar.Icon size={30} icon="close" />;
+const Close = () => <Avatar.Icon size={30} icon="close" style={{backgroundColor: 'white'}} color="black" />;
 // id               Int                @id @default(autoincrement())
 //   startAt          DateTime?
 //   endAt            DateTime?
@@ -81,7 +81,6 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
         <ScrollView>
           <SafeAreaView>
           <LinearGradient style={{marginTop: 35}} colors={borderColor(productsData.company.name)}>
-      <Close/>
             <View style={{ alignItems: "center", marginTop: 15}}>
               <Image
                 source={require("../assets/foto.jpeg")}
@@ -89,6 +88,9 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
                 alt='Imagem do produto'
               />
             </View>
+            <Text style={{position: 'absolute', right: 8, top: 4}} onPress={ () => setModalVisible(false)}>
+              <Close/>
+            </Text>
             <Text style={{ fontSize: 30 }}>
               {productsData.title}
             </Text>
