@@ -80,7 +80,7 @@ const ProductCard = ({ item, navigation }) => {
               COMPARTILHAR
             </Button>
             <Button
-              style={{ backgroundColor: "#ffd803", color: "#272343" }}
+              style={{ backgroundColor: "#ffd803" }}
               onPress={ () => setModalVisible(true)
               }
             >

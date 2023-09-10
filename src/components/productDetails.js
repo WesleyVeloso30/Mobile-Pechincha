@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from '@react-navigation/native';
 import ProductButton from './ProductButton';
+import { formatDateShort } from '../shared/util'
 // import SkeletonContent from 'react-native-skeleton-content';
 import {
   Modal,
@@ -20,7 +21,7 @@ import Constants from 'expo-constants';
 
 const isMocked = Constants.manifest.extra.isMocked == 'false';
 
-const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
+const Close = () => <Avatar.Icon size={30} icon="close" />;
 // id               Int                @id @default(autoincrement())
 //   startAt          DateTime?
 //   endAt            DateTime?
@@ -60,7 +61,7 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
     }
 
   return (
-    <View>
+    <View style={{padding: 6}}>
     { !productsData ? (<Text style={{
         flex: 1,
         justifyContent: 'center',
@@ -70,7 +71,7 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
       transparent={true}
       visible={modalVisible}
       onRequestClose={() => {
-        // Alert.alert('Modal has been closed.');
+        // alert('Modal has n closed.');
         setModalVisible(false);
       }}>
       {/* <SkeletonContent
@@ -80,21 +81,29 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
         <ScrollView>
           <SafeAreaView>
           <LinearGradient style={{marginTop: 35}} colors={borderColor(productsData.company.name)}>
-            <View style={{flex: 1, alignItems: "center", marginTop: 15}}>
+      <Close/>
+            <View style={{ alignItems: "center", marginTop: 15}}>
               <Image
                 source={require("../assets/foto.jpeg")}
                 style={{ width: '97%', height:200}}
                 alt='Imagem do produto'
               />
             </View>
-            <Text style={[ styles.lineBreak ,{ fontSize: 30 }]}>
+            <Text style={{ fontSize: 30 }}>
               {productsData.title}
             </Text>
-            <Text style={{ fontSize: 20 }}>
-              {productsData.subTitle}
-            </Text>
+            {
+              productsData.subTitle ? (
+                <Text style={[ styles.lineBreak ,{ fontSize: 18 }]}>
+                  {productsData.subTitle}
+                </Text>
+              ) : (
+                <Text style={{ fontSize: 18 }}
+                ></Text>
+              )
+            }
             <View>
-              <Text>
+              <Text style={{ fontSize: 20 }}>
                 PROMOÇÃO:
               </Text>
               <Text style={[ styles.lineBreak ,{ fontSize: 20 }]}>
@@ -102,22 +111,23 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
               </Text>
               
             </View>
-            <Text style={styles.lineBreak}>
-              Periodo da promoção: {productsData.startAt} - {productsData.endAt}
+            <Text style={[styles.lineBreak, { fontSize: 18 }]}>
+              PERIODO DA PROMOÇÃO: {formatDateShort(productsData.startAt)} - {formatDateShort(productsData.endAt)}
             </Text>
-            <Text>
-              Mercado: {productsData.company.name}
+            <Text style={{ fontSize: 16 }}>
+              MERCADO: {productsData.company.name}
             </Text>
-            <Link style={styles.lineBreak} to={{ screen: 'Company', params: { id: productsData.company.id }}}>
-              Mais informações do Mercado &gt;
+            <Link style={[styles.lineBreak, { fontSize: 12 }]} to={{ screen: 'Company', params: { id: productsData.company.id }}}>
+              Mais informações do Mercado {productsData.company.name} &gt;
             </Link>
-            <Text style={styles.lineBreak }>
-              Descrição do Produto:
+            <Text style={[styles.lineBreak, { fontSize: 16 }] }>
+              DESCRIÇÃO DO PRODUTO:
+              {'\n'}
               {productsData.description}
             </Text>
             <View style={{width: '100%', flexDirection: "row", justifyContent: 'space-around'}}>
               <ProductButton />
-              <ProductButton />
+              <ProductButton setModalVisible={setModalVisible} modalVisible={modalVisible} buttonColor={'#ffd803'} name={'FECHAR'}  />
             </View>
           </LinearGradient>
           </SafeAreaView>
