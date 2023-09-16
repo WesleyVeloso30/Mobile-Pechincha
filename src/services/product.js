@@ -14,7 +14,23 @@ export default class Product {
         alert("Erro ao consultar api");
       }
     } catch (error) {
-      console.log("Erro: ", resp);
+      console.log("Erro: ", error);
+      alert("Erro ao consultar api");
+    }
+  }
+
+  async getProductById(id) {
+    try {
+      const resp = await fetch(`${baseUrl}/product/${id}`);
+      if (resp.status == 200) {
+        const resposta = await resp.json();
+        return resposta;
+      } else {
+        console.log("Erro: ", resp);
+        alert("Erro ao consultar api");
+      }
+    } catch (error) {
+      console.log("Erro: ", error);
       alert("Erro ao consultar api");
     }
   }

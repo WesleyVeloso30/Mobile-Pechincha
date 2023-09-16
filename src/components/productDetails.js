@@ -18,8 +18,11 @@ import {
 import { Avatar, Card, Title, Paragraph } from "react-native-paper";
 import { mockProductDetails } from "../shared/mock";
 import Constants from 'expo-constants';
+import products from "../services/product";
 
-const isMocked = Constants.manifest.extra.isMocked == 'false';
+const isMocked = Constants.manifest.extra.isMocked == 'true';
+
+const productService = new products();
 
 const Close = () => <Avatar.Icon size={30} icon="close" style={{backgroundColor: 'white'}} color="black" />;
 // id               Int                @id @default(autoincrement())
@@ -52,7 +55,7 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
         data = mockProductDetails(productId);
         setProductsData(data);
       } else {
-        // data = await productService.getProducts();
+        data = await productService.getProductById(productId);
 
         setProductsData(data);
         // setLoading(false);
@@ -62,10 +65,6 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
 
   return (
     <View style={{padding: 6}}>
-    { !productsData ? (<Text style={{
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'}}> <Text style={{fontSize: 200}}>fytgbhjnffhfhfhcfhcfhcfhcfhctrygvhbjn m</Text> </Text>) : (
     <Modal
       animationType="slide"
       transparent={true}
@@ -78,6 +77,10 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
         // isLoading={loading}ScrollView
         // animationDirection="horizontalLeft"
       // > */}
+      { !productsData ? (<Text style={{
+          flex: 1,
+          justifyContent: 'center',
+          alignItems: 'center'}}> <Text style={{fontSize: 200}}>fytgbhjnffhfhfhcfhcfhcfhcfhctrygvhbjn m</Text> </Text>) : (
         <ScrollView>
           <SafeAreaView>
           <LinearGradient style={{marginTop: 35}} colors={borderColor(productsData.company.name)}>
@@ -122,11 +125,15 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
             <Link style={[styles.lineBreak, { fontSize: 12 }]} to={{ screen: 'Company', params: { id: productsData.company.id }}}>
               Mais informações do Mercado {productsData.company.name} &gt;
             </Link>
-            <Text style={[styles.lineBreak, { fontSize: 16 }] }>
-              DESCRIÇÃO DO PRODUTO:
-              {'\n'}
-              {productsData.description}
-            </Text>
+            {
+              productsData.description ? (
+                <Text style={[styles.lineBreak, { fontSize: 16 }] }>
+                  DESCRIÇÃO DO PRODUTO:
+                  {'\n'}
+                  {productsData.description}
+                </Text>
+              ) : (<Text></Text>)
+            }
             <View style={{width: '100%', flexDirection: "row", justifyContent: 'space-around'}}>
               <ProductButton />
               <ProductButton setModalVisible={setModalVisible} modalVisible={modalVisible} buttonColor={'#ffd803'} name={'FECHAR'}  />
@@ -134,10 +141,10 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
           </LinearGradient>
           </SafeAreaView>
         </ScrollView>
+      )
+    }
       {/* </SkeletonContent> */}
     </Modal>
-    )
-          }
           </View>
           );
 };
@@ -145,13 +152,13 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
 function borderColor(companyId) {
   // R Carvalho
   if (companyId === 'R Carvalho') {
-    return ["green", "white"];
+    return ["#90ee90", "white"];
   } else if (companyId === "Assaí") {
-    return ["blue", "white"];
+    return ["#4dddf6", "white"];
   } else if (companyId === "Atacadão") {
     return ["yellow", "white"];
   } else {
-    return ["white", "red"];
+    return ["white", "white"];
   }
 }
 
