@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 
-export default function ProductButton({setModalVisible, modalVisible, buttonColor, name}) {
-  console.log(buttonColor);
+export default function ProductButton({setModalVisible, modalVisible, buttonBackgroundColor, name, color}) {
   const styles = StyleSheet.create({
     Button: {
       marginBottom: 10,
@@ -10,9 +9,9 @@ export default function ProductButton({setModalVisible, modalVisible, buttonColo
       flex: 1,
       borderRadius: 70,
       fontSize: 20,
-      color : 'white',
+      color : color ? color : 'white',
       textAlign: 'center',
-      backgroundColor: buttonColor ? buttonColor : 'white',
+      backgroundColor: buttonBackgroundColor ? buttonBackgroundColor : 'white',
       alignItems: 'center',
       verticalAlign: 'middle',
       borderColor: '#808080',
@@ -34,7 +33,7 @@ export default function ProductButton({setModalVisible, modalVisible, buttonColo
       <Text style={styles.Button} 
         // navigation={navigation}
         onPress={() => {
-          if (name = 'FECHAR') {
+          if (setModalVisible) {
             setModalVisible(false);
           }
             // navigation.reset({

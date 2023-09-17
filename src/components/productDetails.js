@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import { Link } from '@react-navigation/native';
 import ProductButton from './ProductButton';
+import Skeleton from "./Load-Skeleton";
 import { formatDateShort } from '../shared/util'
 // import SkeletonContent from 'react-native-skeleton-content';
 import {
@@ -23,6 +24,7 @@ import products from "../services/product";
 const isMocked = Constants.manifest.extra.isMocked == 'true';
 
 const productService = new products();
+const skeleton = new Skeleton();
 
 const Close = () => <Avatar.Icon size={30} icon="close" style={{backgroundColor: 'white'}} color="black" />;
 // id               Int                @id @default(autoincrement())
@@ -40,8 +42,8 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
   // productId=1;
   const [productsData, setProductsData] = useState(null);
     useEffect( () => {
-    
-        getDetails();
+        
+     getDetails();
 
       }, []);
       
@@ -77,72 +79,71 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
         // isLoading={loading}ScrollView
         // animationDirection="horizontalLeft"
       // > */}
-      { !productsData ? (<Text style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center'}}> <Text style={{fontSize: 200}}>fytgbhjnffhfhfhcfhcfhcfhcfhctrygvhbjn m</Text> </Text>) : (
         <ScrollView>
           <SafeAreaView>
-          <LinearGradient style={{marginTop: 35}} colors={borderColor(productsData.company.name)}>
-            <View style={{ alignItems: "center", marginTop: 15}}>
+      { !productsData ? <skeleton.productDetails></skeleton.productDetails> : (
+          <LinearGradient style={{marginTop: 35, alignItems: "center"}} colors={borderColor(productsData.company.name)}>
+            <View style={{ alignItems: "center", width: '100%', marginTop: 15}}>
               <Image
                 source={require("../assets/foto.jpeg")}
                 style={{ width: '97%', height:200}}
                 alt='Imagem do produto'
               />
             </View>
-            <Text style={{position: 'absolute', right: 8, top: 4}} onPress={ () => setModalVisible(false)}>
-              <Close/>
-            </Text>
-            <Text style={{ fontSize: 30 }}>
-              {productsData.title}
-            </Text>
-            {
-              productsData.subTitle ? (
-                <Text style={[ styles.lineBreak ,{ fontSize: 18 }]}>
-                  {productsData.subTitle}
+              <Text style={{position: 'absolute', right: 8, top: 4}} onPress={ () => setModalVisible(false)}>
+                <Close/>
+              </Text>
+            <View style={{width: '97%'}}>
+              <Text style={{ fontSize: 30 }}>
+                {productsData.title}
+              </Text>
+              {
+                productsData.subTitle ? (
+                  <Text style={[ styles.lineBreak ,{ fontSize: 18 }]}>
+                    {productsData.subTitle}
+                  </Text>
+                ) : (
+                  <Text style={{ fontSize: 18 }}
+                  ></Text>
+                )
+              }
+              <View>
+                <Text style={{ fontSize: 20 }}>
+                  PROMOÇÃO:
                 </Text>
-              ) : (
-                <Text style={{ fontSize: 18 }}
-                ></Text>
-              )
-            }
-            <View>
-              <Text style={{ fontSize: 20 }}>
-                PROMOÇÃO:
+                <Text style={[ styles.lineBreak ,{ fontSize: 20 }]}>
+                  De R${productsData.regularPrice} - Por R${productsData.promotionalPrice}
+                </Text>
+                
+              </View>
+              <Text style={[styles.lineBreak, { fontSize: 18 }]}>
+                PERIODO DA PROMOÇÃO: {formatDateShort(productsData.startAt)} - {formatDateShort(productsData.endAt)}
               </Text>
-              <Text style={[ styles.lineBreak ,{ fontSize: 20 }]}>
-                De R${productsData.regularPrice} - Por R${productsData.promotionalPrice}
+              <Text style={{ fontSize: 16 }}>
+                MERCADO: {productsData.company.name}
               </Text>
-              
+              <Link style={[styles.lineBreak, { fontSize: 12 }]} to={{ screen: 'Company', params: { id: productsData.company.id }}}>
+                Mais informações do Mercado {productsData.company.name} &gt;
+              </Link>
+              {
+                productsData.description ? (
+                  <Text style={[styles.lineBreak, { fontSize: 16 }] }>
+                    DESCRIÇÃO DO PRODUTO:
+                    {'\n'}
+                    {productsData.description}
+                  </Text>
+                ) : (<Text></Text>)
+              }
             </View>
-            <Text style={[styles.lineBreak, { fontSize: 18 }]}>
-              PERIODO DA PROMOÇÃO: {formatDateShort(productsData.startAt)} - {formatDateShort(productsData.endAt)}
-            </Text>
-            <Text style={{ fontSize: 16 }}>
-              MERCADO: {productsData.company.name}
-            </Text>
-            <Link style={[styles.lineBreak, { fontSize: 12 }]} to={{ screen: 'Company', params: { id: productsData.company.id }}}>
-              Mais informações do Mercado {productsData.company.name} &gt;
-            </Link>
-            {
-              productsData.description ? (
-                <Text style={[styles.lineBreak, { fontSize: 16 }] }>
-                  DESCRIÇÃO DO PRODUTO:
-                  {'\n'}
-                  {productsData.description}
-                </Text>
-              ) : (<Text></Text>)
-            }
             <View style={{width: '100%', flexDirection: "row", justifyContent: 'space-around'}}>
-              <ProductButton />
-              <ProductButton setModalVisible={setModalVisible} modalVisible={modalVisible} buttonColor={'#ffd803'} name={'FECHAR'}  />
+              <ProductButton name={'COMPARTILHAR'} color={'#993399'}/>
+              <ProductButton setModalVisible={setModalVisible} modalVisible={modalVisible} buttonBackgroundColor={'#ffd803'} name={'FECHAR'}  />
             </View>
           </LinearGradient>
+          )
+        }
           </SafeAreaView>
         </ScrollView>
-      )
-    }
       {/* </SkeletonContent> */}
     </Modal>
           </View>
