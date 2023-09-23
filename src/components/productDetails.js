@@ -79,10 +79,10 @@ const ProductDetails = ({ productId, navigation, setModalVisible, modalVisible }
         // isLoading={loading}ScrollView
         // animationDirection="horizontalLeft"
       // > */}
-        <ScrollView>
+        <ScrollView style={{paddingHorizontal: 12}}>
           <SafeAreaView>
       { !productsData ? <skeleton.productDetails></skeleton.productDetails> : (
-          <LinearGradient style={{marginTop: 35, alignItems: "center"}} colors={borderColor(productsData.company.name)}>
+          <LinearGradient style={{marginTop: 35, alignItems: "center", borderWidth: 1, borderColor: 'black', borderRadius: 10}} colors={borderColor(productsData.company.name)}>
             <View style={{ alignItems: "center", width: '100%', marginTop: 15}}>
               <Image
                 source={require("../assets/foto.jpeg")}

@@ -22,7 +22,7 @@ export default class Skeleton {
                 borderRadius: 2,
                 marginRight: 20,
             }}
-            /> //title
+            />
             <SkeletonLoader.Item
                 style={{
                 width: '42%',
@@ -30,7 +30,7 @@ export default class Skeleton {
                 borderRadius: 2,
                 marginRight: 20,
             }}
-            /> //mercado
+            />
             <SkeletonLoader.Container
             style={[{ flexDirection: "column" }]}
             >
@@ -41,7 +41,7 @@ export default class Skeleton {
                     borderRadius: 2,
                     marginRight: 20,
                 }}
-            /> //startAt
+            />
             <SkeletonLoader.Item
                 style={{
                     width: '42%',
@@ -49,7 +49,7 @@ export default class Skeleton {
                     borderRadius: 2,
                     marginRight: 20,
                 }}
-            /> //endAt
+            />
                 </SkeletonLoader.Container>
             <SkeletonLoader.Container
             style={[{ flexDirection: "column" }]}
@@ -61,7 +61,7 @@ export default class Skeleton {
                 borderRadius: 2,
                 marginRight: 20,
             }}
-            /> //start preço
+            />
             <SkeletonLoader.Item
                 style={{
                 width: '42%',
@@ -69,7 +69,7 @@ export default class Skeleton {
                 borderRadius: 2,
                 marginRight: 20,
             }}
-            /> //end preço
+            />
                 </SkeletonLoader.Container>
             </SkeletonLoader.Container>
             <SkeletonLoader.Container style={{ paddingVertical: 10 }}>
