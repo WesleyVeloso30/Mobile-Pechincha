@@ -1,6 +1,6 @@
 import React from "react";
 import { StyleSheet, View, Dimensions, ViewStyle } from "react-native";
-import SkeletonLoader from "expo-skeleton-loader";
+// import SkeletonLoader from "expo-skeleton-loader";
 
 const { width, height } = Dimensions.get("window");
 

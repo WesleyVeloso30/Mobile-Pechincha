@@ -4,13 +4,13 @@
     "slug": "projeto1",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/Logo.png",
+    "icon": "./src/assets/Logo.png",
     "userInterfaceStyle": "light",
     "jsEngine": "jsc",
     "extra": {
       "isMocked": "false",
-      "baseUrl": "http://10.0.0.108:3000",
-      "baseUrl1": "https://pechincha-backend.onrender.com"
+      "baseUrl1": "http://10.0.0.108:3000",
+      "baseUrl": "https://pechincha-backend.onrender.com"
     },
     "splash": {
       "image": "./assets/Profile.svg",
