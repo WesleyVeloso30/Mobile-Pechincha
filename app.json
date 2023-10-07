@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "jsEngine": "jsc",
     "extra": {
-      "isMocked": "false",
+      "isMocked": "true",
       "baseUrl": "http://10.0.0.108:3000",
       "baseUrl1": "https://pechincha-backend.onrender.com"
     },
