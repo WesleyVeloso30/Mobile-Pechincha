@@ -22,7 +22,7 @@
     "intl": "^1.2.5",
     "react": "18.2.0",
     "react-dom": "^18.2.0",
-    "react-native": "0.71.8",
+    "react-native": "0.71.13",
     "react-native-countdown-component": "^2.7.1",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-pager-view": "6.1.2",

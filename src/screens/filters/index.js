@@ -105,9 +105,7 @@ const Filters = () => {
           setProductTitles(titles);
         return;
     }
-    // console.log(companysName)
-    // console.log(productTitles)
-    // Tornar o SearchableDropdown um component
+
     return (
         <SafeAreaView>
           {companysName && productTitles ? (
