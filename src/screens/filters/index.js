@@ -5,6 +5,7 @@ import SearchableDropdown from "../../components/SelectDropdown";
 // import company from "../../services/company";
 import Skeleton from "../../components/Load-Skeleton";
 import products from "../../services/product";
+import { TextInputMask } from 'react-native-masked-text';
 
 const productService = new products();
 // const companyService = new company();
@@ -13,6 +14,11 @@ const skeleton = new Skeleton();
 const Filters = () => {
   const [companysName, setCompanysName] = useState(null);
   const [productTitles, setProductTitles] = useState(null);
+  const [minimumValue, setMinimumValue] = useState(0);
+  const [inputMinimumValue, setInputMinimumValue] = useState('0');
+  const [maximumValue, setMaximumValue] = useState(0);
+  const [inputMaximumValue, setInputMaximumValue] = useState('0');
+  
   useEffect(() => {
     getCompany();
   }, []);
@@ -132,25 +138,62 @@ const Filters = () => {
               />
             </View>
           </View>
+          <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-around'}}>
+            <View style={{width: '48%', padding: 5}}>
+              <Text>Valor mínimo do produto:</Text>
+              <TextInputMask
+                type={'money'}
+                value={inputMinimumValue}
+                maxLength={11}
+                style={{
+                  borderWidth: 1,
+                  fontSize: 18,
+                  paddingLeft: 6,
+                  borderColor: '#ccc',
+                  width: '100%',
+                  height: 50,
+                }}
+                onChangeText={value => {
+                  setInputMinimumValue(value);
+                  value = value.replace('R$', '');
+                  value = value.replace('.', '');
+                  value = value.replace(',', '.');
+                  setMinimumValue(value);
+                }}
+              />
+            </View>
+            <View style={{width: '48%', padding: 5}}>
+              <Text>Valor máximo do produto:</Text>
+              <TextInputMask
+                type={'money'}
+                value={inputMaximumValue}
+                maxLength={11}
+                style={{
+                  borderWidth: 1,
+                  fontSize: 18,
+                  paddingLeft: 6,
+                  borderColor: '#ccc',
+                  width: '100%',
+                  height: 50,
+                }}
+                onChangeText={value => {
+                  setInputMaximumValue(value);
+                  value = value.replace('R$', '');
+                  value = value.replace('.', '');
+                  value = value.replace(',', '.');
+                  setMaximumValue(value);
+                }}
+              />
+            </View>
+          </View>
           <View>
-            <Text>Faixa de Preço:</Text>
-            <View>
-              <TextInput
-                placeholder={false ? `De: ${"variavel"}` : `De: `}
-              ></TextInput>
-              <TextInput
-                placeholder={false ? `Até: ${"variavel"}` : `Até: `}
-              ></TextInput>
-            </View>
-            <View>
-              <Text>Período da Promoção:</Text>
-              <TextInput
-                placeholder={false ? `De: ${"variavel"}` : `De: `}
-              ></TextInput>
-              <TextInput
-                placeholder={false ? `Até: ${"variavel"}` : `Até: `}
-              ></TextInput>
-            </View>
+            <Text>Período da Promoção:</Text>
+            <TextInput
+              placeholder={false ? `De: ${"variavel"}` : `De: `}
+            ></TextInput>
+            <TextInput
+              placeholder={false ? `Até: ${"variavel"}` : `Até: `}
+            ></TextInput>
           </View>
         </View>
       ) : (
