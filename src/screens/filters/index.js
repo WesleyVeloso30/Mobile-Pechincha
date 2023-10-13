@@ -6,6 +6,7 @@ import SearchableDropdown from "../../components/SelectDropdown";
 import Skeleton from "../../components/Load-Skeleton";
 import products from "../../services/product";
 import { TextInputMask } from 'react-native-masked-text';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 const productService = new products();
 // const companyService = new company();
@@ -187,6 +188,9 @@ const Filters = () => {
             </View>
           </View>
           <View>
+            <DateTimePicker 
+              value={new Date()}
+            />
             <Text>Período da Promoção:</Text>
             <TextInput
               placeholder={false ? `De: ${"variavel"}` : `De: `}
