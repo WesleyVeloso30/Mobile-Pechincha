@@ -9,6 +9,7 @@ export default function ProductButton({setModalVisible, modalVisible, buttonBack
       flex: 1,
       borderRadius: 70,
       fontSize: 20,
+      paddingTop: 8,
       color : color ? color : 'white',
       textAlign: 'center',
       backgroundColor: buttonBackgroundColor ? buttonBackgroundColor : 'white',

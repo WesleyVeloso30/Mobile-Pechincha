@@ -1,4 +1,7 @@
-import { SafeAreaView, View, Text, ScrollView, TextInput, Pressable } from "react-native";
+import {
+  SafeAreaView, View, Text, ScrollView, TextInput, Pressable, Platform,
+  TouchableOpacity,
+} from "react-native";
 import { useState, useEffect } from "react";
 import styles from "./styles";
 import SearchableDropdown from "../../components/SelectDropdown";
@@ -7,6 +10,7 @@ import Skeleton from "../../components/Load-Skeleton";
 import products from "../../services/product";
 import { TextInputMask } from 'react-native-masked-text';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import { formatDateBr } from "../../shared/util";
 
 const productService = new products();
 // const companyService = new company();
@@ -17,8 +21,10 @@ const Filters = () => {
   const [productTitles, setProductTitles] = useState(null);
   const [minimumValue, setMinimumValue] = useState(0);
   const [inputMinimumValue, setInputMinimumValue] = useState('0');
-  const [date, setDate] = useState(new Date());
-  const [showPicker, setShowPicker] = useState(false);
+  const [initialDate, setInitialDate] = useState(new Date());
+  const [finalDate, setFinalDate] = useState(new Date());
+  const [showPickerStart, setShowPickerStart] = useState(false);
+  const [showPickerEnd, setShowPickerEnd] = useState(false);
   const [maximumValue, setMaximumValue] = useState(0);
   const [inputMaximumValue, setInputMaximumValue] = useState('0');
   
@@ -115,38 +121,64 @@ const Filters = () => {
     return;
   };
 
-  const toogleDatePicker = () => {
-    setShowPicker(!showPicker);
+  const toogleInitialDatePicker = () => {
+    setShowPickerStart(!showPickerStart);
   };
 
-  const onChange = ({ type }, selectedDate) => {
+  const toogleFinalDatePicker = () => {
+    setShowPickerEnd(!showPickerEnd);
+  };
+
+  const onChangeInitialDate = ({ type }, selectedDate) => {
     if (type == "set") {
       const currentDate = selectedDate;
-      setDate(currentDate);
+      setInitialDate(currentDate);
+
+      if(Platform.OS === 'android') toogleInitialDatePicker();
     } else {
-      toogleDatePicker();
+      toogleInitialDatePicker();
     }
   }
 
+  const onChangeFinalDate = ({ type }, selectedDate) => {
+    if (type == "set") {
+      const currentDate = selectedDate;
+      setFinalDate(currentDate);
+
+      if(Platform.OS === 'android') toogleFinalDatePicker();
+    } else {
+      toogleFinalDatePicker();
+    }
+  }
+
+  const confirmIosInitialDate = () => {
+    setInitialDate(initialDate);
+    toogleInitialDatePicker();
+  }
+
+  const confirmIosFinalDate = () => {
+    setFinalDate(finalDate);
+    toogleFinalDatePicker();
+  }
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       {companysName && productTitles ? (
-        <View>
+        <View style={{flex: 1}}>
           <View
-            style={{
-              flexDirection: "row",
-              justifyContent: "space-around",
-              marginTop: 35,
-            }}
+            style={[
+              { marginTop: 35 },
+              styles.inputPairContainer
+            ]}
           >
-            <View style={{ padding: 5, width: "48%" }}>
+            <View style={styles.containerInput}>
               <Text>Mercado:</Text>
               <SearchableDropdown
                 listItems={companysName}
                 placeholder="Escolha um mercado"
               />
             </View>
-            <View style={{ width: "48%", padding: 5 }}>
+            <View style={styles.containerInput}>
               <Text>Produto:</Text>
               <SearchableDropdown
                 listItems={productTitles}
@@ -154,21 +186,14 @@ const Filters = () => {
               />
             </View>
           </View>
-          <View style={{width: '100%', flexDirection: 'row', justifyContent: 'space-around'}}>
-            <View style={{width: '48%', padding: 5}}>
+          <View style={[{width: '100%'}, styles.inputPairContainer]}>
+            <View style={styles.containerInput}>
               <Text>Valor mínimo do produto:</Text>
               <TextInputMask
                 type={'money'}
                 value={inputMinimumValue}
                 maxLength={11}
-                style={{
-                  borderWidth: 1,
-                  fontSize: 18,
-                  paddingLeft: 6,
-                  borderColor: '#ccc',
-                  width: '100%',
-                  height: 50,
-                }}
+                style={styles.textInput}
                 onChangeText={value => {
                   setInputMinimumValue(value);
                   value = value.replace('R$', '');
@@ -178,20 +203,13 @@ const Filters = () => {
                 }}
               />
             </View>
-            <View style={{width: '48%', padding: 5}}>
+            <View style={styles.containerInput}>
               <Text>Valor máximo do produto:</Text>
               <TextInputMask
                 type={'money'}
                 value={inputMaximumValue}
                 maxLength={11}
-                style={{
-                  borderWidth: 1,
-                  fontSize: 18,
-                  paddingLeft: 6,
-                  borderColor: '#ccc',
-                  width: '100%',
-                  height: 50,
-                }}
+                style={styles.textInput}
                 onChangeText={value => {
                   setInputMaximumValue(value);
                   value = value.replace('R$', '');
@@ -203,31 +221,127 @@ const Filters = () => {
             </View>
           </View>
           <View>
-            {showPicker && (
+            {showPickerStart && (
               <DateTimePicker 
-                value={date}
+                value={initialDate}
                 mode="date"
                 display="spinner"
-                onChange={onChange}
+                onChange={onChangeInitialDate}
+                style={styles.datePicker}
               />
             )}
-            <Text>Período da Promoção:</Text>
-            {!showPicker && (
-              <Pressable
-                onPress={toogleDatePicker}
-              >
-                <TextInput
-                  placeholder={false ? `De: ${"variavel"}` : `De: `}
-                  value={date}
-                  // onChangeText={setDate()}
-                  editable={false}
-                ></TextInput>
-              </Pressable>
+            {showPickerEnd && (
+              <DateTimePicker 
+                value={finalDate}
+                mode="date"
+                display="spinner"
+                onChange={onChangeFinalDate}
+                style={styles.datePicker}
+              />
             )}
-            <TextInput
-              placeholder={false ? `Até: ${"variavel"}` : `Até: `}
-            ></TextInput>
+
+            {showPickerStart && Platform.OS === 'ios' && (
+              <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                <TouchableOpacity style={[
+                  styles.iosPickerbutton,
+                  styles.pickerButton,
+                  {backgroundColor: '#11182711'}
+                ]}
+                onPress={toogleInitialDatePicker}
+                >
+                  <Text style={[
+                    styles.buttonText,
+                    {color: '#075985'}
+                  ]}>
+                    Cancelar
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[
+                  styles.iosPickerbutton,
+                  styles.pickerButton,
+                ]}
+                  onPress={confirmIosInitialDate}
+                >
+                  <Text style={[
+                    styles.buttonText,
+                  ]}>
+                    Confirmar
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
+            {showPickerEnd && Platform.OS === 'ios' && (
+              <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
+                <TouchableOpacity style={[
+                  styles.iosPickerbutton,
+                  styles.pickerButton,
+                  {backgroundColor: '#11182711'}
+                ]}
+                onPress={toogleFinalDatePicker}
+                >
+                  <Text style={[
+                    styles.buttonText,
+                    {color: '#075985'}
+                  ]}>
+                    Cancelar
+                  </Text>
+                </TouchableOpacity>
+                <TouchableOpacity style={[
+                  styles.iosPickerbutton,
+                  styles.pickerButton,
+                ]}
+                  onPress={confirmIosFinalDate}
+                >
+                  <Text style={[
+                    styles.buttonText,
+                  ]}>
+                    Confirmar
+                  </Text>
+                </TouchableOpacity>
+              </View>
+            )}
+            <View style={[styles.inputPairContainer, {width: '100%'}]}>
+              <View style={[styles.containerInput]}>
+                <Text>Data inicial da Promoção:</Text>
+                {!showPickerStart && (
+                  <Pressable
+                  onPress={toogleInitialDatePicker}
+                  >
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder={false ? `De: ${"variavel"}` : `De: `}
+                      value={`De: ${formatDateBr(initialDate)}`}
+                      // onChangeText={setDate()}
+                      editable={false}
+                      onPressIn={toogleInitialDatePicker}
+                      ></TextInput>
+                  </Pressable>
+                )}
+              </View>
+              <View style={[styles.containerInput]}>
+                <Text>Data final da Promoção:</Text>
+                {!showPickerEnd && (
+                  <Pressable
+                    onPress={toogleFinalDatePicker}
+                  >
+                    <TextInput
+                      style={styles.textInput}
+                      placeholder={false ? `Até: ${"variavel"}` : `Até: `}
+                      value={`Até: ${formatDateBr(finalDate)}`}
+                      // onChangeText={setDate()}
+                      editable={false}
+                      onPressIn={toogleFinalDatePicker}
+                    ></TextInput>
+                  </Pressable>
+                )}
+              </View>
+            </View>
           </View>
+          <TouchableOpacity style={styles.filterButtonContainer}>
+            <Text style={styles.filterButtonText}>
+                Filtrar
+            </Text>
+          </TouchableOpacity>
         </View>
       ) : (
         <Text>sedrftghjkl,l.,mlkj</Text>

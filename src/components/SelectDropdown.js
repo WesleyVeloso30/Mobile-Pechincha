@@ -31,6 +31,8 @@ const SelectDropdown = ({ placeholder, listItems }) => {
       textInputStyle={{
         //inserted text style
         padding: 12,
+        fontSize: 17,
+        paddingLeft: 6,
         borderWidth: 1,
         borderColor: "#ccc",
         backgroundColor: "#FAF7F6",
