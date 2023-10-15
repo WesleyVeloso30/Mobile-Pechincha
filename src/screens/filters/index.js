@@ -1,4 +1,4 @@
-import { SafeAreaView, View, Text, ScrollView, TextInput } from "react-native";
+import { SafeAreaView, View, Text, ScrollView, TextInput, Pressable } from "react-native";
 import { useState, useEffect } from "react";
 import styles from "./styles";
 import SearchableDropdown from "../../components/SelectDropdown";
@@ -17,6 +17,8 @@ const Filters = () => {
   const [productTitles, setProductTitles] = useState(null);
   const [minimumValue, setMinimumValue] = useState(0);
   const [inputMinimumValue, setInputMinimumValue] = useState('0');
+  const [date, setDate] = useState(new Date());
+  const [showPicker, setShowPicker] = useState(false);
   const [maximumValue, setMaximumValue] = useState(0);
   const [inputMaximumValue, setInputMaximumValue] = useState('0');
   
@@ -113,6 +115,19 @@ const Filters = () => {
     return;
   };
 
+  const toogleDatePicker = () => {
+    setShowPicker(!showPicker);
+  };
+
+  const onChange = ({ type }, selectedDate) => {
+    if (type == "set") {
+      const currentDate = selectedDate;
+      setDate(currentDate);
+    } else {
+      toogleDatePicker();
+    }
+  }
+
   return (
     <SafeAreaView>
       {companysName && productTitles ? (
@@ -188,13 +203,27 @@ const Filters = () => {
             </View>
           </View>
           <View>
-            <DateTimePicker 
-              value={new Date()}
-            />
+            {showPicker && (
+              <DateTimePicker 
+                value={date}
+                mode="date"
+                display="spinner"
+                onChange={onChange}
+              />
+            )}
             <Text>Período da Promoção:</Text>
-            <TextInput
-              placeholder={false ? `De: ${"variavel"}` : `De: `}
-            ></TextInput>
+            {!showPicker && (
+              <Pressable
+                onPress={toogleDatePicker}
+              >
+                <TextInput
+                  placeholder={false ? `De: ${"variavel"}` : `De: `}
+                  value={date}
+                  // onChangeText={setDate()}
+                  editable={false}
+                ></TextInput>
+              </Pressable>
+            )}
             <TextInput
               placeholder={false ? `Até: ${"variavel"}` : `Até: `}
             ></TextInput>
