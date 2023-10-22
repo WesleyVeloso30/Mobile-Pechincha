@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import {
   SafeAreaView,
@@ -15,6 +15,11 @@ const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
 
 const ProductCard = ({ item, navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
+
+  const titleToShare = `${item.name} em Promoção`;
+  const messageToShare = `PERODO DA PROMOÇÃO:
+    ${formatDateShort(item.startAt)} - ${formatDateShort(item.endAt)}`;
+
   return (
     // <SafeAreaView style={styles.container}>
     //     <ScrollView style={styles.container}>
@@ -55,21 +60,18 @@ const ProductCard = ({ item, navigation }) => {
             style={{ marginBottom: 10 }}
           />
           <Card.Content style={[styles.CardContent, { marginBottom: 10 }]}>
-            <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-              <Title style={{ fontSize: 30 }}>
-                {item.title}
-              </Title>
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Title style={{ fontSize: 30 }}>{item.title}</Title>
               <Title style={{ fontSize: 30, marginRight: 0 }}>
                 R${item.promotionalPrice}
               </Title>
             </View>
             <Paragraph>Mercado: {item.company.name}</Paragraph>
             <Paragraph>
-              Periodo da promoção: {
-                formatDateShort(item.startAt)
-              } - {
-                formatDateShort(item.endAt)
-              }
+              Periodo da promoção: {formatDateShort(item.startAt)} -{" "}
+              {formatDateShort(item.endAt)}
             </Paragraph>
           </Card.Content>
           <Card.Actions>
@@ -81,15 +83,21 @@ const ProductCard = ({ item, navigation }) => {
             </Button>
             <Button
               style={{ backgroundColor: "#ffd803" }}
-              onPress={ () => setModalVisible(true)
-              }
+              onPress={() => setModalVisible(true)}
             >
               VER DETALHES
             </Button>
           </Card.Actions>
         </LinearGradient>
       </Card>
-      <ProductDetails navigation={navigation} productId={item.id} setModalVisible={setModalVisible} modalVisible={modalVisible} />
+      <ProductDetails
+        navigation={navigation}
+        productId={item.id}
+        setModalVisible={setModalVisible}
+        modalVisible={modalVisible}
+        messageToShare={messageToShare}
+        titleToShare={titleToShare}
+      />
     </View>
     // </SafeAreaView>
   );
