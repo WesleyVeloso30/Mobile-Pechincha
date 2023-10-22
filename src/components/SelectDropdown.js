@@ -35,6 +35,7 @@ const SelectDropdown = ({ placeholder, listItems }) => {
         paddingLeft: 6,
         borderWidth: 1,
         borderColor: "#ccc",
+        borderRadius: 5,
         backgroundColor: "#FAF7F6",
       }}
       itemStyle={{
@@ -59,7 +60,7 @@ const SelectDropdown = ({ placeholder, listItems }) => {
       //mapping of item array
       // defaultIndex={2}
       //default selected item index
-      placeholderTextColor="#000000"
+      placeholderTextColor="#b1b1b1"
       placeholder={
         selectedItems?.name
           ? selectedItems.name

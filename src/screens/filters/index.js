@@ -16,13 +16,13 @@ const productService = new products();
 // const companyService = new company();
 const skeleton = new Skeleton();
 
-const Filters = () => {
+const Filters = ({navigation}) => {
   const [companysName, setCompanysName] = useState(null);
   const [productTitles, setProductTitles] = useState(null);
   const [minimumValue, setMinimumValue] = useState(0);
   const [inputMinimumValue, setInputMinimumValue] = useState('0');
-  const [initialDate, setInitialDate] = useState(new Date());
-  const [finalDate, setFinalDate] = useState(new Date());
+  const [initialDate, setInitialDate] = useState(null);
+  const [finalDate, setFinalDate] = useState(null);
   const [showPickerStart, setShowPickerStart] = useState(false);
   const [showPickerEnd, setShowPickerEnd] = useState(false);
   const [maximumValue, setMaximumValue] = useState(0);
@@ -223,7 +223,7 @@ const Filters = () => {
           <View>
             {showPickerStart && (
               <DateTimePicker 
-                value={initialDate}
+                value={initialDate ? initialDate : new Date()}
                 mode="date"
                 display="spinner"
                 onChange={onChangeInitialDate}
@@ -232,7 +232,7 @@ const Filters = () => {
             )}
             {showPickerEnd && (
               <DateTimePicker 
-                value={finalDate}
+                value={finalDate ? finalDate : new Date()}
                 mode="date"
                 display="spinner"
                 onChange={onChangeFinalDate}
@@ -337,11 +337,27 @@ const Filters = () => {
               </View>
             </View>
           </View>
-          <TouchableOpacity style={styles.filterButtonContainer}>
-            <Text style={styles.filterButtonText}>
-                Filtrar
-            </Text>
-          </TouchableOpacity>
+          <View style={styles.containerTwoFilterButtons}>
+            <TouchableOpacity style={[styles.filterButtonContainer, {backgroundColor: 'white', borderWidth: 1, borderColor: '#ccc'}]}>
+              <Text style={[styles.filterButtonText, {color: '#993399', fontSize: 25, paddingTop: 10}]}>
+                  Limpar Filtros
+              </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={[styles.filterButtonContainer, {backgroundColor: '#ffd803',}]}
+              onPress={() => navigation.navigate("Home")}
+              params={{
+                initialDate,
+                finalDate,
+                maximumValue,
+                minimumValue,
+                
+              }}
+            >
+              <Text style={[styles.filterButtonText, {}]}>
+                  Filtrar
+              </Text>
+            </TouchableOpacity>
+          </View>
         </View>
       ) : (
         <Text>sedrftghjkl,l.,mlkj</Text>

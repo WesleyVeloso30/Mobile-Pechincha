@@ -3,9 +3,9 @@ import Constants from 'expo-constants';
 const { baseUrl } = Constants.manifest.extra;
 
 export default class Product {
-  async getProducts() {
+  async getProducts(params) {
     try {
-      const resp = await fetch(`${baseUrl}/product`);
+      const resp = await fetch(`${baseUrl}/product?`);
       if (resp.status == 200) {
         const resposta = await resp.json();
         return resposta;

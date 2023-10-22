@@ -32,8 +32,9 @@ const styles = StyleSheet.create({
         borderColor: '#ccc',
         width: '100%',
         height: 50,
-        color: '#000000',
+        color: '#ccc',
         backgroundColor: "#FAF7F6",
+        borderRadius: 5,
     },
     containerInput: {
         width: '48%',
@@ -44,20 +45,26 @@ const styles = StyleSheet.create({
         paddingBottom: 50,
         justifyContent: 'space-around',
     },
+    containerTwoFilterButtons: {
+        position: "absolute",
+        bottom: 30,
+        width: '100%',
+        // backgroundColor: 'red',
+        flexDirection: "row",
+        justifyContent: "space-around",
+
+    },
     filterButtonContainer: {
         backgroundColor: '#ffd803',
-        position: "absolute",
-        right: 20,
-        bottom: 30,
-        width: 150,
+        width: 140,
         borderRadius: 20,
-        height: 70,
+        height: 50,
     },
     filterButtonText: {
-        fontSize: 40,
+        fontSize: 30,
         color: '#fff',
         textAlign: "center",
-        paddingTop: 10
+        paddingTop: 7
     }
 });
 

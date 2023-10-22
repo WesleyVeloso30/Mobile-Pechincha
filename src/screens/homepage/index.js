@@ -9,10 +9,11 @@ const isMocked = Constants.manifest.extra.isMocked == 'true';
 
 const productService = new products();
 
-const Homepage = ({ navigation }) => {
+const Homepage = ({ navigation, params }) => {
   const [productsData, setProductsData] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
 
+  console.log(params)
   useEffect(() => {
     getData();
     // setProductsData(data);
@@ -63,7 +64,7 @@ const Homepage = ({ navigation }) => {
       setProductsData(data);
     } else {
       setRefreshing(true);
-      data = await productService.getProducts();
+      data = await productService.getProducts(params);
 
       setProductsData(data);
     }
