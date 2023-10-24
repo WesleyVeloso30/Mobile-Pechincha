@@ -1,8 +1,6 @@
 import SearchableDropdown from "./react-native-searchable-dropdown";
-import { useState } from "react";
 
-const SelectDropdown = ({ placeholder, listItems }) => {
-  const [selectedItems, setSelectedItems] = useState(null);
+const SelectDropdown = ({ placeholder, listItems, setSelectedItems, selectedItems }) => {
 
   return (
     <SearchableDropdown

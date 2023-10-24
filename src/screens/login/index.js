@@ -27,7 +27,6 @@ const Login = ({ navigation }) => {
         />
         <Text
           onPress={() => navigation.navigate("Register")}
-          navigation={navigation}
           style={{ fontSize: 18, width: 500, textAlign: "center" }}
         >
           Não possui cadastro? Click Aqui

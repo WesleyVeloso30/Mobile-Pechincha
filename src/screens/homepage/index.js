@@ -9,10 +9,11 @@ const isMocked = Constants.manifest.extra.isMocked == 'true';
 
 const productService = new products();
 
-const Homepage = ({ navigation, params }) => {
+const Homepage = ({ navigation, route }) => {
   const [productsData, setProductsData] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
 
+  let params = route?.params?.params;
   console.log(params)
   useEffect(() => {
     getData();
@@ -71,6 +72,12 @@ const Homepage = ({ navigation, params }) => {
     setRefreshing(false);
     return data;
   };
+
+  if (params) {
+    getData();
+    route.params.params = null;
+  }
+
   return (
     <View style={{ flex: 1 }}>
         <SafeAreaView style={styles.headerContainer}>

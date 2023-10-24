@@ -17,15 +17,17 @@ const productService = new products();
 const skeleton = new Skeleton();
 
 const Filters = ({navigation}) => {
+  const [selectedCompany, setSelectedCompany] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [companysName, setCompanysName] = useState(null);
   const [productTitles, setProductTitles] = useState(null);
-  const [minimumValue, setMinimumValue] = useState(0);
+  const [minimumValue, setMinimumValue] = useState(null);
   const [inputMinimumValue, setInputMinimumValue] = useState('0');
   const [initialDate, setInitialDate] = useState(null);
   const [finalDate, setFinalDate] = useState(null);
   const [showPickerStart, setShowPickerStart] = useState(false);
   const [showPickerEnd, setShowPickerEnd] = useState(false);
-  const [maximumValue, setMaximumValue] = useState(0);
+  const [maximumValue, setMaximumValue] = useState(null);
   const [inputMaximumValue, setInputMaximumValue] = useState('0');
   
   useEffect(() => {
@@ -176,6 +178,8 @@ const Filters = ({navigation}) => {
               <SearchableDropdown
                 listItems={companysName}
                 placeholder="Escolha um mercado"
+                selectedItems={selectedCompany}
+                setSelectedItems={setSelectedCompany}
               />
             </View>
             <View style={styles.containerInput}>
@@ -183,6 +187,8 @@ const Filters = ({navigation}) => {
               <SearchableDropdown
                 listItems={productTitles}
                 placeholder="Selecione um produto"
+                selectedItems={selectedProduct}
+                setSelectedItems={setSelectedProduct}
               />
             </View>
           </View>
@@ -338,20 +344,34 @@ const Filters = ({navigation}) => {
             </View>
           </View>
           <View style={styles.containerTwoFilterButtons}>
-            <TouchableOpacity style={[styles.filterButtonContainer, {backgroundColor: 'white', borderWidth: 1, borderColor: '#ccc'}]}>
+            <TouchableOpacity style={[styles.filterButtonContainer, {backgroundColor: 'white', borderWidth: 1, borderColor: '#ccc'}]}
+              onPress={() => {
+                setInitialDate(null);
+                setFinalDate(null);
+                setMaximumValue(null);
+                setMinimumValue(null);
+                setInputMaximumValue('0');
+                setInputMinimumValue('0');
+                setSelectedCompany(null);
+                setSelectedProduct(null);
+              }}
+            >
               <Text style={[styles.filterButtonText, {color: '#993399', fontSize: 25, paddingTop: 10}]}>
                   Limpar Filtros
               </Text>
             </TouchableOpacity>
             <TouchableOpacity style={[styles.filterButtonContainer, {backgroundColor: '#ffd803',}]}
-              onPress={() => navigation.navigate("Home")}
-              params={{
-                initialDate,
-                finalDate,
-                maximumValue,
-                minimumValue,
-                
-              }}
+              onPress={() => navigation.navigate("Home", {
+                params: {
+                  initialDate,
+                  finalDate,
+                  maximumValue,
+                  minimumValue,
+                  selectedCompany,
+                  selectedProduct,
+                }
+
+              })}
             >
               <Text style={[styles.filterButtonText, {}]}>
                   Filtrar
