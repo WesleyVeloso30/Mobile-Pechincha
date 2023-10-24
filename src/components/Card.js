@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import {
-  SafeAreaView,
+  Share,
   View,
   RefreshControl,
   StyleSheet,
@@ -16,9 +16,27 @@ const LeftContent = () => <Avatar.Icon size={30} icon="pizza" />;
 const ProductCard = ({ item, navigation }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
-  const titleToShare = `${item.name} em Promoção`;
-  const messageToShare = `PERODO DA PROMOÇÃO:
-    ${formatDateShort(item.startAt)} - ${formatDateShort(item.endAt)}`;
+  const titleToShare = `${item.title} em Promoção`;
+  const messageToShare = `
+    PRODUTO:
+${item.title}
+
+PREÇO:
+${item.promotionalPrice}
+
+PERODO DA PROMOÇÃO:
+${formatDateShort(item.startAt)} - ${formatDateShort(item.endAt)}
+
+MERCADO:
+${item.company.name}
+  `;
+
+  const shareProduct = async () => {
+    const result = Share.share({
+      title: titleToShare,
+      message: messageToShare,
+    });
+  };
 
   return (
     // <SafeAreaView style={styles.container}>
@@ -77,7 +95,7 @@ const ProductCard = ({ item, navigation }) => {
           <Card.Actions>
             <Button
               icon="share-variant"
-              onPress={() => alert("Compartilhado!")}
+              onPress={shareProduct}
             >
               COMPARTILHAR
             </Button>
