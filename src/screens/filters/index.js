@@ -1,44 +1,53 @@
 import {
-  SafeAreaView, View, Text, ScrollView, TextInput, Pressable, Platform,
+  SafeAreaView,
+  View,
+  Text,
+  ScrollView,
+  TextInput,
+  Pressable,
+  Platform,
   TouchableOpacity,
 } from "react-native";
 import { useState, useEffect } from "react";
 import styles from "./styles";
 import SearchableDropdown from "../../components/SelectDropdown";
-// import company from "../../services/company";
+import company from "../../services/company";
 import Skeleton from "../../components/Load-Skeleton";
 import products from "../../services/product";
-import { TextInputMask } from 'react-native-masked-text';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import { TextInputMask } from "react-native-masked-text";
+import DateTimePicker from "@react-native-community/datetimepicker";
 import { formatDateBr } from "../../shared/util";
+import Constants from "expo-constants";
 
 const productService = new products();
-// const companyService = new company();
+const companyService = new company();
 const skeleton = new Skeleton();
+const isMocked = Constants.manifest.extra.isMocked == "true";
 
-const Filters = ({navigation}) => {
+const Filters = ({ navigation }) => {
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [companysName, setCompanysName] = useState(null);
   const [productTitles, setProductTitles] = useState(null);
   const [minimumValue, setMinimumValue] = useState(null);
-  const [inputMinimumValue, setInputMinimumValue] = useState('0');
+  const [inputMinimumValue, setInputMinimumValue] = useState("0");
   const [initialDate, setInitialDate] = useState(null);
   const [finalDate, setFinalDate] = useState(null);
   const [showPickerStart, setShowPickerStart] = useState(false);
   const [showPickerEnd, setShowPickerEnd] = useState(false);
   const [maximumValue, setMaximumValue] = useState(null);
-  const [inputMaximumValue, setInputMaximumValue] = useState('0');
-  
+  const [inputMaximumValue, setInputMaximumValue] = useState("0");
+
   useEffect(() => {
     getCompany();
   }, []);
 
-  const getCompany = () => {
+  const getCompany = async () => {
     let companyNames;
     let titles;
     setCompanysName(null);
-    if (true) {
+    setProductTitles(null);
+    if (isMocked) {
       companyNames = [
         {
           id: 0,
@@ -119,8 +128,17 @@ const Filters = ({navigation}) => {
       ];
       titles.unshift({ id: 0, titles: "Remover selecionado" });
       setProductTitles(titles);
+    } else {
+      // productService.
+      const companys = await companyService.getCompanys();
+      const titles = await productService.getTitles();
+
+      companys.unshift({ id: 0, name: "Remover selecionado" });
+      titles.unshift({ id: 0, titles: "Remover selecionado" });
+
+      setCompanysName(companys);
+      setProductTitles(titles);
     }
-    return;
   };
 
   const toogleInitialDatePicker = () => {
@@ -136,43 +154,38 @@ const Filters = ({navigation}) => {
       const currentDate = selectedDate;
       setInitialDate(currentDate);
 
-      if(Platform.OS === 'android') toogleInitialDatePicker();
+      if (Platform.OS === "android") toogleInitialDatePicker();
     } else {
       toogleInitialDatePicker();
     }
-  }
+  };
 
   const onChangeFinalDate = ({ type }, selectedDate) => {
     if (type == "set") {
       const currentDate = selectedDate;
       setFinalDate(currentDate);
 
-      if(Platform.OS === 'android') toogleFinalDatePicker();
+      if (Platform.OS === "android") toogleFinalDatePicker();
     } else {
       toogleFinalDatePicker();
     }
-  }
+  };
 
   const confirmIosInitialDate = () => {
     setInitialDate(initialDate);
     toogleInitialDatePicker();
-  }
+  };
 
   const confirmIosFinalDate = () => {
     setFinalDate(finalDate);
     toogleFinalDatePicker();
-  }
+  };
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       {companysName && productTitles ? (
-        <View style={{flex: 1}}>
-          <View
-            style={[
-              { marginTop: 35 },
-              styles.inputPairContainer
-            ]}
-          >
+        <View style={{ flex: 1 }}>
+          <View style={[{ marginTop: 35 }, styles.inputPairContainer]}>
             <View style={styles.containerInput}>
               <Text>Mercado:</Text>
               <SearchableDropdown
@@ -192,19 +205,19 @@ const Filters = ({navigation}) => {
               />
             </View>
           </View>
-          <View style={[{width: '100%'}, styles.inputPairContainer]}>
+          <View style={[{ width: "100%" }, styles.inputPairContainer]}>
             <View style={styles.containerInput}>
               <Text>Valor mínimo do produto:</Text>
               <TextInputMask
-                type={'money'}
+                type={"money"}
                 value={inputMinimumValue}
                 maxLength={11}
                 style={styles.textInput}
-                onChangeText={value => {
+                onChangeText={(value) => {
                   setInputMinimumValue(value);
-                  value = value.replace('R$', '');
-                  value = value.replace('.', '');
-                  value = value.replace(',', '.');
+                  value = value.replace("R$", "");
+                  value = value.replace(".", "");
+                  value = value.replace(",", ".");
                   setMinimumValue(value);
                 }}
               />
@@ -212,15 +225,15 @@ const Filters = ({navigation}) => {
             <View style={styles.containerInput}>
               <Text>Valor máximo do produto:</Text>
               <TextInputMask
-                type={'money'}
+                type={"money"}
                 value={inputMaximumValue}
                 maxLength={11}
                 style={styles.textInput}
-                onChangeText={value => {
+                onChangeText={(value) => {
                   setInputMaximumValue(value);
-                  value = value.replace('R$', '');
-                  value = value.replace('.', '');
-                  value = value.replace(',', '.');
+                  value = value.replace("R$", "");
+                  value = value.replace(".", "");
+                  value = value.replace(",", ".");
                   setMaximumValue(value);
                 }}
               />
@@ -228,7 +241,7 @@ const Filters = ({navigation}) => {
           </View>
           <View>
             {showPickerStart && (
-              <DateTimePicker 
+              <DateTimePicker
                 value={initialDate ? initialDate : new Date()}
                 mode="date"
                 display="spinner"
@@ -237,7 +250,7 @@ const Filters = ({navigation}) => {
               />
             )}
             {showPickerEnd && (
-              <DateTimePicker 
+              <DateTimePicker
                 value={finalDate ? finalDate : new Date()}
                 mode="date"
                 display="spinner"
@@ -246,73 +259,59 @@ const Filters = ({navigation}) => {
               />
             )}
 
-            {showPickerStart && Platform.OS === 'ios' && (
-              <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-                <TouchableOpacity style={[
-                  styles.iosPickerbutton,
-                  styles.pickerButton,
-                  {backgroundColor: '#11182711'}
-                ]}
-                onPress={toogleInitialDatePicker}
+            {showPickerStart && Platform.OS === "ios" && (
+              <View
+                style={{ flexDirection: "row", justifyContent: "space-around" }}
+              >
+                <TouchableOpacity
+                  style={[
+                    styles.iosPickerbutton,
+                    styles.pickerButton,
+                    { backgroundColor: "#11182711" },
+                  ]}
+                  onPress={toogleInitialDatePicker}
                 >
-                  <Text style={[
-                    styles.buttonText,
-                    {color: '#075985'}
-                  ]}>
+                  <Text style={[styles.buttonText, { color: "#075985" }]}>
                     Cancelar
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[
-                  styles.iosPickerbutton,
-                  styles.pickerButton,
-                ]}
+                <TouchableOpacity
+                  style={[styles.iosPickerbutton, styles.pickerButton]}
                   onPress={confirmIosInitialDate}
                 >
-                  <Text style={[
-                    styles.buttonText,
-                  ]}>
-                    Confirmar
-                  </Text>
+                  <Text style={[styles.buttonText]}>Confirmar</Text>
                 </TouchableOpacity>
               </View>
             )}
-            {showPickerEnd && Platform.OS === 'ios' && (
-              <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
-                <TouchableOpacity style={[
-                  styles.iosPickerbutton,
-                  styles.pickerButton,
-                  {backgroundColor: '#11182711'}
-                ]}
-                onPress={toogleFinalDatePicker}
+            {showPickerEnd && Platform.OS === "ios" && (
+              <View
+                style={{ flexDirection: "row", justifyContent: "space-around" }}
+              >
+                <TouchableOpacity
+                  style={[
+                    styles.iosPickerbutton,
+                    styles.pickerButton,
+                    { backgroundColor: "#11182711" },
+                  ]}
+                  onPress={toogleFinalDatePicker}
                 >
-                  <Text style={[
-                    styles.buttonText,
-                    {color: '#075985'}
-                  ]}>
+                  <Text style={[styles.buttonText, { color: "#075985" }]}>
                     Cancelar
                   </Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[
-                  styles.iosPickerbutton,
-                  styles.pickerButton,
-                ]}
+                <TouchableOpacity
+                  style={[styles.iosPickerbutton, styles.pickerButton]}
                   onPress={confirmIosFinalDate}
                 >
-                  <Text style={[
-                    styles.buttonText,
-                  ]}>
-                    Confirmar
-                  </Text>
+                  <Text style={[styles.buttonText]}>Confirmar</Text>
                 </TouchableOpacity>
               </View>
             )}
-            <View style={[styles.inputPairContainer, {width: '100%'}]}>
+            <View style={[styles.inputPairContainer, { width: "100%" }]}>
               <View style={[styles.containerInput]}>
                 <Text>Data inicial da Promoção:</Text>
                 {!showPickerStart && (
-                  <Pressable
-                  onPress={toogleInitialDatePicker}
-                  >
+                  <Pressable onPress={toogleInitialDatePicker}>
                     <TextInput
                       style={styles.textInput}
                       placeholder={false ? `De: ${"variavel"}` : `De: `}
@@ -320,16 +319,14 @@ const Filters = ({navigation}) => {
                       // onChangeText={setDate()}
                       editable={false}
                       onPressIn={toogleInitialDatePicker}
-                      ></TextInput>
+                    ></TextInput>
                   </Pressable>
                 )}
               </View>
               <View style={[styles.containerInput]}>
                 <Text>Data final da Promoção:</Text>
                 {!showPickerEnd && (
-                  <Pressable
-                    onPress={toogleFinalDatePicker}
-                  >
+                  <Pressable onPress={toogleFinalDatePicker}>
                     <TextInput
                       style={styles.textInput}
                       placeholder={false ? `Até: ${"variavel"}` : `Até: `}
@@ -344,43 +341,67 @@ const Filters = ({navigation}) => {
             </View>
           </View>
           <View style={styles.containerTwoFilterButtons}>
-            <TouchableOpacity style={[styles.filterButtonContainer, {backgroundColor: 'white', borderWidth: 1, borderColor: '#ccc'}]}
+            <TouchableOpacity
+              style={[
+                styles.filterButtonContainer,
+                {
+                  backgroundColor: "white",
+                  borderWidth: 1,
+                  borderColor: "#ccc",
+                },
+              ]}
               onPress={() => {
                 setInitialDate(null);
                 setFinalDate(null);
                 setMaximumValue(null);
                 setMinimumValue(null);
-                setInputMaximumValue('0');
-                setInputMinimumValue('0');
+                setInputMaximumValue("0");
+                setInputMinimumValue("0");
                 setSelectedCompany(null);
                 setSelectedProduct(null);
               }}
             >
-              <Text style={[styles.filterButtonText, {color: '#993399', fontSize: 25, paddingTop: 10}]}>
-                  Limpar Filtros
+              <Text
+                style={[
+                  styles.filterButtonText,
+                  { color: "#993399", fontSize: 25, paddingTop: 10 },
+                ]}
+              >
+                Limpar Filtros
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={[styles.filterButtonContainer, {backgroundColor: '#ffd803',}]}
-              onPress={() => navigation.navigate("Home", {
-                params: {
-                  initialDate,
-                  finalDate,
-                  maximumValue,
-                  minimumValue,
-                  selectedCompany,
-                  selectedProduct,
-                }
-
-              })}
+            <TouchableOpacity
+              style={[
+                styles.filterButtonContainer,
+                { backgroundColor: "#ffd803" },
+              ]}
+              onPress={() =>
+                navigation.navigate("Home", {
+                  params: {
+                    initialDate,
+                    finalDate,
+                    maximumValue,
+                    minimumValue,
+                    selectedCompany,
+                    selectedProduct,
+                  },
+                })
+              }
             >
-              <Text style={[styles.filterButtonText, {}]}>
-                  Filtrar
-              </Text>
+              <Text style={[styles.filterButtonText, {}]}>Filtrar</Text>
             </TouchableOpacity>
           </View>
         </View>
+      ) : companysName != "erro" && productTitles != "erro" ? (
+        <View style={styles.noApiData}>
+          <Text style={{ fontSize: 20 }}>Carregando filtros...</Text>
+        </View>
       ) : (
-        <Text>sedrftghjkl,l.,mlkj</Text>
+        <View style={styles.noApiData}>
+          <Text style={{ fontSize: 20 }}>
+            Ocorreu um erro, por favor tente novamente mais tarde
+          </Text>
+        </View>
       )}
     </SafeAreaView>
   );

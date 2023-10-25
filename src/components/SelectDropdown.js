@@ -58,7 +58,7 @@ const SelectDropdown = ({ placeholder, listItems, setSelectedItems, selectedItem
       //mapping of item array
       // defaultIndex={2}
       //default selected item index
-      placeholderTextColor="#b1b1b1"
+      placeholderTextColor="#5c6b60"
       placeholder={
         selectedItems?.name
           ? selectedItems.name
