@@ -4,17 +4,16 @@ const { baseUrl } = Constants.manifest.extra;
 
 export default class Product {
   async getProducts(params) {
-    const initialDate = params?.initialDate || undefined;
-    const finalDate = params?.finalDate || undefined;
-    const selectedProduct = params?.selectedProduct || undefined;
-    const selectedCompany = params?.selectedCompany || undefined;
-    const maximumValue = params?.maximumValue || undefined;
-    const minimumValue = params?.minimumValue || undefined;  
-    console.log(selectedCompany)
+    const initialDate = params?.initialDate ? params?.initialDate.toISOString() : '';
+    const finalDate = params?.finalDate ? params?.finalDate.toISOString() : '';
+    const selectedProduct = params?.selectedProduct || '';
+    const selectedCompany = params?.selectedCompany || '';
+    const maximumValue = params?.maximumValue || '';
+    const minimumValue = params?.minimumValue || '';
+
     try {
-      //Está dando erro aqui
-      const resp = await fetch(`${baseUrl}/product?startAt=${initialDate}&endAt=${finalDate}&title=${selectedProduct}`);
-      console.log('entrou')
+      const url = `${baseUrl}/product?startAt=${initialDate}&endAt=${finalDate}&title=${selectedProduct}`;
+      const resp = await fetch(url);
       if (resp.status == 200) {
         const resposta = await resp.json();
         return resposta;
