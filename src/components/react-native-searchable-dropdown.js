@@ -11,7 +11,7 @@ import {
 const defaultItemValue = {
   name: "",
   id: 0,
-  titles: "",
+  title: "",
 };
 
 export default class SearchableDropDown extends Component {
@@ -74,7 +74,7 @@ export default class SearchableDropDown extends Component {
       setSort = (item, searchedText) => {
         return item.name
           ? item.name.toLowerCase().indexOf(searchedText.toLowerCase()) > -1
-          : item.titles.toLowerCase().indexOf(searchedText.toLowerCase()) > -1;
+          : item.title.toLowerCase().indexOf(searchedText.toLowerCase()) > -1;
       };
     }
     var ac = this.props.items.filter((item) => {
@@ -83,7 +83,7 @@ export default class SearchableDropDown extends Component {
     let item = {
       id: -1,
       name: searchedText,
-      titles: searchedText,
+      title: searchedText,
     };
     this.setState({ listItems: ac, item: item });
     const onTextChange =
@@ -115,7 +115,7 @@ export default class SearchableDropDown extends Component {
               alignItems: "flex-start",
             }}
           >
-            <Text>{item.name ? item.name : item.titles}</Text>
+            <Text>{item.name ? item.name : item.title}</Text>
           </View>
           <View
             style={{ flex: 0.1, flexDirection: "row", alignItems: "flex-end" }}
@@ -153,7 +153,7 @@ export default class SearchableDropDown extends Component {
           <View
             style={{ flex: 1, flexDirection: "row", alignItems: "flex-start" }}
           >
-            <Text>{item.name ? item.name : item.titles}</Text>
+            <Text>{item.name ? item.name : item.title}</Text>
           </View>
         </TouchableOpacity>
       );
@@ -177,11 +177,11 @@ export default class SearchableDropDown extends Component {
           this.props.selectedItems.length > 0 &&
           this.props.selectedItems.find((x) => x.id === item.id) ? (
             <Text style={{ ...this.props.itemTextStyle }}>
-              {item.name ? item.name : item.titles}
+              {item.name ? item.name : item.title}
             </Text>
           ) : (
             <Text style={{ ...this.props.itemTextStyle }}>
-              {item.name ? item.name : item.titles}
+              {item.name ? item.name : item.title}
             </Text>
           )}
         </TouchableOpacity>
@@ -227,7 +227,7 @@ export default class SearchableDropDown extends Component {
         val: this.state.item
           ? this.state.item.name
             ? this.state.item.name
-            : this.state.item.titles
+            : this.state.item.title
           : "",
       },
       {
@@ -307,7 +307,7 @@ export default class SearchableDropDown extends Component {
                 key={index}
                 style={{
                   width:
-                    (item.name ? item.name.length : item.titles.length * 8) +
+                    (item.name ? item.name.length : item.title.length * 8) +
                     60,
                   justifyContent: "center",
                   flex: 0,
@@ -320,7 +320,7 @@ export default class SearchableDropDown extends Component {
                 }}
               >
                 <Text style={{ color: "#555" }}>
-                  {item.name ? item.name : item.titles}
+                  {item.name ? item.name : item.title}
                 </Text>
                 <TouchableOpacity
                   onPress={() =>

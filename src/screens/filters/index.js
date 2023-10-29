@@ -11,16 +11,16 @@ import {
 import { useState, useEffect } from "react";
 import styles from "./styles";
 import SearchableDropdown from "../../components/SelectDropdown";
-import company from "../../services/company";
+import Company from "../../services/company";
 import Skeleton from "../../components/Load-Skeleton";
-import products from "../../services/product";
+import Products from "../../services/product";
 import { TextInputMask } from "react-native-masked-text";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { formatDateBr } from "../../shared/util";
 import Constants from "expo-constants";
 
-const productService = new products();
-const companyService = new company();
+const productService = new Products();
+const companyService = new Company();
 const skeleton = new Skeleton();
 const isMocked = Constants.manifest.extra.isMocked == "true";
 
@@ -115,15 +115,15 @@ const Filters = ({ navigation }) => {
       titles = [
         {
           id: 1,
-          titles: "Kg de Linguiça",
+          title: "Kg de Linguiça",
         },
         {
           id: 2,
-          titles: "Carne na Rola",
+          title: "Carne na Rola",
         },
         {
           id: 3,
-          titles: "Sabonete Ypê",
+          title: "Sabonete Ypê",
         },
       ];
       titles.unshift({ id: 0, titles: "Remover selecionado" });
@@ -134,7 +134,7 @@ const Filters = ({ navigation }) => {
       const titles = await productService.getTitles();
 
       companys.unshift({ id: 0, name: "Remover selecionado" });
-      titles.unshift({ id: 0, titles: "Remover selecionado" });
+      titles.unshift({ id: 0, title: "Remover selecionado" });
 
       setCompanysName(companys);
       setProductTitles(titles);

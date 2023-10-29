@@ -14,7 +14,6 @@ const Homepage = ({ navigation, route }) => {
   const [refreshing, setRefreshing] = useState(false);
 
   let params = route?.params?.params;
-  console.log(params)
   useEffect(() => {
     getData();
     // setProductsData(data);
@@ -96,18 +95,24 @@ const Homepage = ({ navigation, route }) => {
           </Text>
         </SafeAreaView>
       {productsData ? (
-        <SafeAreaView style={styles.container}>
-          <FlatList
-            refreshControl={
-              <RefreshControl
-                refreshing={false}
-                onRefresh={getData}
-              />
-            }
-            data={productsData}
-            keyExtractor={(_, id) => id.toString()}
-            renderItem={({item}) => ( <ProductCard item={item} navigation={navigation} /> ) }/>
-        </SafeAreaView>
+        productsData !== 'error' ? (
+          <SafeAreaView style={styles.container}>
+            <FlatList
+              refreshControl={
+                <RefreshControl
+                  refreshing={false}
+                  onRefresh={getData}
+                />
+              }
+              data={productsData}
+              keyExtractor={(_, id) => id.toString()}
+              renderItem={({item}) => ( <ProductCard item={item} navigation={navigation} /> ) }/>
+          </SafeAreaView>
+        ) : (
+        <View style={styles.noApiData}>
+          <Text style={{fontSize: 20}}>Ocorreu um erro ao consultar as promoções.</Text>
+        </View>
+        )
       ) : (
         <View style={styles.noApiData}>
           <Text style={{fontSize: 20}}>Carregando dados da API...</Text>

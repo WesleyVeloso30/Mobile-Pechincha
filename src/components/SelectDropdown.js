@@ -1,24 +1,29 @@
 import SearchableDropdown from "./react-native-searchable-dropdown";
 
-const SelectDropdown = ({ placeholder, listItems, setSelectedItems, selectedItems }) => {
+const SelectDropdown = ({ placeholder, listItems, setSelectedItems, selectedItems, fontSize, multi }) => {
 
   return (
     <SearchableDropdown
-      multi={false}
+      multi={multi}
+      selectedItems={selectedItems}
       onRemoveItem={(item, index) => {
         const items = selectedItems.filter((sItem) => sItem.id !== item.id);
         setSelectedItems(items);
       }}
-      onTextChange={(text) => console.log(text)}
       //On text change listner on the searchable input
       onItemSelect={(item) => {
-        setSelectedItems(item);
-
-        if (
-          item.name === "Remover selecionado" ||
-          item.titles === "Remover selecionado"
-        )
-          setSelectedItems(null);
+        if (multi) {
+          const Items = selectedItems || [];
+          Items.push(item);
+          setSelectedItems(Items);
+        } else {
+          setSelectedItems(item);
+          if (
+            item.name === "Remover selecionado" ||
+            item.title === "Remover selecionado"
+          )
+            setSelectedItems(null);
+        }
 
         // console.log(selectedItems);
       }}
@@ -29,7 +34,7 @@ const SelectDropdown = ({ placeholder, listItems, setSelectedItems, selectedItem
       textInputStyle={{
         //inserted text style
         padding: 12,
-        fontSize: 17,
+        fontSize: fontSize ? fontSize : 17,
         paddingLeft: 6,
         borderWidth: 1,
         borderColor: "#ccc",
@@ -53,7 +58,7 @@ const SelectDropdown = ({ placeholder, listItems, setSelectedItems, selectedItem
         //to restrict the items dropdown hieght
         maxHeight: "70%",
       }}
-      chip={false}
+      chip={true}
       items={listItems}
       //mapping of item array
       // defaultIndex={2}
@@ -62,8 +67,8 @@ const SelectDropdown = ({ placeholder, listItems, setSelectedItems, selectedItem
       placeholder={
         selectedItems?.name
           ? selectedItems.name
-          : selectedItems?.titles
-          ? selectedItems.titles
+          : selectedItems?.title
+          ? selectedItems.title
           : placeholder
           ? placeholder
           : "Selecione"

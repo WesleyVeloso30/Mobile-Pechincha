@@ -62,7 +62,6 @@ const ProductDetails = ({
   const getDetails = async () => {
     let data;
     // setModalVisible(true);
-    console.log("isMock", productId);
     setProductsData(null);
     // setLoading(true)
     if (isMocked) {
