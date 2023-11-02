@@ -6,16 +6,18 @@ export default class Product {
   async getProducts(params) {
     const initialDate = params?.initialDate ? params?.initialDate.toISOString() : '';
     const finalDate = params?.finalDate ? params?.finalDate.toISOString() : '';
-    const selectedProduct = params?.selectedProduct?.title || '';
-    // Ver como pegar só uma propriedade de cada objeto do array
-    const selectedProducts = params?.selectedProducts?.title || '';
+
+    let selectedProducts = Array.isArray(params?.selectedProducts) ? params?.selectedProducts : [params?.selectedProducts]
+    selectedProducts = params?.selectedProducts ? selectedProducts : params?.selectedProducts;
+    const selectedTitles = selectedProducts ? selectedProducts?.map( (product) => product.title ) : '';
     const selectedCompanyId = params?.selectedCompany?.id || '';
     const maximumValue = params?.maximumValue || '';
     const minimumValue = params?.minimumValue || '';
 
+    const queryTitlesList = selectedTitles === '' ? selectedTitles : selectedTitles?.join("&titles=");
+
     try {
-      // Entender como passar uma lista de string para a api
-      const url = `${baseUrl}/product?startAt=${initialDate}&endAt=${finalDate}&title=${selectedProduct}&companyId=${selectedCompanyId}&minimumPromotionalPrice=${minimumValue}&maximumPromotionalPrice=${maximumValue}`;
+      const url = `${baseUrl}/product?startAt=${initialDate}&endAt=${finalDate}&titles=${queryTitlesList}&companyId=${selectedCompanyId}&minimumPromotionalPrice=${minimumValue}&maximumPromotionalPrice=${maximumValue}`;
       const resp = await fetch(url);
       if (resp.status == 200) {
         const resposta = await resp.json();

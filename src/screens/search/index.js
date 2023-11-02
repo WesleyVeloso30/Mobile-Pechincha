@@ -1,9 +1,10 @@
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, FlatList, RefreshControl, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import SearchableDropdown from '../../components/SelectDropdown';
 import styles from "./styles";
 import Constants from 'expo-constants';
 import Products from "../../services/product";
+import ProductCard from "../../components/Card";
 
 const productService = new Products();
 const isMocked = Constants.manifest.extra.isMocked == 'true';
@@ -44,62 +45,61 @@ const Search = ({navigation}) => {
     }
   };
 
-  // const getProductsByTitles = async () => {
-  //   let data;
-  //   setProducts(null);
-  //   if (isMocked) {
-  //     data = [
-  //       {
-  //         id: 1,
-  //         title: "Kg de Linguiça",
-  //         subtitle: "",
-  //         company: {
-  //           name: "Atacadão",
-  //         },
-  //         regularPrice: 16.21,
-  //         promotionalPrice: 12.02,
-  //         startAt: '2023-11-22T11:07:00.100Z',
-  //         endAt: '2024-12-01T10:00:00.100Z',
-  //       },
-  //       {
-  //         id: 2,
-  //         title: "Carne na Rola",
-  //         subtitle: "",
-  //         company: {
-  //           name: "Assaí",
-  //         },
-  //         regularPrice: 16.21,
-  //         promotionalPrice: 12.02,
-  //         startAt: '2024-01-19T22:27:20.100Z',
-  //         endAt: '2024-01-21T22:27:20.100Z',
-  //       },
-  //       {
-  //         id: 3,
-  //         title: "Sabonete Ypê",
-  //         subtitle: "",
-  //         company: {
-  //           name: "R Carvalho",
-  //         },
-  //         regularPrice: 16.21,
-  //         promotionalPrice: 12.02,
-  //         startAt: '2024-01-03T00:07:20.100Z',
-  //         endAt: '2024-01-19T22:27:20.100Z',
-  //       },
-  //     ];
-  //     setProducts(data);
-  //   } else {
-  //     data = await productService.getProducts({ selectedProducts });
+  const getProductsByTitles = async () => {
+    let data;
+    setProducts(null);
+    if (isMocked) {
+      data = [
+        {
+          id: 1,
+          title: "Kg de Linguiça",
+          subtitle: "",
+          company: {
+            name: "Atacadão",
+          },
+          regularPrice: 16.21,
+          promotionalPrice: 12.02,
+          startAt: '2023-11-22T11:07:00.100Z',
+          endAt: '2024-12-01T10:00:00.100Z',
+        },
+        {
+          id: 2,
+          title: "Carne na Rola",
+          subtitle: "",
+          company: {
+            name: "Assaí",
+          },
+          regularPrice: 16.21,
+          promotionalPrice: 12.02,
+          startAt: '2024-01-19T22:27:20.100Z',
+          endAt: '2024-01-21T22:27:20.100Z',
+        },
+        {
+          id: 3,
+          title: "Sabonete Ypê",
+          subtitle: "",
+          company: {
+            name: "R Carvalho",
+          },
+          regularPrice: 16.21,
+          promotionalPrice: 12.02,
+          startAt: '2024-01-03T00:07:20.100Z',
+          endAt: '2024-01-19T22:27:20.100Z',
+        },
+      ];
+      setProducts(data);
+    } else {
+      data = await productService.getProducts({ selectedProducts });
 
-  //     setProducts(data);
-  //   }
-  //   setRefreshing(false);
-  //   return data;
-  // };
+      setProducts(data);
+    }
+    return data;
+  };
     return (
         <View>
           {
             productTitles ? (
-              <View>
+              <View style={{height: '100%'}}>
                 <SafeAreaView style={styles.searchContainer}>
                 <View style={styles.search}>
                   <SearchableDropdown
@@ -113,19 +113,33 @@ const Search = ({navigation}) => {
                 </View>
                 </SafeAreaView>
                 {
-
-                }
-                <FlatList
-                  refreshControl={
-                    <RefreshControl
-                    refreshing={false}
-                    onRefresh={getData}
+                  products ? (
+                    <FlatList
+                      refreshControl={
+                        <RefreshControl
+                        refreshing={false}
+                        onRefresh={getTitles}
+                        />
+                      }
+                      data={products}
+                      keyExtractor={(_, id) => id.toString()}
+                      renderItem={({item}) => ( <ProductCard item={item} navigation={navigation} /> ) }
                     />
-                  }
-                  data={productsData}
-                  keyExtractor={(_, id) => id.toString()}
-                  renderItem={({item}) => ( <ProductCard item={item} navigation={navigation} /> ) }
-                />
+                  ) : (
+                    <View></View>
+                  )
+                }
+                <View style={styles.searchButtonContainerMain}>
+                  <TouchableOpacity
+                    style={[
+                      styles.searchButtonContainer,
+                      { backgroundColor: "#ffd803" },
+                    ]}
+                    onPress={getProductsByTitles}
+                  >
+                    <Text style={[styles.searchButtonText, {}]}>Pesquisar</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
             ) : (
               <Text>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>

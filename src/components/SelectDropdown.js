@@ -11,6 +11,7 @@ const SelectDropdown = ({ placeholder, listItems, setSelectedItems, selectedItem
         setSelectedItems(items);
       }}
       //On text change listner on the searchable input
+      onTextChange={(item) => console.log(item)}
       onItemSelect={(item) => {
         if (multi) {
           const Items = selectedItems || [];

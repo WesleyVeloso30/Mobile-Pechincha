@@ -26,7 +26,7 @@ const isMocked = Constants.manifest.extra.isMocked == "true";
 
 const Filters = ({ navigation }) => {
   const [selectedCompany, setSelectedCompany] = useState(null);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProducts, setSelectedProducts] = useState(null);
   const [companysName, setCompanysName] = useState(null);
   const [productTitles, setProductTitles] = useState(null);
   const [minimumValue, setMinimumValue] = useState(null);
@@ -126,7 +126,7 @@ const Filters = ({ navigation }) => {
           title: "Sabonete Ypê",
         },
       ];
-      titles.unshift({ id: 0, titles: "Remover selecionado" });
+      titles.unshift({ id: 0, title: "Remover selecionado" });
       setProductTitles(titles);
     } else {
       // productService.
@@ -200,8 +200,8 @@ const Filters = ({ navigation }) => {
               <SearchableDropdown
                 listItems={productTitles}
                 placeholder="Selecione um produto"
-                selectedItems={selectedProduct}
-                setSelectedItems={setSelectedProduct}
+                selectedItems={selectedProducts}
+                setSelectedItems={setSelectedProducts}
               />
             </View>
           </View>
@@ -358,7 +358,7 @@ const Filters = ({ navigation }) => {
                 setInputMaximumValue("0");
                 setInputMinimumValue("0");
                 setSelectedCompany(null);
-                setSelectedProduct(null);
+                setSelectedProducts(null);
               }}
             >
               <Text
@@ -383,7 +383,7 @@ const Filters = ({ navigation }) => {
                     maximumValue,
                     minimumValue,
                     selectedCompany,
-                    selectedProduct,
+                    selectedProducts,
                   },
                 })
               }
