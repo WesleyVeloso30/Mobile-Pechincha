@@ -10,13 +10,14 @@ const isMocked = Constants.manifest.extra.isMocked == 'true';
 
 const Search = ({navigation}) => {
   const [productTitles, setProductTitles] = useState(null);
-  const [selectedProduct, setSelectedProduct] = useState(null);
+  const [selectedProducts, setSelectedProducts] = useState(null);
+  const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    getCompany();
+    getTitles();
   }, []);
 
-  const getCompany = async () => {
+  const getTitles = async () => {
     let titles;
     setProductTitles(null);
     if (isMocked) {
@@ -42,22 +43,90 @@ const Search = ({navigation}) => {
       setProductTitles(titles);
     }
   };
+
+  // const getProductsByTitles = async () => {
+  //   let data;
+  //   setProducts(null);
+  //   if (isMocked) {
+  //     data = [
+  //       {
+  //         id: 1,
+  //         title: "Kg de Linguiça",
+  //         subtitle: "",
+  //         company: {
+  //           name: "Atacadão",
+  //         },
+  //         regularPrice: 16.21,
+  //         promotionalPrice: 12.02,
+  //         startAt: '2023-11-22T11:07:00.100Z',
+  //         endAt: '2024-12-01T10:00:00.100Z',
+  //       },
+  //       {
+  //         id: 2,
+  //         title: "Carne na Rola",
+  //         subtitle: "",
+  //         company: {
+  //           name: "Assaí",
+  //         },
+  //         regularPrice: 16.21,
+  //         promotionalPrice: 12.02,
+  //         startAt: '2024-01-19T22:27:20.100Z',
+  //         endAt: '2024-01-21T22:27:20.100Z',
+  //       },
+  //       {
+  //         id: 3,
+  //         title: "Sabonete Ypê",
+  //         subtitle: "",
+  //         company: {
+  //           name: "R Carvalho",
+  //         },
+  //         regularPrice: 16.21,
+  //         promotionalPrice: 12.02,
+  //         startAt: '2024-01-03T00:07:20.100Z',
+  //         endAt: '2024-01-19T22:27:20.100Z',
+  //       },
+  //     ];
+  //     setProducts(data);
+  //   } else {
+  //     data = await productService.getProducts({ selectedProducts });
+
+  //     setProducts(data);
+  //   }
+  //   setRefreshing(false);
+  //   return data;
+  // };
     return (
         <View>
           {
             productTitles ? (
-              <SafeAreaView style={styles.searchContainer}>
-              <View style={styles.search}>
-                <SearchableDropdown
-                  listItems={productTitles}
-                  placeholder="Selecione um produto"
-                  selectedItems={selectedProduct}
-                  setSelectedItems={setSelectedProduct}
-                  fontSize={25}
-                  multi={true}
+              <View>
+                <SafeAreaView style={styles.searchContainer}>
+                <View style={styles.search}>
+                  <SearchableDropdown
+                    listItems={productTitles}
+                    placeholder="Selecione um produto"
+                    selectedItems={selectedProducts}
+                    setSelectedItems={setSelectedProducts}
+                    fontSize={25}
+                    multi={true}
+                  />
+                </View>
+                </SafeAreaView>
+                {
+
+                }
+                <FlatList
+                  refreshControl={
+                    <RefreshControl
+                    refreshing={false}
+                    onRefresh={getData}
+                    />
+                  }
+                  data={productsData}
+                  keyExtractor={(_, id) => id.toString()}
+                  renderItem={({item}) => ( <ProductCard item={item} navigation={navigation} /> ) }
                 />
               </View>
-              </SafeAreaView>
             ) : (
               <Text>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
             )

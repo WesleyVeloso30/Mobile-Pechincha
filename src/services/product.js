@@ -7,11 +7,14 @@ export default class Product {
     const initialDate = params?.initialDate ? params?.initialDate.toISOString() : '';
     const finalDate = params?.finalDate ? params?.finalDate.toISOString() : '';
     const selectedProduct = params?.selectedProduct?.title || '';
+    // Ver como pegar só uma propriedade de cada objeto do array
+    const selectedProducts = params?.selectedProducts?.title || '';
     const selectedCompanyId = params?.selectedCompany?.id || '';
     const maximumValue = params?.maximumValue || '';
     const minimumValue = params?.minimumValue || '';
 
     try {
+      // Entender como passar uma lista de string para a api
       const url = `${baseUrl}/product?startAt=${initialDate}&endAt=${finalDate}&title=${selectedProduct}&companyId=${selectedCompanyId}&minimumPromotionalPrice=${minimumValue}&maximumPromotionalPrice=${maximumValue}`;
       const resp = await fetch(url);
       if (resp.status == 200) {
