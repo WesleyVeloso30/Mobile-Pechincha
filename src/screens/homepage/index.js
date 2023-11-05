@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, FlatList, RefreshControl } from "react-native";
+import { View, Text, SafeAreaView, StyleSheet, Image, FlatList, RefreshControl } from "react-native";
 import { useEffect, useState } from "react";
 import ProductCard from "../../components/Card";
 import products from "../../services/product";
@@ -35,6 +35,7 @@ const Homepage = ({ navigation, route }) => {
           promotionalPrice: 12.02,
           startAt: '2023-11-22T11:07:00.100Z',
           endAt: '2024-12-01T10:00:00.100Z',
+          imageUrl: '../assets/foto.jpeg'
         },
         {
           id: 2,
@@ -47,6 +48,7 @@ const Homepage = ({ navigation, route }) => {
           promotionalPrice: 12.02,
           startAt: '2024-01-19T22:27:20.100Z',
           endAt: '2024-01-21T22:27:20.100Z',
+          imageUrl: '../assets/foto.jpeg'
         },
         {
           id: 3,
@@ -59,6 +61,7 @@ const Homepage = ({ navigation, route }) => {
           promotionalPrice: 12.02,
           startAt: '2024-01-03T00:07:20.100Z',
           endAt: '2024-01-19T22:27:20.100Z',
+          imageUrl: '../assets/foto.jpeg'
         },
       ];
       setProductsData(data);
@@ -115,7 +118,10 @@ const Homepage = ({ navigation, route }) => {
         )
       ) : (
         <View style={styles.noApiData}>
-          <Text style={{fontSize: 20}}>Carregando dados da API...</Text>
+          <Image
+          style={{ width: "100%", height: '100%' }}
+            source={require('../../assets/carregando.gif')}
+          />
         </View>
       )}
     </View>

@@ -74,7 +74,9 @@ ${item.company.name}
       >
         <LinearGradient colors={borderColor(item.company.name)}>
           <Card.Cover
-            source={require("../assets/foto.jpeg")}
+            source={{
+              uri: item.imageUrl || 'https://www.google.com/url?sa=i&url=https%3A%2F%2Faminoapps.com%2Fc%2Foverwatch-brasil%2Fpage%2Fuser%2Fcarregando%2FjVxb_ENFpfVmWkmrag6Ro4ow2pvYdjN23wUk&psig=AOvVaw1o9gjfXCNMWpgVVkCTcw8a&ust=1699290672051000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCIDG4JqtrYIDFQAAAAAdAAAAABAb'
+            }}
             style={{ marginBottom: 10 }}
           />
           <Card.Content style={[styles.CardContent, { marginBottom: 10 }]}>

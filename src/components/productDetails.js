@@ -110,7 +110,9 @@ const ProductDetails = ({
                   style={{ alignItems: "center", width: "100%", marginTop: 15 }}
                 >
                   <Image
-                    source={require("../assets/foto.jpeg")}
+                    source={{
+                      uri: productsData.imageUrl || ''
+                    }}
                     style={{ width: "97%", height: 200 }}
                     alt="Imagem do produto"
                   />
