@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, FlatList, RefreshControl, TouchableOpacity } from "react-native";
+import { View, Text, SafeAreaView, FlatList, Image, RefreshControl, TouchableOpacity } from "react-native";
 import { useEffect, useState } from "react";
 import SearchableDropdown from '../../components/SelectDropdown';
 import styles from "./styles";
@@ -142,7 +142,12 @@ const Search = ({navigation}) => {
                 </View>
               </View>
             ) : (
-              <Text>kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk</Text>
+              <View style={styles.noApiData}>
+                <Image
+                style={{ width: "100%", height: '100%' }}
+                  source={require('../../assets/carregando.gif')}
+                />
+              </View>
             )
           }
         </View>

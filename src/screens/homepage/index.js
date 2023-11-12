@@ -35,11 +35,11 @@ const Homepage = ({ navigation, route }) => {
           promotionalPrice: 12.02,
           startAt: '2023-11-22T11:07:00.100Z',
           endAt: '2024-12-01T10:00:00.100Z',
-          imageUrl: '../assets/foto.jpeg'
+          imageUrl: 'https://swiftbr.vteximg.com.br/arquivos/ids/178656-636-636/linguica-pernil-swift-700g-615900-1.png?v=637707648975300000'
         },
         {
           id: 2,
-          title: "Carne na Rola",
+          title: "1Kg Batata",
           subtitle: "",
           company: {
             name: "Assaí",
@@ -48,11 +48,11 @@ const Homepage = ({ navigation, route }) => {
           promotionalPrice: 12.02,
           startAt: '2024-01-19T22:27:20.100Z',
           endAt: '2024-01-21T22:27:20.100Z',
-          imageUrl: '../assets/foto.jpeg'
+          imageUrl: 'https://storage.googleapis.com/pechincha-image-product.appspot.com/Product%2F1699195027959.jfif'
         },
         {
           id: 3,
-          title: "Sabonete Ypê",
+          title: "Caixa de Sabonete",
           subtitle: "",
           company: {
             name: "R Carvalho",
@@ -61,7 +61,7 @@ const Homepage = ({ navigation, route }) => {
           promotionalPrice: 12.02,
           startAt: '2024-01-03T00:07:20.100Z',
           endAt: '2024-01-19T22:27:20.100Z',
-          imageUrl: '../assets/foto.jpeg'
+          imageUrl: 'https://www.phebo.com.br/media/catalog/product/e/a/ean7896512934529_0118.jpg?optimize=medium&fit=bounds&height=&width=&canvas=:'
         },
       ];
       setProductsData(data);
