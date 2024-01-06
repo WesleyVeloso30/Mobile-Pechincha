@@ -29,7 +29,7 @@ function BottomTabNavigator () {
             },
         }}
         initialRouteName="Home">
-        <BottomTab.Screen 
+        {/* <BottomTab.Screen 
             name="Profile" 
             component={Profile}
             options={{
@@ -54,6 +54,19 @@ function BottomTabNavigator () {
                     return <Ionicons name='bookmark-outline' size={size} color={color}/>
                 }
             }}
+        /> */}
+        <BottomTab.Screen 
+            name="Search" 
+            component={Search}
+            options={{
+                tabBarIcon: ({ color, size, focused}) => {
+                    if (focused) {
+                        return <Ionicons name='search' size={size} color={color}/>
+                    }
+                    
+                    return <Ionicons name='search-outline' size={size} color={color}/>
+                }
+            }}
         />
         <BottomTab.Screen 
             name="Home" 
@@ -69,28 +82,15 @@ function BottomTabNavigator () {
             }}
         />
         <BottomTab.Screen 
-            name="Search" 
-            component={Search}
-            options={{
-                tabBarIcon: ({ color, size, focused}) => {
-                    if (focused) {
-                        return <Ionicons name='search' size={size} color={color}/>
-                    }
-                    
-                    return <Ionicons name='search-outline' size={size} color={color}/>
-                }
-            }}
-        />
-        <BottomTab.Screen 
             name="Filters" 
             component={Filters}
             options={{
                 tabBarIcon: ({ color, size, focused}) => {
                     if (focused) {
-                        return <Ionicons name='bookmark' size={size} color={color}/>
+                        return <Ionicons name='filter' size={size} color={color}/>
                     }
 
-                    return <Ionicons name='bookmark-outline' size={size} color={color}/>
+                    return <Ionicons name='filter-outline' size={size} color={color}/>
                 }
             }}
         />
