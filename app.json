@@ -8,9 +8,9 @@
     "userInterfaceStyle": "light",
     "jsEngine": "jsc",
     "extra": {
-      "isMocked": "true",
-      "baseUrl": "http://10.0.0.108:3000",
-      "baseUrl1": "https://pechincha-backend.onrender.com"
+      "isMocked": "false",
+      "baseUrl1": "http://10.0.0.108:3000",
+      "baseUrl": "https://pechincha-backend.onrender.com"
     },
     "splash": {
       "image": "./assets/Profile.svg",
