@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { 
   StyleSheet, 
   Text, 
@@ -19,57 +19,31 @@ import CategoryCard from '@/src/components/home/CategoryCard';
 import SupermarketCard from '@/src/components/home/SupermarketCard';
 import PromotionCard from '@/src/components/home/PromotionCard';
 import { Category, Supermarket, Promotion } from '@/src/types';
+import { categoriesMock, promotionsMock, supermarketsMock } from '@/src/mock/home';
+import Constants from "expo-constants";
 
-// Mock data
-const supermarkets: Supermarket[] = [
-  {
-    id: '1',
-    name: 'Supermercado Regional',
-    image: 'https://images.pexels.com/photos/2733918/pexels-photo-2733918.jpeg',
-    distance: '1.2 km',
-  },
-  {
-    id: '2',
-    name: 'Supermercado Industrial',
-    image: 'https://images.pexels.com/photos/264636/pexels-photo-264636.jpeg',
-    distance: '3.4 km',
-  },
-  {
-    id: '3',
-    name: 'Supermercado União',
-    image: 'https://images.pexels.com/photos/3962285/pexels-photo-3962285.jpeg',
-    distance: '4.8 km',
-  }
-];
-
-const categories: Category[] = [
-  { id: '1', name: 'Carnes', icon: '🥩', color: '#FFCECE' },
-  { id: '2', name: 'Bebidas', icon: '🥤', color: '#CCE5FF' },
-  { id: '3', name: 'Cereais', icon: '🌾', color: '#E6DFCD' },
-  { id: '4', name: 'Frutas', icon: '🍎', color: '#E5FFCC' },
-  { id: '5', name: 'Verduras', icon: '🥬', color: '#CCFFE6' },
-  { id: '6', name: 'Massas', icon: '🍝', color: '#FFF5CC' },
-];
-
-const promotions: Promotion[] = [
-  {
-    id: '1',
-    title: 'Promoção de Carnes',
-    description: 'Até 30% de desconto em carnes selecionadas',
-    image: 'https://images.pexels.com/photos/1927377/pexels-photo-1927377.jpeg',
-    productCount: 300,
-  },
-  {
-    id: '2',
-    title: 'Festival de Frutas',
-    description: 'Frutas da estação com preços imperdíveis',
-    image: 'https://images.pexels.com/photos/1132040/pexels-photo-1132040.jpeg',
-    productCount: 150,
-  }
-];
+const isMocked = Constants.manifest2.extra.isMocked == "true";
 
 export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [supermarkets, setSupermarkets] = useState([] as Supermarket[]);
+  const [promotions, setPromotions] = useState([] as Promotion[]);
+  const [categories, setCategories] = useState([] as Category[]);
+
+  useEffect(() => {
+    getHomeData();
+  }, []);
+
+  const getHomeData = () => {
+    if (!isMocked) {
+      setSupermarkets(supermarketsMock);
+      setPromotions(promotionsMock);
+      setCategories(categoriesMock);
+    } else {
+      // Dados vindos da Api
+    }
+  }
+
 
   return (
     <SafeAreaView style={styles.container}>

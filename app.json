@@ -7,6 +7,9 @@
     "icon": "./src/assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
+    "extra": {
+      "isMocked": "true"
+    },
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true

@@ -1,8 +1,8 @@
 import { Platform } from 'react-native';
 import { Tabs } from 'expo-router';
-import { Chrome as Home, ClipboardList, User } from 'lucide-react-native';
+import { Home, ClipboardList, User } from 'lucide-react-native';
 import Colors from '@/src/constants/Colors';
-import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabLayout() {
   const insets = useSafeAreaInsets();
@@ -18,7 +18,7 @@ export default function TabLayout() {
           shadowOffset: { width: 0, height: -2 },
           shadowOpacity: 0.1,
           shadowRadius: 3,
-          elevation: 5,
+          elevation: 500,
           paddingBottom: insets.bottom,
         },
         tabBarActiveTintColor: Colors.light.primary,
