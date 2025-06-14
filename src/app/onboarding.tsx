@@ -21,7 +21,7 @@ export default function OnboardingScreen() {
       >
         <View style={styles.header}>
           <Image
-            source={require('@/src/assets/images/shopping-cart.png')}
+            source={require('@/src/assets/images/logoPechincha.png')}
             style={styles.logo}
             resizeMode="contain"
           />
@@ -32,7 +32,7 @@ export default function OnboardingScreen() {
           <View style={styles.featureItem}>
             <View style={styles.featureIcon}>
               <Image 
-                source={require('@/src/assets/images/wallet.png')}
+                source={require('@/src/assets/images/carteira.png')}
                 style={styles.iconImage}
                 resizeMode="contain"
               />
@@ -48,7 +48,7 @@ export default function OnboardingScreen() {
           <View style={styles.featureItem}>
             <View style={styles.featureIcon}>
               <Image 
-                source={require('@/src/assets/images/clock.png')}
+                source={require('@/src/assets/images/relogio.png')}
                 style={styles.iconImage}
                 resizeMode="contain"
               />
@@ -64,7 +64,7 @@ export default function OnboardingScreen() {
           <View style={styles.featureItem}>
             <View style={styles.featureIcon}>
               <Image 
-                source={require('@/src/assets/images/heart.png')}
+                source={require('@/src/assets/images/cabecaCoracao.png')}
                 style={styles.iconImage}
                 resizeMode="contain"
               />
@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
     marginBottom: Layout.spacing.xxl,
   },
   logo: {
-    width: 50,
-    height: 50,
+    width: 80,
+    height: 80,
     marginRight: Layout.spacing.sm,
   },
   appName: {
@@ -128,15 +128,15 @@ const styles = StyleSheet.create({
     marginBottom: Layout.spacing.lg,
   },
   featureIcon: {
-    width: 50,
-    height: 50,
+    width: 80,
+    height: 80,
     justifyContent: 'center',
     alignItems: 'center',
     marginRight: Layout.spacing.md,
   },
   iconImage: {
-    width: 40,
-    height: 40,
+    width: 50,
+    height: 50,
   },
   featureTextContainer: {
     flex: 1,

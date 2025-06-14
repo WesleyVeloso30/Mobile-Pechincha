@@ -34,7 +34,7 @@ export default function AuthScreen() {
       >
         <View style={styles.logoContainer}>
           <Image
-            source={require('@/src/assets/images/shopping-cart.png')}
+            source={require('@/src/assets/images/logoPechincha.png')}
             style={styles.logo}
             resizeMode="contain"
           />
@@ -103,8 +103,8 @@ const styles = StyleSheet.create({
     marginTop: Layout.spacing.xxl * 2,
   },
   logo: {
-    width: 80,
-    height: 80,
+    width: 200,
+    height: 200,
     marginBottom: Layout.spacing.md,
   },
   appName: {

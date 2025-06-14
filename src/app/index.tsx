@@ -32,7 +32,7 @@ export default function WelcomeScreen() {
       >
         <View style={styles.logoContainer}>
           <Image
-            source={require('@/src/assets/images/shopping-cart.png')}
+            source={require('@/src/assets/images/logoPechincha.png')}
             style={styles.logo}
             resizeMode="contain"
           />
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
     marginBottom: Layout.spacing.xl,
   },
   logo: {
-    width: 120,
-    height: 120,
+    width: 220,
+    height: 220,
   },
   textContainer: {
     alignItems: 'center',
