@@ -1,4 +1,3 @@
-import { Platform } from 'react-native';
 import { Tabs } from 'expo-router';
 import { Home, ClipboardList, User } from 'lucide-react-native';
 import Colors from '@/src/constants/Colors';

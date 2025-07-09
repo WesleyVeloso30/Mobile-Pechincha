@@ -1,6 +1,5 @@
 import React, { JSX } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { Settings, CreditCard, MapPin, Heart, Bell, CircleHelp as HelpCircle, LogOut } from 'lucide-react-native';
 import Colors from '@/src/constants/Colors';
 import Layout from '@/src/constants/Layout';

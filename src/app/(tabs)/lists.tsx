@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, SafeAreaView } from 'react-native';
 import { Plus, ShoppingBasket } from 'lucide-react-native';
 import Colors from '@/src/constants/Colors';
 import Layout from '@/src/constants/Layout';
