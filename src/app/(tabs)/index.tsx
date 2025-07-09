@@ -7,10 +7,10 @@ import {
   TextInput,
   TouchableOpacity,
   Image,
-  FlatList
+  FlatList,
+  SafeAreaView
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Search, MessageCircle } from 'lucide-react-native';
 import Colors from '@/src/constants/Colors';
 import Layout from '@/src/constants/Layout';
@@ -21,6 +21,7 @@ import PromotionCard from '@/src/components/home/PromotionCard';
 import { Category, Supermarket, Promotion } from '@/src/types';
 import { categoriesMock, promotionsMock, supermarketsMock } from '@/src/mock/home';
 import Constants from "expo-constants";
+import { router } from 'expo-router';
 
 const isMocked = Constants.manifest2.extra.isMocked == "true";
 
@@ -29,10 +30,14 @@ export default function HomeScreen() {
   const [supermarkets, setSupermarkets] = useState([] as Supermarket[]);
   const [promotions, setPromotions] = useState([] as Promotion[]);
   const [categories, setCategories] = useState([] as Category[]);
+  const [filterByCategories, setFilterByCategories] = useState([] as Category[]);
 
   useEffect(() => {
     getHomeData();
   }, []);
+
+  useEffect(() => {
+  }, [filterByCategories]);
 
   const getHomeData = () => {
     if (!isMocked) {
@@ -50,7 +55,9 @@ export default function HomeScreen() {
       <StatusBar style="dark" />
       
       <View style={styles.header}>
-        <Logo size={24} horizontal />
+        <TouchableOpacity onPress={() => router.replace('/auth')}>
+          <Logo size={24} horizontal />
+        </TouchableOpacity>
         <TouchableOpacity style={styles.chatButton}>
           <MessageCircle size={24} color={Colors.light.primary} />
         </TouchableOpacity>
@@ -95,7 +102,7 @@ export default function HomeScreen() {
         
         <View style={styles.categoriesGrid}>
           {categories.map((category) => (
-            <CategoryCard key={category.id} category={category} />
+            <CategoryCard key={category.id} category={category} setFilterByCategories={setFilterByCategories} filterByCategories={filterByCategories} />
           ))}
         </View>
         
@@ -130,6 +137,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingHorizontal: Layout.spacing.xl,
     paddingVertical: Layout.spacing.md,
+    marginTop: 18,
   },
   chatButton: {
     width: 40,

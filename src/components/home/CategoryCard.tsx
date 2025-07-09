@@ -6,15 +6,34 @@ import Colors from '@/src/constants/Colors';
 
 interface CategoryCardProps {
   category: Category;
+  setFilterByCategories: React.Dispatch<React.SetStateAction<Category[]>>
+  filterByCategories: Category[];
 }
 
-export default function CategoryCard({ category }: CategoryCardProps) {
+export default function CategoryCard({ category, setFilterByCategories, filterByCategories }: CategoryCardProps) {
+  let newCategories: Category[];
+
   return (
     <TouchableOpacity 
       style={[
         styles.container, 
         { backgroundColor: category.color }
       ]}
+      onPress={() => {
+        if (filterByCategories?.length) {
+          const categoryAlreadySelected = filterByCategories.find((filteredCategories) => filteredCategories.id === category.id);
+          if (categoryAlreadySelected) {
+            newCategories = filterByCategories.filter(({ id }) => id !== category.id);
+          } else {
+            filterByCategories.push(category);
+            newCategories = filterByCategories;
+          }
+        } else {
+          newCategories = [category]
+        }
+        setFilterByCategories(newCategories);
+        newCategories = [];
+      }}
     >
       <Text style={styles.icon}>{category.icon}</Text>
       <Text style={styles.name}>{category.name}</Text>
