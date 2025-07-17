@@ -24,8 +24,6 @@ import PromotionCard from '@src/components/home/PromotionCard';
 const isMocked = Constants.manifest2.extra.isMocked == "true";
 const categoryColors = ['#007BFF', '#28A745', '#FFC107', '#DC3545'];
 
-
-
 export default function ProductsScreen() {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
@@ -61,7 +59,7 @@ export default function ProductsScreen() {
   }
 
   const handleBack = () => {
-    router.back();
+    router.replace('/(tabs)');
   };
 
   const renderProduct = ({ item, index }: { item: Product; index: number }) => {
@@ -96,13 +94,14 @@ export default function ProductsScreen() {
 
   const renderCategory = ({ item }: { item: any }) => (
     <TouchableOpacity 
-      style={[
-        styles.categoryChip,
-        { backgroundColor: item.color },
-        selectedCategory === item.id && styles.categoryChipSelected
-      ]}
-      onPress={() => setSelectedCategory(item.id)}
+    style={[
+      styles.categoryChip,
+      { backgroundColor: item.color },
+      selectedCategory === item.id && styles.categoryChipSelected
+    ]}
+    onPress={() => setSelectedCategory(item.id)}
     >
+      <Text style={styles.icon}>{item.icon}</Text>
       <Text style={styles.categoryChipText}>{item.name}</Text>
     </TouchableOpacity>
   );
@@ -199,6 +198,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: Layout.spacing.xl,
   },
   categoryChip: {
+    // display: 'flex',
+    // flexDirection: 'row',
+    // alignItems: 'center',
     paddingHorizontal: Layout.spacing.md,
     paddingVertical: Layout.spacing.sm,
     borderRadius: Layout.borderRadius.large,
@@ -286,5 +288,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontFamily: 'Poppins-Bold',
     lineHeight: 20,
+  },
+  icon: {
+    fontSize: 24,
+    marginBottom: 4,
   },
 });

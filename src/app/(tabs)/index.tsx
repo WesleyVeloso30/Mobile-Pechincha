@@ -22,7 +22,6 @@ import { Category, Supermarket, Promotion } from '@src/types';
 import { categoriesMock, promotionsMock, supermarketsMock } from '@src/mock/home';
 import Constants from "expo-constants";
 import { router } from 'expo-router';
-import { SearchInput } from '@src/components/SearchInput';
 
 const isMocked = Constants.manifest2.extra.isMocked == "true";
 
@@ -63,7 +62,18 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
       
-      <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery}  />
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Busque seu produto aqui..."
+          placeholderTextColor={Colors.light.placeholder}
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+        <TouchableOpacity style={styles.searchButton}>
+          <Search size={20} color={Colors.light.primary} />
+        </TouchableOpacity>
+      </View>
       
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -138,6 +148,28 @@ const styles = StyleSheet.create({
   },
   scrollContent: {
     paddingBottom: Layout.spacing.xxl,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    marginHorizontal: Layout.spacing.xl,
+    marginVertical: Layout.spacing.md,
+    borderWidth: 1,
+    borderColor: Colors.light.border,
+    borderRadius: Layout.borderRadius.large,
+    backgroundColor: 'white',
+  },
+  searchInput: {
+    flex: 1,
+    paddingHorizontal: Layout.spacing.md,
+    paddingVertical: Layout.spacing.sm,
+    fontFamily: 'Poppins-Regular',
+    fontSize: 14,
+    color: Colors.light.text,
+  },
+  searchButton: {
+    paddingHorizontal: Layout.spacing.md,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   bannerContainer: {
     marginHorizontal: Layout.spacing.xl,
