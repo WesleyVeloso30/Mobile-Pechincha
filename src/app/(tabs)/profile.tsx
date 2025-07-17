@@ -1,9 +1,9 @@
 import React, { JSX } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
 import { Settings, CreditCard, MapPin, Heart, Bell, CircleHelp as HelpCircle, LogOut } from 'lucide-react-native';
-import Colors from '@/src/constants/Colors';
-import Layout from '@/src/constants/Layout';
-import Avatar from '@/src/components/profile/Avatar';
+import Colors from '@src/constants/Colors';
+import Layout from '@src/constants/Layout';
+import Avatar from '@src/components/profile/Avatar';
 
 interface MenuOption {
   icon: JSX.Element;

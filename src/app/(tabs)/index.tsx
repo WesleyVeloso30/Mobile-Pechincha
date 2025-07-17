@@ -12,16 +12,17 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Search, MessageCircle } from 'lucide-react-native';
-import Colors from '@/src/constants/Colors';
-import Layout from '@/src/constants/Layout';
-import Logo from '@/src/components/Logo';
-import CategoryCard from '@/src/components/home/CategoryCard';
-import SupermarketCard from '@/src/components/home/SupermarketCard';
-import PromotionCard from '@/src/components/home/PromotionCard';
-import { Category, Supermarket, Promotion } from '@/src/types';
-import { categoriesMock, promotionsMock, supermarketsMock } from '@/src/mock/home';
+import Colors from '@src/constants/Colors';
+import Layout from '@src/constants/Layout';
+import Logo from '@src/components/Logo';
+import CategoryCard from '@src/components/home/CategoryCard';
+import SupermarketCard from '@src/components/home/SupermarketCard';
+import PromotionCard from '@src/components/home/PromotionCard';
+import { Category, Supermarket, Promotion } from '@src/types';
+import { categoriesMock, promotionsMock, supermarketsMock } from '@src/mock/home';
 import Constants from "expo-constants";
 import { router } from 'expo-router';
+import { SearchInput } from '@src/components/SearchInput';
 
 const isMocked = Constants.manifest2.extra.isMocked == "true";
 
@@ -49,7 +50,6 @@ export default function HomeScreen() {
     }
   }
 
-
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar style="dark" />
@@ -63,18 +63,7 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </View>
       
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="O que está procurando?"
-          placeholderTextColor={Colors.light.placeholder}
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-        />
-        <TouchableOpacity style={styles.searchButton}>
-          <Search size={20} color={Colors.light.primary} />
-        </TouchableOpacity>
-      </View>
+      <SearchInput searchQuery={searchQuery} setSearchQuery={setSearchQuery}  />
       
       <ScrollView 
         showsVerticalScrollIndicator={false}
@@ -144,28 +133,6 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     backgroundColor: 'rgba(0, 210, 122, 0.1)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  searchContainer: {
-    flexDirection: 'row',
-    marginHorizontal: Layout.spacing.xl,
-    marginVertical: Layout.spacing.md,
-    borderWidth: 1,
-    borderColor: Colors.light.border,
-    borderRadius: Layout.borderRadius.large,
-    backgroundColor: 'white',
-  },
-  searchInput: {
-    flex: 1,
-    paddingHorizontal: Layout.spacing.md,
-    paddingVertical: Layout.spacing.sm,
-    fontFamily: 'Poppins-Regular',
-    fontSize: 14,
-    color: Colors.light.text,
-  },
-  searchButton: {
-    paddingHorizontal: Layout.spacing.md,
     alignItems: 'center',
     justifyContent: 'center',
   },

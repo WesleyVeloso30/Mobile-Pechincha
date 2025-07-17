@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from 'r
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import Colors from '@/src/constants/Colors';
-import Layout from '@/src/constants/Layout';
+import Colors from '@src/constants/Colors';
+import Layout from '@src/constants/Layout';
 
 export default function AuthScreen() {
   const handleLogin = () => {
@@ -33,7 +33,7 @@ export default function AuthScreen() {
       >
         <View style={styles.logoContainer}>
           <Image
-            source={require('@/src/assets/images/logoPechincha.png')}
+            source={require('@src/assets/images/logoPechincha.png')}
             style={styles.logo}
             resizeMode="contain"
           />

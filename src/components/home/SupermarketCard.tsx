@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
-import { Supermarket } from '@/src/types';
-import Layout from '@/src/constants/Layout';
-import Colors from '@/src/constants/Colors';
+import { Supermarket } from '@src/types';
+import Layout from '@src/constants/Layout';
+import Colors from '@src/constants/Colors';
 
 interface SupermarketCardProps {
   supermarket: Supermarket;

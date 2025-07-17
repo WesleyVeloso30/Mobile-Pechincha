@@ -1,8 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { Category } from '@/src/types';
-import Layout from '@/src/constants/Layout';
-import Colors from '@/src/constants/Colors';
+import { Category } from '@src/types';
+import Layout from '@src/constants/Layout';
+import Colors from '@src/constants/Colors';
+import { router } from 'expo-router';
 
 interface CategoryCardProps {
   category: Category;
@@ -19,21 +20,7 @@ export default function CategoryCard({ category, setFilterByCategories, filterBy
         styles.container, 
         { backgroundColor: category.color }
       ]}
-      onPress={() => {
-        if (filterByCategories?.length) {
-          const categoryAlreadySelected = filterByCategories.find((filteredCategories) => filteredCategories.id === category.id);
-          if (categoryAlreadySelected) {
-            newCategories = filterByCategories.filter(({ id }) => id !== category.id);
-          } else {
-            filterByCategories.push(category);
-            newCategories = filterByCategories;
-          }
-        } else {
-          newCategories = [category]
-        }
-        setFilterByCategories(newCategories);
-        newCategories = [];
-      }}
+      onPress={() => router.replace('/CategoryFilterScreen')}
     >
       <Text style={styles.icon}>{category.icon}</Text>
       <Text style={styles.name}>{category.name}</Text>

@@ -3,8 +3,8 @@ import { Image, StyleSheet, Text, View, Pressable, SafeAreaView } from 'react-na
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import Colors from '@/src/constants/Colors';
-import Layout from '@/src/constants/Layout';
+import Colors from '@src/constants/Colors';
+import Layout from '@src/constants/Layout';
 
 export default function WelcomeScreen() {
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function WelcomeScreen() {
       >
         <View style={styles.logoContainer}>
           <Image
-            source={require('@/src/assets/images/logoPechincha.png')}
+            source={require('@src/assets/images/logoPechincha.png')}
             style={styles.logo}
             resizeMode="contain"
           />

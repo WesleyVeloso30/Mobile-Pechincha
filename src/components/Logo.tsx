@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
-import Colors from '@/src/constants/Colors';
+import Colors from '@src/constants/Colors';
 
 interface LogoProps {
   size?: number;
@@ -15,7 +15,7 @@ export default function Logo({ size = 40, horizontal = false }: LogoProps) {
     return (
       <View style={styles.horizontalContainer}>
         <Image
-          source={require('@/src/assets/images/logoPechincha.png')}
+          source={require('@src/assets/images/logoPechincha.png')}
           style={[styles.logo, { width: logoSize, height: logoSize }]}
           resizeMode="contain"
         />
@@ -27,7 +27,7 @@ export default function Logo({ size = 40, horizontal = false }: LogoProps) {
   return (
     <View style={styles.container}>
       <Image
-        source={require('@/src/assets/images/logoPechincha.png')}
+        source={require('@src/assets/images/logoPechincha.png')}
         style={[styles.logo, { width: logoSize, height: logoSize }]}
         resizeMode="contain"
       />

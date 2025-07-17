@@ -10,8 +10,8 @@ import {
   Poppins_700Bold 
 } from '@expo-google-fonts/poppins';
 import * as SplashScreen from 'expo-splash-screen';
-import { useFrameworkReady } from '@/src/hooks/useFrameworkReady';
-import Colors from '@/src/constants/Colors';
+import { useFrameworkReady } from '@src/hooks/useFrameworkReady';
+import Colors from '@src/constants/Colors';
 
 // Keep the splash screen visible until fonts are loaded
 SplashScreen.preventAutoHideAsync();

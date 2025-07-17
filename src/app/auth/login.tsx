@@ -4,9 +4,9 @@ import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeIn } from 'react-native-reanimated';
 import { ArrowLeft } from 'lucide-react-native';
-import Colors from '@/src/constants/Colors';
-import Layout from '@/src/constants/Layout';
-import Logo from '@/src/components/Logo';
+import Colors from '@src/constants/Colors';
+import Layout from '@src/constants/Layout';
+import Logo from '@src/components/Logo';
 
 export default function LoginScreen() {
   const [email, setEmail] = useState('');

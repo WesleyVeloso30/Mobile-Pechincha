@@ -3,8 +3,8 @@ import { StyleSheet, Text, View, Image, TouchableOpacity, SafeAreaView } from 'r
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import Animated, { FadeIn } from 'react-native-reanimated';
-import Colors from '@/src/constants/Colors';
-import Layout from '@/src/constants/Layout';
+import Colors from '@src/constants/Colors';
+import Layout from '@src/constants/Layout';
 
 export default function OnboardingScreen() {
   const handleContinue = () => {
@@ -20,7 +20,7 @@ export default function OnboardingScreen() {
       >
         <View style={styles.header}>
           <Image
-            source={require('@/src/assets/images/logoPechincha.png')}
+            source={require('@src/assets/images/logoPechincha.png')}
             style={styles.logo}
             resizeMode="contain"
           />
@@ -31,7 +31,7 @@ export default function OnboardingScreen() {
           <View style={styles.featureItem}>
             <View style={styles.featureIcon}>
               <Image 
-                source={require('@/src/assets/images/carteira.png')}
+                source={require('@src/assets/images/carteira.png')}
                 style={styles.iconImage}
                 resizeMode="contain"
               />
@@ -47,7 +47,7 @@ export default function OnboardingScreen() {
           <View style={styles.featureItem}>
             <View style={styles.featureIcon}>
               <Image 
-                source={require('@/src/assets/images/relogio.png')}
+                source={require('@src/assets/images/relogio.png')}
                 style={styles.iconImage}
                 resizeMode="contain"
               />
@@ -63,7 +63,7 @@ export default function OnboardingScreen() {
           <View style={styles.featureItem}>
             <View style={styles.featureIcon}>
               <Image 
-                source={require('@/src/assets/images/cabecaCoracao.png')}
+                source={require('@src/assets/images/cabecaCoracao.png')}
                 style={styles.iconImage}
                 resizeMode="contain"
               />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import { Camera } from 'lucide-react-native';
-import Colors from '@/src/constants/Colors';
+import Colors from '@src/constants/Colors';
 
 interface AvatarProps {
   size?: number;

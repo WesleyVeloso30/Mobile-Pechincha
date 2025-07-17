@@ -1,6 +1,6 @@
 import { Tabs } from 'expo-router';
 import { Home, ClipboardList, User } from 'lucide-react-native';
-import Colors from '@/src/constants/Colors';
+import Colors from '@src/constants/Colors';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function TabLayout() {
