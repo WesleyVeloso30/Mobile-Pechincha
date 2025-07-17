@@ -110,7 +110,7 @@ export default function HomeScreen() {
             <Text style={styles.sectionTitle}>Promoções do dia</Text>
             <View style={styles.productCountContainer}>
               <Text style={styles.productCount}>300 prod.</Text>
-              <TouchableOpacity style={styles.filterButton}>
+              <TouchableOpacity style={styles.filterButton} onPress={() => router.replace('/filters')}>
                 <Text style={styles.filterText}>⊹</Text>
               </TouchableOpacity>
             </View>
