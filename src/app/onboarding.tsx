@@ -20,7 +20,7 @@ export default function OnboardingScreen() {
       >
         <View style={styles.header}>
           <Image
-            source={require('@src/assets/images/logoPechincha.png')}
+            source={require('@src/assets/logoPechincha.png')}
             style={styles.logo}
             resizeMode="contain"
           />
@@ -31,7 +31,7 @@ export default function OnboardingScreen() {
           <View style={styles.featureItem}>
             <View style={styles.featureIcon}>
               <Image 
-                source={require('@src/assets/images/carteira.png')}
+                source={require('@src/assets/carteira.png')}
                 style={styles.iconImage}
                 resizeMode="contain"
               />
@@ -47,7 +47,7 @@ export default function OnboardingScreen() {
           <View style={styles.featureItem}>
             <View style={styles.featureIcon}>
               <Image 
-                source={require('@src/assets/images/relogio.png')}
+                source={require('@src/assets/relogio.png')}
                 style={styles.iconImage}
                 resizeMode="contain"
               />
@@ -63,7 +63,7 @@ export default function OnboardingScreen() {
           <View style={styles.featureItem}>
             <View style={styles.featureIcon}>
               <Image 
-                source={require('@src/assets/images/cabecaCoracao.png')}
+                source={require('@src/assets/cabecaCoracao.png')}
                 style={styles.iconImage}
                 resizeMode="contain"
               />

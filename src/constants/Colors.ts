@@ -9,7 +9,7 @@ export default {
     background: '#F8FFF9',
     card: '#FFFFFF',
     border: '#E0E0E0',
-    shadow: 'rgba(0, 0, 0, 0.05)',
+    shadow: 'black',
     placeholder: '#AAAAAA',
     error: '#FF3B30',
     success: '#34C759',

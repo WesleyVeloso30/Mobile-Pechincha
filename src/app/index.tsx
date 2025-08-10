@@ -30,7 +30,7 @@ export default function WelcomeScreen() {
       >
         <View style={styles.logoContainer}>
           <Image
-            source={require('@src/assets/images/logoPechincha.png')}
+            source={require('@src/assets/logoPechincha.png')}
             style={styles.logo}
             resizeMode="contain"
           />

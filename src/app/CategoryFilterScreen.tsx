@@ -5,7 +5,6 @@ import {
   View, 
   TouchableOpacity, 
   TextInput,
-  ScrollView,
   Image,
   FlatList
 } from 'react-native';
@@ -20,6 +19,8 @@ import { promotionsMock, categoriesMock } from '@src/mock/home';
 import Constants from "expo-constants";
 import { formatPrice } from '@src/utils';
 import PromotionCard from '@src/components/home/PromotionCard';
+import { globalStyles } from '@src/style/global';
+import BackButton from '@src/components/backButton';
 
 const isMocked = Constants.manifest2.extra.isMocked == "true";
 const categoryColors = ['#007BFF', '#28A745', '#FFC107', '#DC3545'];
@@ -111,11 +112,9 @@ export default function ProductsScreen() {
       <StatusBar style="dark" />
       
       <View style={styles.header}>
-        <TouchableOpacity onPress={handleBack} style={styles.backButton}>
-          <ArrowLeft size={24} color={Colors.light.text} />
-        </TouchableOpacity>
-        
-        <View style={styles.searchContainer}>
+        <BackButton handleBack={handleBack} />
+  
+        <View style={[styles.searchContainer, globalStyles.shadow]}>
           <TextInput
             style={styles.searchInput}
             placeholder="Busque seu produto aqui..."
@@ -136,7 +135,7 @@ export default function ProductsScreen() {
           keyExtractor={(item) => item.id}
           renderItem={renderCategory}
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.categoriesContent}
+          contentContainerStyle={[styles.categoriesContent, globalStyles.shadow]}
         />
       </View>
 
@@ -163,14 +162,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: Layout.spacing.xl,
     paddingVertical: Layout.spacing.md,
-    backgroundColor: Colors.light.primary,
   },
-  backButton: {
+  backButtonContainer: {
     width: 40,
     height: 40,
     alignItems: 'center',
     justifyContent: 'center',
     marginRight: Layout.spacing.sm,
+  },
+  backButtonImage: {
+    width: 40,
+    height: 40,
   },
   searchContainer: {
     flex: 1,
@@ -179,6 +181,8 @@ const styles = StyleSheet.create({
     borderRadius: Layout.borderRadius.large,
     paddingHorizontal: Layout.spacing.md,
     alignItems: 'center',
+    borderColor: Colors.light.primary,
+    borderWidth: 2,
   },
   searchInput: {
     flex: 1,
@@ -191,16 +195,15 @@ const styles = StyleSheet.create({
     padding: Layout.spacing.xs,
   },
   categoriesContainer: {
-    backgroundColor: 'white',
     paddingVertical: Layout.spacing.md,
   },
   categoriesContent: {
     paddingHorizontal: Layout.spacing.xl,
   },
   categoryChip: {
-    // display: 'flex',
-    // flexDirection: 'row',
-    // alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
     paddingHorizontal: Layout.spacing.md,
     paddingVertical: Layout.spacing.sm,
     borderRadius: Layout.borderRadius.large,
