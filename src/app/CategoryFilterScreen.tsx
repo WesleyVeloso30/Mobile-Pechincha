@@ -20,7 +20,7 @@ import Constants from "expo-constants";
 import { formatPrice } from '@src/utils';
 import PromotionCard from '@src/components/home/PromotionCard';
 import { globalStyles } from '@src/style/global';
-import BackButton from '@src/components/backButton';
+import BackButton from '@src/components/BackButton';
 
 const isMocked = Constants.manifest2.extra.isMocked == "true";
 const categoryColors = ['#007BFF', '#28A745', '#FFC107', '#DC3545'];

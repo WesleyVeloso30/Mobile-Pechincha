@@ -193,6 +193,7 @@ const styles = StyleSheet.create({
   horizontalListContent: {
     paddingLeft: Layout.spacing.xl,
     paddingRight: Layout.spacing.md,
+    marginBottom: 2
   },
   categoriesGrid: {
     flexDirection: 'row',
