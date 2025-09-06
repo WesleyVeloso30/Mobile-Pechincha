@@ -12,6 +12,7 @@ import {
 import * as SplashScreen from 'expo-splash-screen';
 import { useFrameworkReady } from '@src/hooks/useFrameworkReady';
 import Colors from '@src/constants/Colors';
+import { AppProvider } from '@src/contexts/AppProvider';
 
 // Keep the splash screen visible until fonts are loaded
 SplashScreen.preventAutoHideAsync();
@@ -37,7 +38,7 @@ export default function RootLayout() {
   }
 
   return (
-    <>
+    <AppProvider>
       <Stack screenOptions={{ 
         headerShown: false,
         contentStyle: { 
@@ -52,6 +53,6 @@ export default function RootLayout() {
         <Stack.Screen name="+not-found" options={{ title: 'Oops!' }} />
       </Stack>
       <StatusBar style="auto" />
-    </>
+    </AppProvider>
   );
 }

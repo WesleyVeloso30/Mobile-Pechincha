@@ -4,15 +4,21 @@ import { Category } from '@src/types';
 import Layout from '@src/constants/Layout';
 import Colors from '@src/constants/Colors';
 import { router } from 'expo-router';
+import { useCategoryFilter } from '@src/hooks/useCategoryFilter';
 
 interface CategoryCardProps {
   category: Category;
-  setFilterByCategories: React.Dispatch<React.SetStateAction<Category[]>>
-  filterByCategories: Category[];
 }
 
-export default function CategoryCard({ category, setFilterByCategories, filterByCategories }: CategoryCardProps) {
+export default function CategoryCard({ category }: CategoryCardProps) {
   let newCategories: Category[];
+  const { categoryFilter, setCategoryFilter } = useCategoryFilter();
+
+  const selectedCard = () => {
+    categoryFilter.push(category);
+    setCategoryFilter({ category: categoryFilter as Category[] });
+    router.replace('/CategoryFilterScreen')
+  }
 
   return (
     <TouchableOpacity 
@@ -20,7 +26,7 @@ export default function CategoryCard({ category, setFilterByCategories, filterBy
         styles.container, 
         { backgroundColor: category.color }
       ]}
-      onPress={() => router.replace('/CategoryFilterScreen')}
+      onPress={() => selectedCard}
     >
       <Text style={styles.icon}>{category.icon}</Text>
       <Text style={styles.name}>{category.name}</Text>

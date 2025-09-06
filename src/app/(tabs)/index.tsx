@@ -101,7 +101,7 @@ export default function HomeScreen() {
         
         <View style={styles.categoriesGrid}>
           {categories.map((category) => (
-            <CategoryCard key={category.id} category={category} setFilterByCategories={setFilterByCategories} filterByCategories={filterByCategories} />
+            <CategoryCard key={category.id} category={category} />
           ))}
         </View>
         

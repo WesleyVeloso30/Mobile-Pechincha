@@ -21,6 +21,7 @@ import { formatPrice } from '@src/utils';
 import PromotionCard from '@src/components/home/PromotionCard';
 import { globalStyles } from '@src/style/global';
 import BackButton from '@src/components/BackButton';
+import { useCategoryFilter } from '@src/hooks/useCategoryFilter';
 
 const isMocked = Constants.manifest2.extra.isMocked == "true";
 const categoryColors = ['#007BFF', '#28A745', '#FFC107', '#DC3545'];
@@ -30,6 +31,7 @@ export default function ProductsScreen() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [categories, setCategories] = useState([] as Category[]);
   const [promotions, setPromotions] = useState([] as Promotion[]);
+  const { categoryFilter, setCategoryFilter } = useCategoryFilter();
   
   useEffect(() => {
     getHomeData();
@@ -98,9 +100,9 @@ export default function ProductsScreen() {
     style={[
       styles.categoryChip,
       { backgroundColor: item.color },
-      selectedCategory === item.id && styles.categoryChipSelected
+      categoryFilter.some === item.id && styles.categoryChipSelected
     ]}
-    onPress={() => setSelectedCategory(item.id)}
+    onPress={() => setCategoryFilter( { category: item } )}
     >
       <Text style={styles.icon}>{item.icon}</Text>
       <Text style={styles.categoryChipText}>{item.name}</Text>
