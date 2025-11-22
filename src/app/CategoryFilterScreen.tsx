@@ -100,9 +100,17 @@ export default function ProductsScreen() {
     style={[
       styles.categoryChip,
       { backgroundColor: item.color },
-      categoryFilter.some === item.id && styles.categoryChipSelected
+      categoryFilter?.categories?.some((selectedCatogory) => selectedCatogory.id === item.id) && styles.categoryChipSelected
     ]}
-    onPress={() => setCategoryFilter( { category: item } )}
+    onPress={() => {
+      console.log('12345', item)
+      console.log('dcjmn', categoryFilter?.categories)
+      // if (categoryFilter.categories.some((categoryFiltered) => categoryFiltered.id === item.id)) {
+        categoryFilter.categories.find()
+      // }
+      categoryFilter?.categories && categoryFilter?.categories?.push(item);
+      setCategoryFilter( { categories: categoryFilter?.categories } );
+    }}
     >
       <Text style={styles.icon}>{item.icon}</Text>
       <Text style={styles.categoryChipText}>{item.name}</Text>

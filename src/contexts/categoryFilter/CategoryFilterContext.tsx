@@ -2,11 +2,11 @@ import React, {createContext, useCallback, useEffect, useMemo, useState} from 'r
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ColorSchemeName, useColorScheme } from 'react-native';
 import { Category } from '@src/types';
+import { CategoryFilterContextDTO } from '../types/categoryFilter';
 
 type CategoryFilterContextValue = {
-  categoryFilter: Category[],
-  setCategoryFilter: (t: { category: Category[], loading?: boolean }) => Promise<void>;
-  loading?: boolean,
+  categoryFilter: CategoryFilterContextDTO,
+  setCategoryFilter: (t: CategoryFilterContextDTO) => Promise<void>;
 };
 
 export const CategoryFilterContext = createContext<CategoryFilterContextValue | undefined>(undefined);
@@ -14,30 +14,29 @@ export const CategoryFilterContext = createContext<CategoryFilterContextValue | 
 const STORAGE_KEY = '@app/CategoryFilter';
 
 export const CategoryFilterProvider: React.FC<React.PropsWithChildren> = ({children}) => {
-  const [categoryFilter, setCategoryFilterState] = useState<{ category: Category[], loading?: boolean }>({category: [], loading: false});
+  const [categoryFilter, setCategoryFilterState] = useState<CategoryFilterContextDTO>({categories: [], loading: false});
 
   useEffect(() => {
     (async () => {
       const saved = await AsyncStorage.getItem(STORAGE_KEY);
       if (saved) {
-        const parsed = JSON.parse(saved) as { category: Category[] };
-        setCategoryFilterState({ category: parsed.category, loading: false });
+        const parsed = JSON.parse(saved) as CategoryFilterContextDTO;
+        setCategoryFilterState({ categories: parsed.categories, loading: false });
       } else {
         setCategoryFilterState(s => ({ ...s, loading: false }));
       }
     })();
   }, []);
 
-  const setCategoryFilter = useCallback(async (t: { category: Category[], loading?: boolean }) => {
+  const setCategoryFilter = useCallback(async (t: CategoryFilterContextDTO) => {
     setCategoryFilterState(t);
-    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify({ category: t }));
+    await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify({ categories: t }));
   }, []);
 
   const value = useMemo(() => ({
-    loading: categoryFilter?.loading,
-    categoryFilter: categoryFilter.category,
+    categoryFilter: categoryFilter,
     setCategoryFilter
-  }), [categoryFilter.category, categoryFilter.loading, categoryFilter, setCategoryFilter]);
+  }), [categoryFilter.categories, categoryFilter.loading, categoryFilter, setCategoryFilter]);
 
   return <CategoryFilterContext.Provider value={value}>{children}</CategoryFilterContext.Provider>;
 };

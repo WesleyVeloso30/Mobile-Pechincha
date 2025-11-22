@@ -15,8 +15,8 @@ export default function CategoryCard({ category }: CategoryCardProps) {
   const { categoryFilter, setCategoryFilter } = useCategoryFilter();
 
   const selectedCard = () => {
-    categoryFilter.push(category);
-    setCategoryFilter({ category: categoryFilter as Category[] });
+    console.log('12', categoryFilter)
+    setCategoryFilter({ categories: [ category ] as Category[] });
     router.replace('/CategoryFilterScreen')
   }
 
@@ -26,7 +26,7 @@ export default function CategoryCard({ category }: CategoryCardProps) {
         styles.container, 
         { backgroundColor: category.color }
       ]}
-      onPress={() => selectedCard}
+      onPress={selectedCard}
     >
       <Text style={styles.icon}>{category.icon}</Text>
       <Text style={styles.name}>{category.name}</Text>
