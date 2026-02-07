@@ -105,11 +105,14 @@ export default function ProductsScreen() {
     onPress={() => {
       console.log('12345', item)
       console.log('dcjmn', categoryFilter?.categories)
-      // if (categoryFilter.categories.some((categoryFiltered) => categoryFiltered.id === item.id)) {
-        categoryFilter.categories.find()
-      // }
-      categoryFilter?.categories && categoryFilter?.categories?.push(item);
-      setCategoryFilter( { categories: categoryFilter?.categories } );
+      const categoryAlreadySelected = categoryFilter?.categories?.find((categoryFiltered) => categoryFiltered.id === item.id)
+      if (categoryAlreadySelected) {
+        const categories = categoryFilter.categories.filter((categoryFiltered) => categoryFiltered.id !== item.id);
+        setCategoryFilter( { categories } );
+      } else {
+        categoryFilter?.categories && categoryFilter?.categories?.push(item);
+        setCategoryFilter( { categories: categoryFilter?.categories } );
+      }
     }}
     >
       <Text style={styles.icon}>{item.icon}</Text>
