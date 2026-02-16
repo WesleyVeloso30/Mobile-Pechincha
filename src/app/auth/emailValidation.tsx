@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, ScrollView } from 'react-native';
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { ArrowLeft } from 'lucide-react-native';
@@ -7,20 +7,18 @@ import Animated, { FadeIn } from 'react-native-reanimated';
 import Colors from '@src/constants/Colors';
 import Layout from '@src/constants/Layout';
 import Logo from '@src/components/Logo';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function SignupScreen() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+export default function EmailValidationScreen() {
+  const [code, setCode] = useState('');
 
   const handleBack = () => {
     router.back();
   };
 
-  const handleSignUp = () => {
+  const handleEmailValidation = () => {
     // In a real app, implement sign up logic
-    router.push('/auth/emailValidation');
+    router.replace('/(tabs)');
   };
 
   return (
@@ -46,47 +44,20 @@ export default function SignupScreen() {
             
             <TextInput 
               style={styles.input}
-              placeholder="Nome completo"
+              placeholder="Código"
               placeholderTextColor={Colors.light.placeholder}
-              value={name}
-              onChangeText={setName}
-              autoCapitalize="words"
-            />
-
-            <TextInput 
-              style={styles.input}
-              placeholder="E-mail"
-              placeholderTextColor={Colors.light.placeholder}
-              value={email}
-              onChangeText={setEmail}
-              keyboardType="email-address"
+              value={code}
+              onChangeText={setCode}
+              keyboardType="numeric"
               autoCapitalize="none"
             />
             
-            <TextInput 
-              style={styles.input}
-              placeholder="Senha"
-              placeholderTextColor={Colors.light.placeholder}
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-            />
-
-            <TextInput 
-              style={styles.input}
-              placeholder="Confirmar senha"
-              placeholderTextColor={Colors.light.placeholder}
-              value={confirmPassword}
-              onChangeText={setConfirmPassword}
-              secureTextEntry
-            />
-            
             <TouchableOpacity 
-              style={styles.signupButton} 
-              onPress={handleSignUp}
+              style={styles.emailValidationButton} 
+              onPress={handleEmailValidation}
               activeOpacity={0.8}
             >
-              <Text style={styles.signupButtonText}>CADASTRAR</Text>
+              <Text style={styles.emailValidationButtonText}>CADASTRAR</Text>
             </TouchableOpacity>
 
             <Text style={styles.termsText}>
@@ -145,7 +116,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: Layout.spacing.md,
   },
-  signupButton: {
+  emailValidationButton: {
     backgroundColor: Colors.light.primary,
     paddingVertical: Layout.spacing.md,
     borderRadius: Layout.borderRadius.medium,
@@ -153,7 +124,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginTop: Layout.spacing.sm,
   },
-  signupButtonText: {
+  emailValidationButtonText: {
     fontFamily: 'Poppins-SemiBold',
     fontSize: 16,
     color: 'white',
