@@ -23,7 +23,7 @@ import { categoriesMock, promotionsMock, supermarketsMock } from '@src/mock/home
 import Constants from "expo-constants";
 import { router } from 'expo-router';
 
-const isMocked = Constants.manifest2.extra.isMocked == "true";
+const isMocked = Constants?.manifest2?.extra?.isMocked == "true";
 
 export default function HomeScreen() {
   const [searchQuery, setSearchQuery] = useState('');
