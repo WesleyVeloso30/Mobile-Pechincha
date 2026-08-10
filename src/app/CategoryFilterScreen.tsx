@@ -22,7 +22,7 @@ import PromotionCard from '@src/components/home/PromotionCard';
 import { globalStyles } from '@src/style/global';
 import BackButton from '@src/components/BackButton';
 
-const isMocked = Constants.manifest2.extra.isMocked == "true";
+const isMocked = Constants.manifest2?.extra?.isMocked == "true";
 const categoryColors = ['#007BFF', '#28A745', '#FFC107', '#DC3545'];
 
 export default function ProductsScreen() {
